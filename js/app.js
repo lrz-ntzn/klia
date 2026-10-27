@@ -1,6 +1,7 @@
 import * as Storage from './storage.js';
 import * as SRS from './srs.js';
 import * as Speak from './speak.js';
+import { renderSoundChart, ipaOf, contrastTip } from './sounds.js';
 
 const $ = (sel, el = document) => el.querySelector(sel);
 const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
@@ -47,14 +48,17 @@ function setView(name) {
   const titles = {
     home: 'Kian Korean',
     hangul: 'Hangul flash',
+    sounds: 'Sound chart',
     syntax: 'Sentence order',
     vocab: 'Vocab',
     progress: 'Progress',
     about: 'About',
   };
   $('#title').textContent = titles[name] || 'Kian Korean';
+  if (name !== 'hangul') stopDrillClock();
   if (name === 'home') renderHome();
   if (name === 'hangul') startHangul();
+  if (name === 'sounds') renderSoundChart($('[data-view="sounds"]'), (text) => Speak.speakKo(text).catch(() => toast('Audio unavailable')), { reset: true });
   if (name === 'syntax') startSyntax();
   if (name === 'vocab') renderVocab();
   if (name === 'progress') renderProgress();
@@ -85,14 +89,17 @@ let hangulRevealed = false;
 let timed = { left: 30, score: 0, total: 0, timer: null, item: null };
 
 function startHangul() {
+  stopDrillClock();
   const root = $('[data-view="hangul"]');
   root.innerHTML = `
+    <button type="button" id="open-sounds" class="sound-link">Sound chart — 40 jamo, with sounds you already know</button>
     <div class="row" style="margin-bottom:10px">
       <button id="mode-srs" class="primary">SRS cards</button>
       <button id="mode-timed">Fast read (30s)</button>
     </div>
     <div id="hangul-body"></div>`;
-  $('#mode-srs').onclick = () => { hangulMode = 'srs'; renderHangulCard(); };
+  $('#open-sounds').onclick = () => setView('sounds');
+  $('#mode-srs').onclick = () => { hangulMode = 'srs'; stopDrillClock(); renderHangulCard(); };
   $('#mode-timed').onclick = () => startTimed();
   renderHangulCard();
 }
@@ -171,27 +178,60 @@ function renderHangulCard() {
   });
 }
 
-function startTimed() {
+function stopDrillClock() {
   clearInterval(timed.timer);
-  timed = { left: 30, score: 0, total: 0, timer: null, item: null, start: Date.now() };
+  timed.timer = null;
+  timed.paused = false;
+  timed.feedback = false;
+  if (timed.onKey) {
+    document.removeEventListener('keydown', timed.onKey);
+    timed.onKey = null;
+  }
+}
+
+function startTimed() {
+  stopDrillClock();
+  timed = { left: 30, score: 0, total: 0, timer: null, item: null, responseMs: 0, shownAt: 0, paused: false, feedback: false, onKey: null };
   const body = $('#hangul-body');
   const tick = () => {
+    if (timed.paused) return;
     timed.left -= 0.1;
     const bar = $('#tbar');
     if (bar) bar.style.width = `${Math.max(0, (timed.left / 30) * 100)}%`;
     if (timed.left <= 0) {
       clearInterval(timed.timer);
+      timed.timer = null;
       finishTimed();
     }
   };
   timed.timer = setInterval(tick, 100);
+  timed.onKey = (e) => {
+    if (!timed.feedback) return;
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const tag = e.target && e.target.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    if (e.target && e.target.id === 'drill-play') return;
+    e.preventDefault();
+    advanceDrill();
+  };
+  document.addEventListener('keydown', timed.onKey);
   nextTimedItem(body);
 }
 
+function drillPool() {
+  return data.hangul.syllables.concat(data.hangul.words);
+}
+
+function escDrill(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 function nextTimedItem(body) {
-  const pool = data.hangul.syllables.concat(data.hangul.words);
+  const pool = drillPool();
   timed.item = pool[Math.floor(Math.random() * pool.length)];
-  // build 3 distractors + correct romaja
+  timed.feedback = false;
+  timed.paused = false;
+  timed.shownAt = Date.now();
   const correct = timed.item.romaja;
   const choices = new Set([correct]);
   while (choices.size < 4) {
@@ -202,27 +242,80 @@ function nextTimedItem(body) {
   body.innerHTML = `
     <div class="pill">Fast reading · ${timed.score}/${timed.total}</div>
     <div class="timer-bar"><div id="tbar" style="width:${(timed.left/30)*100}%"></div></div>
-    <div class="card flash-stage"><div class="flash-char">${timed.item.char}</div></div>
+    <div class="card flash-stage"><div class="flash-char">${escDrill(timed.item.char)}</div></div>
     <div class="choice-grid" id="choices">
-      ${arr.map(c => `<button data-c="${c}">${c}</button>`).join('')}
-    </div>`;
-  $$('#choices button').forEach(b => b.onclick = () => {
-    timed.total += 1;
-    const ok = b.dataset.c === correct;
-    if (ok) timed.score += 1;
-    b.classList.add(ok ? 'correct' : 'wrong');
-    $$('#choices button').forEach(x => x.disabled = true);
-    setTimeout(() => { if (timed.left > 0) nextTimedItem(body); }, 280);
-  });
+      ${arr.map(c => `<button type="button" data-c="${escDrill(c)}">${escDrill(c)}</button>`).join('')}
+    </div>
+    <div id="drill-feedback"></div>`;
+  $$('#choices button').forEach(b => b.onclick = () => answerDrill(b, correct));
+}
+
+function markChoice(btn, kind) {
+  btn.classList.add(kind);
+  btn.disabled = true;
+  const icon = kind === 'correct' ? '✓' : '✗';
+  const word = kind === 'correct' ? 'correct' : 'incorrect';
+  btn.innerHTML = `${escDrill(btn.dataset.c)} <span class="mark" aria-hidden="true">${icon}</span><span class="sr-only"> ${word}</span>`;
+}
+
+function answerDrill(btn, correct) {
+  if (timed.feedback || !timed.item) return;
+  timed.feedback = true;
+  timed.paused = true;
+  timed.responseMs += Math.max(0, Date.now() - timed.shownAt);
+  timed.total += 1;
+  const ok = btn.dataset.c === correct;
+  if (ok) timed.score += 1;
+  $$('#choices button').forEach(x => { x.disabled = true; });
+  markChoice(btn, ok ? 'correct' : 'wrong');
+  if (!ok) {
+    const right = [...$$('#choices button')].find(x => x.dataset.c === correct);
+    if (right) markChoice(right, 'correct');
+  }
+  const item = timed.item;
+  const ipa = ipaOf(item.char);
+  const chosen = drillPool().find(x => x.romaja === btn.dataset.c);
+  const tip = ok ? '' : contrastTip(item.char, chosen ? chosen.char : '');
+  const box = $('#drill-feedback');
+  box.innerHTML = `
+    <div class="fb-banner ${ok ? 'ok' : 'no'}" role="status">
+      <div class="fb-title"><span aria-hidden="true">${ok ? '✓' : '✗'}</span> ${ok ? 'Correct' : 'Incorrect'}</div>
+      <div class="fb-char">${escDrill(item.char)}</div>
+      <div>Romanization <b>${escDrill(item.romaja)}</b></div>
+      <div class="sound-ipa">IPA ${escDrill(ipa)}</div>
+      <div>Correct answer <b>${escDrill(correct)}</b></div>
+      ${ok ? '' : `<div>You picked <b>${escDrill(btn.dataset.c)}</b></div>`}
+      <button type="button" id="drill-play" aria-label="Play ${escDrill(item.char)}">▶ Play ${escDrill(item.char)}</button>
+      ${tip ? `<p class="fb-tip">${escDrill(tip)}</p>` : ''}
+      <p class="fb-pause">Timer paused. Reading this does not use the 30 seconds.</p>
+    </div>
+    <button type="button" class="primary drill-next" id="drill-next">Next</button>`;
+  $('#drill-play').onclick = () => Speak.speakKo(item.char).catch(() => toast('Audio unavailable'));
+  $('#drill-next').onclick = () => advanceDrill();
+  $('#drill-next').focus();
+}
+
+function advanceDrill() {
+  if (!timed.feedback) return;
+  timed.feedback = false;
+  const body = $('#hangul-body');
+  if (!body || timed.left <= 0) {
+    finishTimed();
+    return;
+  }
+  nextTimedItem(body);
 }
 
 function finishTimed() {
-  const sec = 30;
-  const cpm = Math.round((timed.score / sec) * 60);
+  stopDrillClock();
+  const sec = timed.responseMs / 1000;
+  const cpm = sec > 0 ? Math.round((timed.score / sec) * 60) : 0;
   const acc = timed.total ? timed.score / timed.total : 0;
-  state.readingSpeed.push({ t: Date.now(), cpm, accuracy: acc, correct: timed.score, total: timed.total });
+  state.readingSpeed.push({ t: Date.now(), cpm, accuracy: acc, correct: timed.score, total: timed.total, responseMs: timed.responseMs });
   persist();
-  $('#hangul-body').innerHTML = `
+  const body = $('#hangul-body');
+  if (!body) return;
+  body.innerHTML = `
     <div class="card stack">
       <h2>Time!</h2>
       <div class="stat-grid">
@@ -230,11 +323,12 @@ function finishTimed() {
         <div class="stat"><div class="n">${Math.round(acc*100)}%</div><div class="l">accuracy</div></div>
         <div class="stat"><div class="n">${cpm}</div><div class="l">cards / min</div></div>
       </div>
+      <p class="muted">Speed uses answer time only. Time spent on the feedback banner is not counted.</p>
       <button class="primary" id="again-timed">Go again</button>
       <button id="back-srs">Back to SRS</button>
     </div>`;
   $('#again-timed').onclick = startTimed;
-  $('#back-srs').onclick = renderHangulCard;
+  $('#back-srs').onclick = () => { hangulMode = 'srs'; renderHangulCard(); };
 }
 
 /* ---------- Syntax drag-drop ---------- */
@@ -686,4 +780,19 @@ main().catch(err => {
 });
 
 // expose for tests
-window.__kian = { getState: () => state, setView, Speak, SRS, Storage };
+window.__kian = {
+  getState: () => state,
+  setView,
+  Speak,
+  SRS,
+  Storage,
+  getDrill: () => ({
+    item: timed.item,
+    left: timed.left,
+    paused: timed.paused,
+    feedback: timed.feedback,
+    responseMs: timed.responseMs,
+    score: timed.score,
+    total: timed.total,
+  }),
+};

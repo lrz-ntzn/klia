@@ -1,9 +1,10 @@
-const CACHE = 'kian-korean-v1';
+const CACHE = 'kian-korean-v2';
 const ASSETS = [
   './',
   './index.html',
   './css/app.css',
   './js/app.js',
+  './js/sounds.js',
   './js/storage.js',
   './js/srs.js',
   './js/speak.js',

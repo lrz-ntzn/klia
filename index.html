@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0f1419" />
+  <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="description" content="Kian Korean: Hangul flash cards, sentence order drills, vocab, and pronunciation for English speakers." />
@@ -26,6 +27,7 @@
     <main>
       <section class="view active" data-view="home"></section>
       <section class="view" data-view="hangul"></section>
+      <section class="view" data-view="sounds"></section>
       <section class="view" data-view="syntax"></section>
       <section class="view" data-view="vocab"></section>
       <section class="view" data-view="progress"></section>
@@ -35,6 +37,7 @@
     <nav class="nav" aria-label="Primary">
       <button data-nav="home" class="active"><span class="ico">🏠</span>Home</button>
       <button data-nav="hangul"><span class="ico">ㄱ</span>Hangul</button>
+      <button data-nav="sounds"><span class="ico">ㅏ</span>Sounds</button>
       <button data-nav="syntax"><span class="ico">⇅</span>Order</button>
       <button data-nav="vocab"><span class="ico">語</span>Vocab</button>
       <button data-nav="progress"><span class="ico">📈</span>Stats</button>

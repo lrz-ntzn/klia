@@ -3,7 +3,8 @@
 English to Korean learning PWA.
 
 ## Features
-- Hangul flash cards with IPA, SM-2 SRS, timed fast-reading drill
+- Hangul flash cards with IPA, SM-2 SRS, timed fast-reading drill with a pause-and-review step
+- Sound chart of all 40 jamo, with Seoul IPA and English, Spanish, or German comparisons
 - Color-coded drag-and-drop sentence order (SOV / particles / pro-drop)
 - Vocab by word type and theme, with verb conjugations
 - Mic pronunciation check (Web Speech API ko-KR) + playback
