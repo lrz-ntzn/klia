@@ -1,0 +1,5074 @@
+{
+  "drills": [
+    {
+      "id": "s-0",
+      "en": "I eat rice.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "subject"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "밥",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "먹어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "밥",
+        "을",
+        "먹어요"
+      ],
+      "focus": "sov",
+      "tip": "English SVO becomes Korean SOV. The verb goes at the end."
+    },
+    {
+      "id": "s-1",
+      "en": "I drink water.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "subject"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "물",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "마셔요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "물",
+        "을",
+        "마셔요"
+      ],
+      "focus": "sov",
+      "tip": "Object + 을, then the verb."
+    },
+    {
+      "id": "s-2",
+      "en": "The student reads a book.",
+      "tiles": [
+        {
+          "text": "학생",
+          "role": "subject"
+        },
+        {
+          "text": "이",
+          "role": "subject"
+        },
+        {
+          "text": "책",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "읽어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "학생",
+        "이",
+        "책",
+        "을",
+        "읽어요"
+      ],
+      "focus": "sov",
+      "tip": "Subject marker 이 after a consonant-final noun."
+    },
+    {
+      "id": "s-3",
+      "en": "The teacher teaches English.",
+      "tiles": [
+        {
+          "text": "선생님",
+          "role": "subject"
+        },
+        {
+          "text": "이",
+          "role": "subject"
+        },
+        {
+          "text": "영어",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "가르쳐요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "선생님",
+        "이",
+        "영어",
+        "를",
+        "가르쳐요"
+      ],
+      "focus": "sov",
+      "tip": "Object marker 를 after a vowel-final noun."
+    },
+    {
+      "id": "s-4",
+      "en": "Friends meet.",
+      "tiles": [
+        {
+          "text": "친구",
+          "role": "subject"
+        },
+        {
+          "text": "들이",
+          "role": "subject"
+        },
+        {
+          "text": "만나요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "친구",
+        "들이",
+        "만나요"
+      ],
+      "focus": "sov",
+      "tip": "Even with no object, the verb still comes last."
+    },
+    {
+      "id": "s-5",
+      "en": "I buy coffee.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "topic"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "커피",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "사요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "커피",
+        "를",
+        "사요"
+      ],
+      "focus": "sov",
+      "tip": "Object + 를 + verb."
+    },
+    {
+      "id": "s-6",
+      "en": "She watches a movie.",
+      "tiles": [
+        {
+          "text": "그",
+          "role": "subject"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "영화",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "봐요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "그",
+        "는",
+        "영화",
+        "를",
+        "봐요"
+      ],
+      "focus": "sov",
+      "tip": "보다 becomes 봐요."
+    },
+    {
+      "id": "s-7",
+      "en": "We learn Korean.",
+      "tiles": [
+        {
+          "text": "우리",
+          "role": "topic"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "한국어",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "배워요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "우리",
+        "는",
+        "한국어",
+        "를",
+        "배워요"
+      ],
+      "focus": "sov",
+      "tip": "배우다 becomes 배워요."
+    },
+    {
+      "id": "s-8",
+      "en": "I teach students.",
+      "tiles": [
+        {
+          "text": "학생",
+          "role": "object"
+        },
+        {
+          "text": "들을",
+          "role": "object"
+        },
+        {
+          "text": "가르쳐요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "학생",
+        "들을",
+        "가르쳐요"
+      ],
+      "focus": "sov",
+      "tip": "Plural 들 on the object."
+    },
+    {
+      "id": "s-9",
+      "en": "Students ask questions.",
+      "tiles": [
+        {
+          "text": "학생",
+          "role": "subject"
+        },
+        {
+          "text": "들이",
+          "role": "subject"
+        },
+        {
+          "text": "질문",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "학생",
+        "들이",
+        "질문",
+        "을",
+        "해요"
+      ],
+      "focus": "sov",
+      "tip": "들 + 이."
+    },
+    {
+      "id": "s-10",
+      "en": "As for me, I am a student.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "topic"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "학생",
+          "role": "complement"
+        },
+        {
+          "text": "이에요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "학생",
+        "이에요"
+      ],
+      "focus": "topic-vs-subject",
+      "tip": "는 marks the topic. Copula 이에요 after a consonant."
+    },
+    {
+      "id": "s-11",
+      "en": "This is a book.",
+      "tiles": [
+        {
+          "text": "이것",
+          "role": "topic"
+        },
+        {
+          "text": "은",
+          "role": "topic"
+        },
+        {
+          "text": "책",
+          "role": "complement"
+        },
+        {
+          "text": "이에요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "이것",
+        "은",
+        "책",
+        "이에요"
+      ],
+      "focus": "topic-vs-subject",
+      "tip": "은 after a consonant-final topic."
+    },
+    {
+      "id": "s-12",
+      "en": "As for Korean, it is fun.",
+      "tiles": [
+        {
+          "text": "한국어",
+          "role": "topic"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "재미있어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "한국어",
+        "는",
+        "재미있어요"
+      ],
+      "focus": "topic-vs-subject",
+      "tip": "Topic 는 frames; no separate subject needed."
+    },
+    {
+      "id": "s-13",
+      "en": "The weather is cold today.",
+      "tiles": [
+        {
+          "text": "오늘",
+          "role": "time"
+        },
+        {
+          "text": "은",
+          "role": "topic"
+        },
+        {
+          "text": "날씨",
+          "role": "subject"
+        },
+        {
+          "text": "가",
+          "role": "subject"
+        },
+        {
+          "text": "추워요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "오늘",
+        "은",
+        "날씨",
+        "가",
+        "추워요"
+      ],
+      "focus": "topic-vs-subject",
+      "tip": "오늘 is topic; 날씨 is the grammatical subject."
+    },
+    {
+      "id": "s-14",
+      "en": "I like coffee.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "topic"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "커피",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "좋아해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "커피",
+        "를",
+        "좋아해요"
+      ],
+      "focus": "topic-vs-subject",
+      "tip": "저는 frames the liker; 커피를 is the object."
+    },
+    {
+      "id": "s-15",
+      "en": "It is hot today.",
+      "tiles": [
+        {
+          "text": "오늘",
+          "role": "time"
+        },
+        {
+          "text": "은",
+          "role": "topic"
+        },
+        {
+          "text": "더워요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "오늘",
+        "은",
+        "더워요"
+      ],
+      "focus": "topic-vs-subject",
+      "tip": "덥다 becomes 더워요."
+    },
+    {
+      "id": "s-16",
+      "en": "It is cold in Jeju.",
+      "tiles": [
+        {
+          "text": "제주",
+          "role": "place"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "추워요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "제주",
+        "는",
+        "추워요"
+      ],
+      "focus": "topic-vs-subject",
+      "tip": "춥다 becomes 추워요."
+    },
+    {
+      "id": "s-17",
+      "en": "Tangerines are famous.",
+      "tiles": [
+        {
+          "text": "감귤",
+          "role": "topic"
+        },
+        {
+          "text": "은",
+          "role": "topic"
+        },
+        {
+          "text": "유명해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "감귤",
+        "은",
+        "유명해요"
+      ],
+      "focus": "topic-vs-subject",
+      "tip": "Topic + adjective."
+    },
+    {
+      "id": "s-18",
+      "en": "The Olle Trail is pretty.",
+      "tiles": [
+        {
+          "text": "올레길",
+          "role": "topic"
+        },
+        {
+          "text": "은",
+          "role": "topic"
+        },
+        {
+          "text": "예뻐요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "올레길",
+        "은",
+        "예뻐요"
+      ],
+      "focus": "topic-vs-subject",
+      "tip": "예쁘다 becomes 예뻐요."
+    },
+    {
+      "id": "s-19",
+      "en": "Monthly rent is expensive.",
+      "tiles": [
+        {
+          "text": "월세",
+          "role": "subject"
+        },
+        {
+          "text": "가",
+          "role": "subject"
+        },
+        {
+          "text": "비싸요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "월세",
+        "가",
+        "비싸요"
+      ],
+      "focus": "topic-vs-subject",
+      "tip": "Housing vocab for Jeju."
+    },
+    {
+      "id": "s-20",
+      "en": "I go to school.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "subject"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "학교",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "학교",
+        "에",
+        "가요"
+      ],
+      "focus": "particles",
+      "tip": "에 marks destination. Particles follow the noun."
+    },
+    {
+      "id": "s-21",
+      "en": "I study at school.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "subject"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "학교",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "공부해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "학교",
+        "에서",
+        "공부해요"
+      ],
+      "focus": "particles",
+      "tip": "에서 marks where an action happens."
+    },
+    {
+      "id": "s-22",
+      "en": "I came from Seoul.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "subject"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "서울",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "왔어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "서울",
+        "에서",
+        "왔어요"
+      ],
+      "focus": "particles",
+      "tip": "에서 also means from with motion verbs."
+    },
+    {
+      "id": "s-23",
+      "en": "I go to Jeju by plane.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "subject"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "비행기",
+          "role": "other"
+        },
+        {
+          "text": "로",
+          "role": "other"
+        },
+        {
+          "text": "제주",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "비행기",
+        "로",
+        "제주",
+        "에",
+        "가요"
+      ],
+      "focus": "particles",
+      "tip": "로 marks means. After a vowel, use 로."
+    },
+    {
+      "id": "s-24",
+      "en": "I eat with a friend.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "subject"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "친구",
+          "role": "other"
+        },
+        {
+          "text": "하고",
+          "role": "other"
+        },
+        {
+          "text": "밥",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "먹어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "친구",
+        "하고",
+        "밥",
+        "을",
+        "먹어요"
+      ],
+      "focus": "particles",
+      "tip": "하고 means with or and, after the noun."
+    },
+    {
+      "id": "s-25",
+      "en": "I only drink water.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "subject"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "물",
+          "role": "object"
+        },
+        {
+          "text": "만",
+          "role": "other"
+        },
+        {
+          "text": "마셔요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "물",
+        "만",
+        "마셔요"
+      ],
+      "focus": "particles",
+      "tip": "만 only can replace 을/를."
+    },
+    {
+      "id": "s-26",
+      "en": "I also go.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "subject"
+        },
+        {
+          "text": "도",
+          "role": "other"
+        },
+        {
+          "text": "가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "도",
+        "가요"
+      ],
+      "focus": "particles",
+      "tip": "도 also replaces 은/는 or 이/가."
+    },
+    {
+      "id": "s-27",
+      "en": "They work at a company.",
+      "tiles": [
+        {
+          "text": "그",
+          "role": "subject"
+        },
+        {
+          "text": "들은",
+          "role": "topic"
+        },
+        {
+          "text": "회사",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "일해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "그",
+        "들은",
+        "회사",
+        "에서",
+        "일해요"
+      ],
+      "focus": "particles",
+      "tip": "에서 for workplace."
+    },
+    {
+      "id": "s-28",
+      "en": "I came from America.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "topic"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "미국",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "왔어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "미국",
+        "에서",
+        "왔어요"
+      ],
+      "focus": "particles",
+      "tip": "에서 from."
+    },
+    {
+      "id": "s-29",
+      "en": "I go toward the sea.",
+      "tiles": [
+        {
+          "text": "바다",
+          "role": "place"
+        },
+        {
+          "text": "로",
+          "role": "place"
+        },
+        {
+          "text": "가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "바다",
+        "로",
+        "가요"
+      ],
+      "focus": "particles",
+      "tip": "로 for direction."
+    },
+    {
+      "id": "s-30",
+      "en": "I only speak English.",
+      "tiles": [
+        {
+          "text": "영어",
+          "role": "object"
+        },
+        {
+          "text": "만",
+          "role": "other"
+        },
+        {
+          "text": "말해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "영어",
+        "만",
+        "말해요"
+      ],
+      "focus": "particles",
+      "tip": "만 only."
+    },
+    {
+      "id": "s-31",
+      "en": "I also like kimchi.",
+      "tiles": [
+        {
+          "text": "김치",
+          "role": "object"
+        },
+        {
+          "text": "도",
+          "role": "other"
+        },
+        {
+          "text": "좋아해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "김치",
+        "도",
+        "좋아해요"
+      ],
+      "focus": "particles",
+      "tip": "도 replaces 를."
+    },
+    {
+      "id": "s-32",
+      "en": "I eat lunch at noon.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "subject"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "점심",
+          "role": "time"
+        },
+        {
+          "text": "에",
+          "role": "time"
+        },
+        {
+          "text": "밥",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "먹어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "점심",
+        "에",
+        "밥",
+        "을",
+        "먹어요"
+      ],
+      "focus": "verb-final",
+      "tip": "Typical order: topic, time, place, object, verb."
+    },
+    {
+      "id": "s-33",
+      "en": "Tomorrow I go to school.",
+      "tiles": [
+        {
+          "text": "내일",
+          "role": "time"
+        },
+        {
+          "text": "학교",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "내일",
+        "학교",
+        "에",
+        "가요"
+      ],
+      "focus": "verb-final",
+      "tip": "Subject can drop. Verb stays last."
+    },
+    {
+      "id": "s-34",
+      "en": "Yesterday I met a friend.",
+      "tiles": [
+        {
+          "text": "어제",
+          "role": "time"
+        },
+        {
+          "text": "친구",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "만났어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "어제",
+        "친구",
+        "를",
+        "만났어요"
+      ],
+      "focus": "verb-final",
+      "tip": "Past polite still sits at the end."
+    },
+    {
+      "id": "s-35",
+      "en": "Now I am studying Korean.",
+      "tiles": [
+        {
+          "text": "지금",
+          "role": "time"
+        },
+        {
+          "text": "한국어",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "공부해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "지금",
+        "한국어",
+        "를",
+        "공부해요"
+      ],
+      "focus": "verb-final",
+      "tip": "Time adverb before object and verb."
+    },
+    {
+      "id": "s-36",
+      "en": "In the morning I drink coffee.",
+      "tiles": [
+        {
+          "text": "아침",
+          "role": "time"
+        },
+        {
+          "text": "에",
+          "role": "time"
+        },
+        {
+          "text": "커피",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "마셔요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "아침",
+        "에",
+        "커피",
+        "를",
+        "마셔요"
+      ],
+      "focus": "verb-final",
+      "tip": "에 marks parts of the day."
+    },
+    {
+      "id": "s-37",
+      "en": "I wake up early.",
+      "tiles": [
+        {
+          "text": "일찍",
+          "role": "adverb"
+        },
+        {
+          "text": "일어나요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "일찍",
+        "일어나요"
+      ],
+      "focus": "verb-final",
+      "tip": "Adverb before verb."
+    },
+    {
+      "id": "s-38",
+      "en": "I will go to Hallasan.",
+      "tiles": [
+        {
+          "text": "한라산",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "갈 거예요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "한라산",
+        "에",
+        "갈 거예요"
+      ],
+      "focus": "verb-final",
+      "tip": "Future -ㄹ 거예요."
+    },
+    {
+      "id": "s-39",
+      "en": "I will not eat meat.",
+      "tiles": [
+        {
+          "text": "고기",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "안 먹을 거예요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "고기",
+        "를",
+        "안 먹을 거예요"
+      ],
+      "focus": "verb-final",
+      "tip": "안 before the verb stem."
+    },
+    {
+      "id": "s-40",
+      "en": "The class starts at nine.",
+      "tiles": [
+        {
+          "text": "수업",
+          "role": "subject"
+        },
+        {
+          "text": "이",
+          "role": "subject"
+        },
+        {
+          "text": "아홉",
+          "role": "time"
+        },
+        {
+          "text": "시",
+          "role": "time"
+        },
+        {
+          "text": "에",
+          "role": "time"
+        },
+        {
+          "text": "시작해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "수업",
+        "이",
+        "아홉",
+        "시",
+        "에",
+        "시작해요"
+      ],
+      "focus": "verb-final",
+      "tip": "Native number + 시."
+    },
+    {
+      "id": "s-41",
+      "en": "I sleep at eleven.",
+      "tiles": [
+        {
+          "text": "열한",
+          "role": "time"
+        },
+        {
+          "text": "시",
+          "role": "time"
+        },
+        {
+          "text": "에",
+          "role": "time"
+        },
+        {
+          "text": "자요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "열한",
+        "시",
+        "에",
+        "자요"
+      ],
+      "focus": "verb-final",
+      "tip": "Time + 에 + verb."
+    },
+    {
+      "id": "s-42",
+      "en": "Because it rains, I take a taxi.",
+      "tiles": [
+        {
+          "text": "비",
+          "role": "subject"
+        },
+        {
+          "text": "가",
+          "role": "subject"
+        },
+        {
+          "text": "와서",
+          "role": "other"
+        },
+        {
+          "text": "택시",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "타요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "비",
+        "가",
+        "와서",
+        "택시",
+        "를",
+        "타요"
+      ],
+      "focus": "verb-final",
+      "tip": "Reason clause -아서/어서 before the main verb."
+    },
+    {
+      "id": "s-43",
+      "en": "School starts in February.",
+      "tiles": [
+        {
+          "text": "학교",
+          "role": "subject"
+        },
+        {
+          "text": "가",
+          "role": "subject"
+        },
+        {
+          "text": "이월",
+          "role": "time"
+        },
+        {
+          "text": "에",
+          "role": "time"
+        },
+        {
+          "text": "시작해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "학교",
+        "가",
+        "이월",
+        "에",
+        "시작해요"
+      ],
+      "focus": "verb-final",
+      "tip": "Sino month 이월. Time + 에."
+    },
+    {
+      "id": "s-44",
+      "en": "I teach on weekdays.",
+      "tiles": [
+        {
+          "text": "평일",
+          "role": "time"
+        },
+        {
+          "text": "에",
+          "role": "time"
+        },
+        {
+          "text": "가르쳐요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "평일",
+        "에",
+        "가르쳐요"
+      ],
+      "focus": "verb-final",
+      "tip": "평일 + 에."
+    },
+    {
+      "id": "s-45",
+      "en": "I prepare lessons at night.",
+      "tiles": [
+        {
+          "text": "밤",
+          "role": "time"
+        },
+        {
+          "text": "에",
+          "role": "time"
+        },
+        {
+          "text": "수업",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "준비해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "밤",
+        "에",
+        "수업",
+        "을",
+        "준비해요"
+      ],
+      "focus": "verb-final",
+      "tip": "Time + object + verb."
+    },
+    {
+      "id": "s-46",
+      "en": "I read an interesting book.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "subject"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "재미있는",
+          "role": "other"
+        },
+        {
+          "text": "책",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "읽어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "재미있는",
+        "책",
+        "을",
+        "읽어요"
+      ],
+      "focus": "modifiers",
+      "tip": "Modifiers come BEFORE the noun."
+    },
+    {
+      "id": "s-47",
+      "en": "I met a kind teacher.",
+      "tiles": [
+        {
+          "text": "친절한",
+          "role": "other"
+        },
+        {
+          "text": "선생님",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "만났어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "친절한",
+        "선생님",
+        "을",
+        "만났어요"
+      ],
+      "focus": "modifiers",
+      "tip": "친절하다 becomes 친절한 before the noun."
+    },
+    {
+      "id": "s-48",
+      "en": "That is my friend's house.",
+      "tiles": [
+        {
+          "text": "그것",
+          "role": "topic"
+        },
+        {
+          "text": "은",
+          "role": "topic"
+        },
+        {
+          "text": "친구",
+          "role": "other"
+        },
+        {
+          "text": "의",
+          "role": "other"
+        },
+        {
+          "text": "집",
+          "role": "complement"
+        },
+        {
+          "text": "이에요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "그것",
+        "은",
+        "친구",
+        "의",
+        "집",
+        "이에요"
+      ],
+      "focus": "modifiers",
+      "tip": "Possessive 의 after the possessor."
+    },
+    {
+      "id": "s-49",
+      "en": "I go to a big school.",
+      "tiles": [
+        {
+          "text": "큰",
+          "role": "other"
+        },
+        {
+          "text": "학교",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "큰",
+        "학교",
+        "에",
+        "가요"
+      ],
+      "focus": "modifiers",
+      "tip": "크다 becomes 큰 before the noun."
+    },
+    {
+      "id": "s-50",
+      "en": "I bought delicious food.",
+      "tiles": [
+        {
+          "text": "맛있는",
+          "role": "other"
+        },
+        {
+          "text": "음식",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "샀어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "맛있는",
+        "음식",
+        "을",
+        "샀어요"
+      ],
+      "focus": "modifiers",
+      "tip": "맛있다 becomes 맛있는."
+    },
+    {
+      "id": "s-51",
+      "en": "Students like the new teacher.",
+      "tiles": [
+        {
+          "text": "학생",
+          "role": "subject"
+        },
+        {
+          "text": "들이",
+          "role": "subject"
+        },
+        {
+          "text": "새",
+          "role": "other"
+        },
+        {
+          "text": "선생님",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "좋아해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "학생",
+        "들이",
+        "새",
+        "선생님",
+        "을",
+        "좋아해요"
+      ],
+      "focus": "modifiers",
+      "tip": "Prenominal 새 before 선생님."
+    },
+    {
+      "id": "s-52",
+      "en": "I do not eat spicy food.",
+      "tiles": [
+        {
+          "text": "매운",
+          "role": "other"
+        },
+        {
+          "text": "음식",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "안 먹어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "매운",
+        "음식",
+        "을",
+        "안 먹어요"
+      ],
+      "focus": "modifiers",
+      "tip": "맵다 becomes 매운. 안 before the verb."
+    },
+    {
+      "id": "s-53",
+      "en": "This coffee is expensive.",
+      "tiles": [
+        {
+          "text": "이",
+          "role": "other"
+        },
+        {
+          "text": "커피",
+          "role": "topic"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "비싸요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "이",
+        "커피",
+        "는",
+        "비싸요"
+      ],
+      "focus": "modifiers",
+      "tip": "Demonstrative 이 before the noun."
+    },
+    {
+      "id": "s-54",
+      "en": "That restaurant is cheap.",
+      "tiles": [
+        {
+          "text": "그",
+          "role": "other"
+        },
+        {
+          "text": "식당",
+          "role": "topic"
+        },
+        {
+          "text": "은",
+          "role": "topic"
+        },
+        {
+          "text": "싸요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "그",
+        "식당",
+        "은",
+        "싸요"
+      ],
+      "focus": "modifiers",
+      "tip": "그 + noun + topic."
+    },
+    {
+      "id": "s-55",
+      "en": "Going to school.",
+      "tiles": [
+        {
+          "text": "학교",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "학교",
+        "에",
+        "가요"
+      ],
+      "focus": "pro-drop",
+      "tip": "Korean often drops the subject when it is obvious."
+    },
+    {
+      "id": "s-56",
+      "en": "Hungry.",
+      "tiles": [
+        {
+          "text": "배고파요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "배고파요"
+      ],
+      "focus": "pro-drop",
+      "tip": "A one-word sentence is fine."
+    },
+    {
+      "id": "s-57",
+      "en": "Ate already.",
+      "tiles": [
+        {
+          "text": "벌써",
+          "role": "adverb"
+        },
+        {
+          "text": "먹었어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "벌써",
+        "먹었어요"
+      ],
+      "focus": "pro-drop",
+      "tip": "Adverb + verb. No subject required."
+    },
+    {
+      "id": "s-58",
+      "en": "Don't know.",
+      "tiles": [
+        {
+          "text": "몰라요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "몰라요"
+      ],
+      "focus": "pro-drop",
+      "tip": "모르다 irregular: 몰라요."
+    },
+    {
+      "id": "s-59",
+      "en": "Like coffee.",
+      "tiles": [
+        {
+          "text": "커피",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "좋아해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "커피",
+        "를",
+        "좋아해요"
+      ],
+      "focus": "pro-drop",
+      "tip": "Object stays marked; subject can vanish."
+    },
+    {
+      "id": "s-60",
+      "en": "I open the door.",
+      "tiles": [
+        {
+          "text": "문",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "열어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "문",
+        "을",
+        "열어요"
+      ],
+      "focus": "pro-drop",
+      "tip": "열다 is ㄹ-irregular: 열어요."
+    },
+    {
+      "id": "s-61",
+      "en": "I close the window.",
+      "tiles": [
+        {
+          "text": "창문",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "닫아요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "창문",
+        "을",
+        "닫아요"
+      ],
+      "focus": "pro-drop",
+      "tip": "닫다 becomes 닫아요."
+    },
+    {
+      "id": "s-62",
+      "en": "I write an email.",
+      "tiles": [
+        {
+          "text": "이메일",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "써요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "이메일",
+        "을",
+        "써요"
+      ],
+      "focus": "pro-drop",
+      "tip": "쓰다 으-irregular: 써요."
+    },
+    {
+      "id": "s-63",
+      "en": "I listen to music.",
+      "tiles": [
+        {
+          "text": "음악",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "들어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "음악",
+        "을",
+        "들어요"
+      ],
+      "focus": "pro-drop",
+      "tip": "듣다 ㄷ-irregular: 들어요."
+    },
+    {
+      "id": "s-64",
+      "en": "I help a friend.",
+      "tiles": [
+        {
+          "text": "친구",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "도와요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "친구",
+        "를",
+        "도와요"
+      ],
+      "focus": "pro-drop",
+      "tip": "돕다 ㅂ-irregular: 도와요."
+    },
+    {
+      "id": "s-65",
+      "en": "from Monday to Friday",
+      "tiles": [
+        {
+          "text": "월요일",
+          "role": "time"
+        },
+        {
+          "text": "부터",
+          "role": "time"
+        },
+        {
+          "text": "금요일",
+          "role": "time"
+        },
+        {
+          "text": "까지",
+          "role": "time"
+        }
+      ],
+      "answer": [
+        "월요일",
+        "부터",
+        "금요일",
+        "까지"
+      ],
+      "focus": "postpositions",
+      "tip": "부터 and 까지 come AFTER the noun."
+    },
+    {
+      "id": "s-66",
+      "en": "in front of the school",
+      "tiles": [
+        {
+          "text": "학교",
+          "role": "place"
+        },
+        {
+          "text": "앞",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        }
+      ],
+      "answer": [
+        "학교",
+        "앞",
+        "에"
+      ],
+      "focus": "postpositions",
+      "tip": "Location nouns follow the reference noun, then take 에."
+    },
+    {
+      "id": "s-67",
+      "en": "next to the hospital",
+      "tiles": [
+        {
+          "text": "병원",
+          "role": "place"
+        },
+        {
+          "text": "옆",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        }
+      ],
+      "answer": [
+        "병원",
+        "옆",
+        "에"
+      ],
+      "focus": "postpositions",
+      "tip": "English next to X becomes X 옆에."
+    },
+    {
+      "id": "s-68",
+      "en": "inside the room",
+      "tiles": [
+        {
+          "text": "방",
+          "role": "place"
+        },
+        {
+          "text": "안",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        }
+      ],
+      "answer": [
+        "방",
+        "안",
+        "에"
+      ],
+      "focus": "postpositions",
+      "tip": "안 inside is a postposition-like noun."
+    },
+    {
+      "id": "s-69",
+      "en": "on the desk",
+      "tiles": [
+        {
+          "text": "책상",
+          "role": "place"
+        },
+        {
+          "text": "위",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        }
+      ],
+      "answer": [
+        "책상",
+        "위",
+        "에"
+      ],
+      "focus": "postpositions",
+      "tip": "위 above/on comes after the noun."
+    },
+    {
+      "id": "s-70",
+      "en": "I study from morning until night.",
+      "tiles": [
+        {
+          "text": "아침",
+          "role": "time"
+        },
+        {
+          "text": "부터",
+          "role": "time"
+        },
+        {
+          "text": "밤",
+          "role": "time"
+        },
+        {
+          "text": "까지",
+          "role": "time"
+        },
+        {
+          "text": "공부해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "아침",
+        "부터",
+        "밤",
+        "까지",
+        "공부해요"
+      ],
+      "focus": "postpositions",
+      "tip": "부터 … 까지."
+    },
+    {
+      "id": "s-71",
+      "en": "The book is on the desk.",
+      "tiles": [
+        {
+          "text": "책",
+          "role": "subject"
+        },
+        {
+          "text": "이",
+          "role": "subject"
+        },
+        {
+          "text": "책상",
+          "role": "place"
+        },
+        {
+          "text": "위",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "있어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "책",
+        "이",
+        "책상",
+        "위",
+        "에",
+        "있어요"
+      ],
+      "focus": "postpositions",
+      "tip": "위 + 에 for on."
+    },
+    {
+      "id": "s-72",
+      "en": "There is a store near the school.",
+      "tiles": [
+        {
+          "text": "학교",
+          "role": "place"
+        },
+        {
+          "text": "근처",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "가게",
+          "role": "subject"
+        },
+        {
+          "text": "가",
+          "role": "subject"
+        },
+        {
+          "text": "있어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "학교",
+        "근처",
+        "에",
+        "가게",
+        "가",
+        "있어요"
+      ],
+      "focus": "postpositions",
+      "tip": "근처 + 에."
+    },
+    {
+      "id": "s-73",
+      "en": "After class I go home.",
+      "tiles": [
+        {
+          "text": "수업",
+          "role": "other"
+        },
+        {
+          "text": "후에",
+          "role": "time"
+        },
+        {
+          "text": "집",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "수업",
+        "후에",
+        "집",
+        "에",
+        "가요"
+      ],
+      "focus": "postpositions",
+      "tip": "후에 after follows the noun."
+    },
+    {
+      "id": "s-74",
+      "en": "Before lunch I wash my hands.",
+      "tiles": [
+        {
+          "text": "점심",
+          "role": "time"
+        },
+        {
+          "text": "전에",
+          "role": "time"
+        },
+        {
+          "text": "손",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "씻어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "점심",
+        "전에",
+        "손",
+        "을",
+        "씻어요"
+      ],
+      "focus": "postpositions",
+      "tip": "전에 before is a postposition."
+    },
+    {
+      "id": "s-75",
+      "en": "How much is this?",
+      "tiles": [
+        {
+          "text": "이것",
+          "role": "topic"
+        },
+        {
+          "text": "은",
+          "role": "topic"
+        },
+        {
+          "text": "얼마",
+          "role": "question"
+        },
+        {
+          "text": "예요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "이것",
+        "은",
+        "얼마",
+        "예요"
+      ],
+      "focus": "survival",
+      "tip": "Shopping staple. 예요 after a vowel."
+    },
+    {
+      "id": "s-76",
+      "en": "Please give me water.",
+      "tiles": [
+        {
+          "text": "물",
+          "role": "object"
+        },
+        {
+          "text": "주세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "물",
+        "주세요"
+      ],
+      "focus": "survival",
+      "tip": "주세요 is a polite request."
+    },
+    {
+      "id": "s-77",
+      "en": "Where is the bathroom?",
+      "tiles": [
+        {
+          "text": "화장실",
+          "role": "subject"
+        },
+        {
+          "text": "이",
+          "role": "subject"
+        },
+        {
+          "text": "어디",
+          "role": "place"
+        },
+        {
+          "text": "예요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "화장실",
+        "이",
+        "어디",
+        "예요"
+      ],
+      "focus": "survival",
+      "tip": "어디예요 asks for location."
+    },
+    {
+      "id": "s-78",
+      "en": "I don't understand.",
+      "tiles": [
+        {
+          "text": "이해",
+          "role": "subject"
+        },
+        {
+          "text": "가",
+          "role": "subject"
+        },
+        {
+          "text": "안 돼요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "이해",
+        "가",
+        "안 돼요"
+      ],
+      "focus": "survival",
+      "tip": "이해가 안 돼요 is the natural phrasing."
+    },
+    {
+      "id": "s-79",
+      "en": "Please speak slowly.",
+      "tiles": [
+        {
+          "text": "천천히",
+          "role": "adverb"
+        },
+        {
+          "text": "말해주세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "천천히",
+        "말해주세요"
+      ],
+      "focus": "survival",
+      "tip": "Adverb before the verb request."
+    },
+    {
+      "id": "s-80",
+      "en": "I am an English teacher.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "topic"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "영어",
+          "role": "other"
+        },
+        {
+          "text": "선생님",
+          "role": "complement"
+        },
+        {
+          "text": "이에요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "영어",
+        "선생님",
+        "이에요"
+      ],
+      "focus": "survival",
+      "tip": "Modifiers before nouns."
+    },
+    {
+      "id": "s-81",
+      "en": "I live in Jeju.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "topic"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "제주",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "살아요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "제주",
+        "에",
+        "살아요"
+      ],
+      "focus": "survival",
+      "tip": "살다 is ㄹ-irregular. 에 for residence."
+    },
+    {
+      "id": "s-82",
+      "en": "I go to school by bus.",
+      "tiles": [
+        {
+          "text": "버스",
+          "role": "other"
+        },
+        {
+          "text": "로",
+          "role": "other"
+        },
+        {
+          "text": "학교",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "버스",
+        "로",
+        "학교",
+        "에",
+        "가요"
+      ],
+      "focus": "survival",
+      "tip": "Means 로, destination 에."
+    },
+    {
+      "id": "s-83",
+      "en": "The food is delicious.",
+      "tiles": [
+        {
+          "text": "음식",
+          "role": "subject"
+        },
+        {
+          "text": "이",
+          "role": "subject"
+        },
+        {
+          "text": "맛있어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "음식",
+        "이",
+        "맛있어요"
+      ],
+      "focus": "survival",
+      "tip": "맛있다 conjugates as 맛있어요."
+    },
+    {
+      "id": "s-84",
+      "en": "I am hungry.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "topic"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "배고파요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "배고파요"
+      ],
+      "focus": "survival",
+      "tip": "배고프다 is 으-irregular."
+    },
+    {
+      "id": "s-85",
+      "en": "What is your name?",
+      "tiles": [
+        {
+          "text": "이름",
+          "role": "subject"
+        },
+        {
+          "text": "이",
+          "role": "subject"
+        },
+        {
+          "text": "뭐",
+          "role": "complement"
+        },
+        {
+          "text": "예요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "이름",
+        "이",
+        "뭐",
+        "예요"
+      ],
+      "focus": "survival",
+      "tip": "이름이 뭐예요."
+    },
+    {
+      "id": "s-86",
+      "en": "My name is Alex.",
+      "tiles": [
+        {
+          "text": "제",
+          "role": "other"
+        },
+        {
+          "text": "이름",
+          "role": "topic"
+        },
+        {
+          "text": "은",
+          "role": "topic"
+        },
+        {
+          "text": "알렉스",
+          "role": "complement"
+        },
+        {
+          "text": "예요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "제",
+        "이름",
+        "은",
+        "알렉스",
+        "예요"
+      ],
+      "focus": "survival",
+      "tip": "제 is humble my."
+    },
+    {
+      "id": "s-87",
+      "en": "Nice to meet you.",
+      "tiles": [
+        {
+          "text": "만나서",
+          "role": "other"
+        },
+        {
+          "text": "반갑습니다",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "만나서",
+        "반갑습니다"
+      ],
+      "focus": "survival",
+      "tip": "Fixed polite greeting."
+    },
+    {
+      "id": "s-88",
+      "en": "Thank you.",
+      "tiles": [
+        {
+          "text": "감사합니다",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "감사합니다"
+      ],
+      "focus": "survival",
+      "tip": "Formal thank-you."
+    },
+    {
+      "id": "s-89",
+      "en": "I am sorry.",
+      "tiles": [
+        {
+          "text": "미안해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "미안해요"
+      ],
+      "focus": "survival",
+      "tip": "Polite apology."
+    },
+    {
+      "id": "s-90",
+      "en": "It's okay.",
+      "tiles": [
+        {
+          "text": "괜찮아요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "괜찮아요"
+      ],
+      "focus": "survival",
+      "tip": "괜찮다 becomes 괜찮아요."
+    },
+    {
+      "id": "s-91",
+      "en": "Where are you going?",
+      "tiles": [
+        {
+          "text": "어디",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "어디",
+        "에",
+        "가요"
+      ],
+      "focus": "survival",
+      "tip": "어디 + 에 + verb."
+    },
+    {
+      "id": "s-92",
+      "en": "I am going home.",
+      "tiles": [
+        {
+          "text": "집",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "집",
+        "에",
+        "가요"
+      ],
+      "focus": "survival",
+      "tip": "집 + 에 destination."
+    },
+    {
+      "id": "s-93",
+      "en": "Please wait a moment.",
+      "tiles": [
+        {
+          "text": "잠시만",
+          "role": "adverb"
+        },
+        {
+          "text": "기다려 주세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "잠시만",
+        "기다려 주세요"
+      ],
+      "focus": "survival",
+      "tip": "Request form -아/어 주세요."
+    },
+    {
+      "id": "s-94",
+      "en": "How do I get to the airport?",
+      "tiles": [
+        {
+          "text": "공항",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "어떻게",
+          "role": "adverb"
+        },
+        {
+          "text": "가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "공항",
+        "에",
+        "어떻게",
+        "가요"
+      ],
+      "focus": "survival",
+      "tip": "어떻게 before the verb of motion."
+    },
+    {
+      "id": "s-95",
+      "en": "Please give me the menu.",
+      "tiles": [
+        {
+          "text": "메뉴",
+          "role": "object"
+        },
+        {
+          "text": "주세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "메뉴",
+        "주세요"
+      ],
+      "focus": "survival",
+      "tip": "Object + 주세요."
+    },
+    {
+      "id": "s-96",
+      "en": "The check, please.",
+      "tiles": [
+        {
+          "text": "계산서",
+          "role": "object"
+        },
+        {
+          "text": "주세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "계산서",
+        "주세요"
+      ],
+      "focus": "survival",
+      "tip": "Restaurant staple."
+    },
+    {
+      "id": "s-97",
+      "en": "I reserved a taxi.",
+      "tiles": [
+        {
+          "text": "택시",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "예약했어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "택시",
+        "를",
+        "예약했어요"
+      ],
+      "focus": "survival",
+      "tip": "Past -했어요."
+    },
+    {
+      "id": "s-98",
+      "en": "Can I get this?",
+      "tiles": [
+        {
+          "text": "이것",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "주세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "이것",
+        "을",
+        "주세요"
+      ],
+      "focus": "survival",
+      "tip": "Shopping request."
+    },
+    {
+      "id": "s-99",
+      "en": "I need a charger.",
+      "tiles": [
+        {
+          "text": "충전기",
+          "role": "subject"
+        },
+        {
+          "text": "가",
+          "role": "subject"
+        },
+        {
+          "text": "필요해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "충전기",
+        "가",
+        "필요해요"
+      ],
+      "focus": "survival",
+      "tip": "X가 필요하다."
+    },
+    {
+      "id": "s-100",
+      "en": "I do not have cash.",
+      "tiles": [
+        {
+          "text": "현금",
+          "role": "subject"
+        },
+        {
+          "text": "이",
+          "role": "subject"
+        },
+        {
+          "text": "없어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "현금",
+        "이",
+        "없어요"
+      ],
+      "focus": "survival",
+      "tip": "없다 for not have."
+    },
+    {
+      "id": "s-101",
+      "en": "I have a passport.",
+      "tiles": [
+        {
+          "text": "여권",
+          "role": "subject"
+        },
+        {
+          "text": "이",
+          "role": "subject"
+        },
+        {
+          "text": "있어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "여권",
+        "이",
+        "있어요"
+      ],
+      "focus": "survival",
+      "tip": "있다 for have."
+    },
+    {
+      "id": "s-102",
+      "en": "I am a bit tired.",
+      "tiles": [
+        {
+          "text": "조금",
+          "role": "adverb"
+        },
+        {
+          "text": "피곤해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "조금",
+        "피곤해요"
+      ],
+      "focus": "survival",
+      "tip": "Adverb + adjective verb."
+    },
+    {
+      "id": "s-103",
+      "en": "I can speak a little Korean.",
+      "tiles": [
+        {
+          "text": "한국어",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "조금",
+          "role": "adverb"
+        },
+        {
+          "text": "할 수 있어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "한국어",
+        "를",
+        "조금",
+        "할 수 있어요"
+      ],
+      "focus": "survival",
+      "tip": "Ability: -ㄹ 수 있다."
+    },
+    {
+      "id": "s-104",
+      "en": "I cannot drive a manual.",
+      "tiles": [
+        {
+          "text": "수동",
+          "role": "object"
+        },
+        {
+          "text": "은",
+          "role": "topic"
+        },
+        {
+          "text": "못 운전해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "수동",
+        "은",
+        "못 운전해요"
+      ],
+      "focus": "survival",
+      "tip": "못 marks inability."
+    },
+    {
+      "id": "s-105",
+      "en": "Please write your name here.",
+      "tiles": [
+        {
+          "text": "여기",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "이름",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "써 주세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "여기",
+        "에",
+        "이름",
+        "을",
+        "써 주세요"
+      ],
+      "focus": "survival",
+      "tip": "Place + object + request."
+    },
+    {
+      "id": "s-106",
+      "en": "I will teach English in Jeju.",
+      "tiles": [
+        {
+          "text": "저",
+          "role": "topic"
+        },
+        {
+          "text": "는",
+          "role": "topic"
+        },
+        {
+          "text": "제주",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "영어",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "가르칠 거예요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저",
+        "는",
+        "제주",
+        "에서",
+        "영어",
+        "를",
+        "가르칠 거예요"
+      ],
+      "focus": "jeju",
+      "tip": "Future with place 에서 and object 를."
+    },
+    {
+      "id": "s-107",
+      "en": "Snow falls in Jeju.",
+      "tiles": [
+        {
+          "text": "제주",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "눈",
+          "role": "subject"
+        },
+        {
+          "text": "이",
+          "role": "subject"
+        },
+        {
+          "text": "와요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "제주",
+        "에",
+        "눈",
+        "이",
+        "와요"
+      ],
+      "focus": "jeju",
+      "tip": "눈 + 오다 for snowfall."
+    },
+    {
+      "id": "s-108",
+      "en": "I climbed Hallasan.",
+      "tiles": [
+        {
+          "text": "한라산",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "올랐어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "한라산",
+        "을",
+        "올랐어요"
+      ],
+      "focus": "jeju",
+      "tip": "오르다 past 올랐어요."
+    },
+    {
+      "id": "s-109",
+      "en": "Haenyeo dive into the sea.",
+      "tiles": [
+        {
+          "text": "해녀",
+          "role": "subject"
+        },
+        {
+          "text": "들이",
+          "role": "subject"
+        },
+        {
+          "text": "바다",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "잠수해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "해녀",
+        "들이",
+        "바다",
+        "에",
+        "잠수해요"
+      ],
+      "focus": "jeju",
+      "tip": "Local culture sentence."
+    },
+    {
+      "id": "s-110",
+      "en": "I ate black pork.",
+      "tiles": [
+        {
+          "text": "흑돼지",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "먹었어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "흑돼지",
+        "를",
+        "먹었어요"
+      ],
+      "focus": "jeju",
+      "tip": "Jeju food."
+    },
+    {
+      "id": "s-111",
+      "en": "I need to find a used car.",
+      "tiles": [
+        {
+          "text": "중고차",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "찾아야 돼요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "중고차",
+        "를",
+        "찾아야 돼요"
+      ],
+      "focus": "jeju",
+      "tip": "Necessity: -아야/어야 되다."
+    },
+    {
+      "id": "s-112",
+      "en": "I swim in the sea.",
+      "tiles": [
+        {
+          "text": "바다",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "수영해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "바다",
+        "에서",
+        "수영해요"
+      ],
+      "focus": "jeju",
+      "tip": "Jeju sea."
+    },
+    {
+      "id": "s-113",
+      "en": "I hike a mountain.",
+      "tiles": [
+        {
+          "text": "산",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "등산해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "산",
+        "을",
+        "등산해요"
+      ],
+      "focus": "jeju",
+      "tip": "등산하다."
+    },
+    {
+      "id": "s-114",
+      "en": "I watch the sunrise.",
+      "tiles": [
+        {
+          "text": "일출",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "봐요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "일출",
+        "을",
+        "봐요"
+      ],
+      "focus": "jeju",
+      "tip": "Seongsan context."
+    },
+    {
+      "id": "s-115",
+      "en": "I buy tangerines at the market.",
+      "tiles": [
+        {
+          "text": "시장",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "감귤",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "사요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "시장",
+        "에서",
+        "감귤",
+        "을",
+        "사요"
+      ],
+      "focus": "jeju",
+      "tip": "에서 + object + verb."
+    },
+    {
+      "id": "s-116",
+      "en": "The contract is important.",
+      "tiles": [
+        {
+          "text": "계약",
+          "role": "topic"
+        },
+        {
+          "text": "은",
+          "role": "topic"
+        },
+        {
+          "text": "중요해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "계약",
+        "은",
+        "중요해요"
+      ],
+      "focus": "jeju",
+      "tip": "DUX / housing vocab."
+    },
+    {
+      "id": "s-117",
+      "en": "I signed the contract.",
+      "tiles": [
+        {
+          "text": "계약서",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "서명했어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "계약서",
+        "에",
+        "서명했어요"
+      ],
+      "focus": "jeju",
+      "tip": "에 with 서명하다."
+    },
+    {
+      "id": "s-118",
+      "en": "I applied for a visa.",
+      "tiles": [
+        {
+          "text": "비자",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "신청했어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "비자",
+        "를",
+        "신청했어요"
+      ],
+      "focus": "jeju",
+      "tip": "신청하다."
+    },
+    {
+      "id": "s-119",
+      "en": "I registered at city hall.",
+      "tiles": [
+        {
+          "text": "시청",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "등록했어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "시청",
+        "에서",
+        "등록했어요"
+      ],
+      "focus": "jeju",
+      "tip": "에서 for action place."
+    },
+    {
+      "id": "s-120",
+      "en": "The wifi password is on the wall.",
+      "tiles": [
+        {
+          "text": "와이파이",
+          "role": "other"
+        },
+        {
+          "text": "비밀번호",
+          "role": "subject"
+        },
+        {
+          "text": "가",
+          "role": "subject"
+        },
+        {
+          "text": "벽",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "있어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "와이파이",
+        "비밀번호",
+        "가",
+        "벽",
+        "에",
+        "있어요"
+      ],
+      "focus": "housing",
+      "tip": "Compound subject; 에 for location."
+    },
+    {
+      "id": "s-121",
+      "en": "I cook dinner.",
+      "tiles": [
+        {
+          "text": "저녁",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "요리해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "저녁",
+        "을",
+        "요리해요"
+      ],
+      "focus": "food",
+      "tip": "요리하다."
+    },
+    {
+      "id": "s-122",
+      "en": "I wash the dishes.",
+      "tiles": [
+        {
+          "text": "설거지",
+          "role": "object"
+        },
+        {
+          "text": "해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "설거지",
+        "해요"
+      ],
+      "focus": "housing",
+      "tip": "설거지하다."
+    },
+    {
+      "id": "s-123",
+      "en": "I do laundry.",
+      "tiles": [
+        {
+          "text": "빨래",
+          "role": "object"
+        },
+        {
+          "text": "해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "빨래",
+        "해요"
+      ],
+      "focus": "housing",
+      "tip": "빨래하다."
+    },
+    {
+      "id": "s-124",
+      "en": "I clean the room.",
+      "tiles": [
+        {
+          "text": "방",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "청소해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "방",
+        "을",
+        "청소해요"
+      ],
+      "focus": "housing",
+      "tip": "청소하다."
+    },
+    {
+      "id": "s-125",
+      "en": "I turn on the light.",
+      "tiles": [
+        {
+          "text": "불",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "켜요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "불",
+        "을",
+        "켜요"
+      ],
+      "focus": "housing",
+      "tip": "켜다 becomes 켜요."
+    },
+    {
+      "id": "s-126",
+      "en": "I turn off the AC.",
+      "tiles": [
+        {
+          "text": "에어컨",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "꺼요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "에어컨",
+        "을",
+        "꺼요"
+      ],
+      "focus": "housing",
+      "tip": "끄다 becomes 꺼요."
+    },
+    {
+      "id": "s-127",
+      "en": "I lock the door.",
+      "tiles": [
+        {
+          "text": "문",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "잠가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "문",
+        "을",
+        "잠가요"
+      ],
+      "focus": "housing",
+      "tip": "잠그다 becomes 잠가요."
+    },
+    {
+      "id": "s-128",
+      "en": "I drink coffee at a cafe.",
+      "tiles": [
+        {
+          "text": "카페",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "커피",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "마셔요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "카페",
+        "에서",
+        "커피",
+        "를",
+        "마셔요"
+      ],
+      "focus": "food",
+      "tip": "Classic SOV with place."
+    },
+    {
+      "id": "s-129",
+      "en": "I order bibimbap.",
+      "tiles": [
+        {
+          "text": "비빔밥",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "주문해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "비빔밥",
+        "을",
+        "주문해요"
+      ],
+      "focus": "food",
+      "tip": "주문하다."
+    },
+    {
+      "id": "s-130",
+      "en": "I am full.",
+      "tiles": [
+        {
+          "text": "배불러요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "배불러요"
+      ],
+      "focus": "food",
+      "tip": "배부르다 becomes 배불러요."
+    },
+    {
+      "id": "s-131",
+      "en": "I am thirsty.",
+      "tiles": [
+        {
+          "text": "목말라요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "목말라요"
+      ],
+      "focus": "food",
+      "tip": "목마르다 becomes 목말라요."
+    },
+    {
+      "id": "s-132",
+      "en": "Please bring more water.",
+      "tiles": [
+        {
+          "text": "물",
+          "role": "object"
+        },
+        {
+          "text": "더",
+          "role": "adverb"
+        },
+        {
+          "text": "주세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "물",
+        "더",
+        "주세요"
+      ],
+      "focus": "food",
+      "tip": "더 before 주세요."
+    },
+    {
+      "id": "s-133",
+      "en": "Is there a vegetarian option?",
+      "tiles": [
+        {
+          "text": "채식",
+          "role": "other"
+        },
+        {
+          "text": "메뉴",
+          "role": "subject"
+        },
+        {
+          "text": "있어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "채식",
+        "메뉴",
+        "있어요"
+      ],
+      "focus": "food",
+      "tip": "있어요 existence."
+    },
+    {
+      "id": "s-134",
+      "en": "I paid with a card.",
+      "tiles": [
+        {
+          "text": "카드",
+          "role": "other"
+        },
+        {
+          "text": "로",
+          "role": "other"
+        },
+        {
+          "text": "계산했어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "카드",
+        "로",
+        "계산했어요"
+      ],
+      "focus": "shopping",
+      "tip": "로 for means of payment."
+    },
+    {
+      "id": "s-135",
+      "en": "Do you have this in a bigger size?",
+      "tiles": [
+        {
+          "text": "더",
+          "role": "adverb"
+        },
+        {
+          "text": "큰",
+          "role": "other"
+        },
+        {
+          "text": "사이즈",
+          "role": "subject"
+        },
+        {
+          "text": "있어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "더",
+        "큰",
+        "사이즈",
+        "있어요"
+      ],
+      "focus": "shopping",
+      "tip": "Comparative 더 + prenominal 큰."
+    },
+    {
+      "id": "s-136",
+      "en": "I will take this one.",
+      "tiles": [
+        {
+          "text": "이걸로",
+          "role": "other"
+        },
+        {
+          "text": "할게요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "이걸로",
+        "할게요"
+      ],
+      "focus": "shopping",
+      "tip": "이걸로 with this + 하다."
+    },
+    {
+      "id": "s-137",
+      "en": "I enter the store.",
+      "tiles": [
+        {
+          "text": "가게",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "들어가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "가게",
+        "에",
+        "들어가요"
+      ],
+      "focus": "shopping",
+      "tip": "들어가다."
+    },
+    {
+      "id": "s-138",
+      "en": "I leave the cafe.",
+      "tiles": [
+        {
+          "text": "카페",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "나가요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "카페",
+        "에서",
+        "나가요"
+      ],
+      "focus": "shopping",
+      "tip": "나가다 + 에서."
+    },
+    {
+      "id": "s-139",
+      "en": "I get a receipt.",
+      "tiles": [
+        {
+          "text": "영수증",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "받아요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "영수증",
+        "을",
+        "받아요"
+      ],
+      "focus": "shopping",
+      "tip": "받다 becomes 받아요."
+    },
+    {
+      "id": "s-140",
+      "en": "The bus is late.",
+      "tiles": [
+        {
+          "text": "버스",
+          "role": "subject"
+        },
+        {
+          "text": "가",
+          "role": "subject"
+        },
+        {
+          "text": "늦어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "버스",
+        "가",
+        "늦어요"
+      ],
+      "focus": "transit",
+      "tip": "늦다 becomes 늦어요."
+    },
+    {
+      "id": "s-141",
+      "en": "I missed the train.",
+      "tiles": [
+        {
+          "text": "기차",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "놓쳤어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "기차",
+        "를",
+        "놓쳤어요"
+      ],
+      "focus": "transit",
+      "tip": "놓치다 past."
+    },
+    {
+      "id": "s-142",
+      "en": "Transfer at the next station.",
+      "tiles": [
+        {
+          "text": "다음",
+          "role": "other"
+        },
+        {
+          "text": "역",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "환승하세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "다음",
+        "역",
+        "에서",
+        "환승하세요"
+      ],
+      "focus": "transit",
+      "tip": "에서 for the transfer location."
+    },
+    {
+      "id": "s-143",
+      "en": "I get off at City Hall.",
+      "tiles": [
+        {
+          "text": "시청",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "내려요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "시청",
+        "에서",
+        "내려요"
+      ],
+      "focus": "transit",
+      "tip": "내리다 + 에서."
+    },
+    {
+      "id": "s-144",
+      "en": "I park the car.",
+      "tiles": [
+        {
+          "text": "차",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "주차해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "차",
+        "를",
+        "주차해요"
+      ],
+      "focus": "transit",
+      "tip": "주차하다."
+    },
+    {
+      "id": "s-145",
+      "en": "I rent a car.",
+      "tiles": [
+        {
+          "text": "차",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "렌트해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "차",
+        "를",
+        "렌트해요"
+      ],
+      "focus": "transit",
+      "tip": "렌트하다."
+    },
+    {
+      "id": "s-146",
+      "en": "I call a taxi.",
+      "tiles": [
+        {
+          "text": "택시",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "불러요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "택시",
+        "를",
+        "불러요"
+      ],
+      "focus": "transit",
+      "tip": "부르다 becomes 불러요."
+    },
+    {
+      "id": "s-147",
+      "en": "Turn left.",
+      "tiles": [
+        {
+          "text": "왼쪽",
+          "role": "place"
+        },
+        {
+          "text": "으로",
+          "role": "place"
+        },
+        {
+          "text": "가세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "왼쪽",
+        "으로",
+        "가세요"
+      ],
+      "focus": "directions",
+      "tip": "으로 after batchim."
+    },
+    {
+      "id": "s-148",
+      "en": "Turn right.",
+      "tiles": [
+        {
+          "text": "오른쪽",
+          "role": "place"
+        },
+        {
+          "text": "으로",
+          "role": "place"
+        },
+        {
+          "text": "가세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "오른쪽",
+        "으로",
+        "가세요"
+      ],
+      "focus": "directions",
+      "tip": "Direction + 으로."
+    },
+    {
+      "id": "s-149",
+      "en": "Go straight.",
+      "tiles": [
+        {
+          "text": "직진",
+          "role": "other"
+        },
+        {
+          "text": "하세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "직진",
+        "하세요"
+      ],
+      "focus": "directions",
+      "tip": "하다 request."
+    },
+    {
+      "id": "s-150",
+      "en": "Stop here.",
+      "tiles": [
+        {
+          "text": "여기",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "세워 주세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "여기",
+        "에서",
+        "세워 주세요"
+      ],
+      "focus": "directions",
+      "tip": "에서 for stop location."
+    },
+    {
+      "id": "s-151",
+      "en": "I check the map.",
+      "tiles": [
+        {
+          "text": "지도",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "확인해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "지도",
+        "를",
+        "확인해요"
+      ],
+      "focus": "directions",
+      "tip": "확인하다."
+    },
+    {
+      "id": "s-152",
+      "en": "I ask for directions.",
+      "tiles": [
+        {
+          "text": "길",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "물어봐요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "길",
+        "을",
+        "물어봐요"
+      ],
+      "focus": "directions",
+      "tip": "물어보다."
+    },
+    {
+      "id": "s-153",
+      "en": "I cross the street.",
+      "tiles": [
+        {
+          "text": "길",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "건너요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "길",
+        "을",
+        "건너요"
+      ],
+      "focus": "directions",
+      "tip": "건너다 becomes 건너요."
+    },
+    {
+      "id": "s-154",
+      "en": "I grade homework.",
+      "tiles": [
+        {
+          "text": "숙제",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "채점해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "숙제",
+        "를",
+        "채점해요"
+      ],
+      "focus": "school",
+      "tip": "채점하다."
+    },
+    {
+      "id": "s-155",
+      "en": "I explain grammar.",
+      "tiles": [
+        {
+          "text": "문법",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "설명해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "문법",
+        "을",
+        "설명해요"
+      ],
+      "focus": "school",
+      "tip": "설명하다."
+    },
+    {
+      "id": "s-156",
+      "en": "I practice pronunciation.",
+      "tiles": [
+        {
+          "text": "발음",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "연습해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "발음",
+        "을",
+        "연습해요"
+      ],
+      "focus": "school",
+      "tip": "연습하다."
+    },
+    {
+      "id": "s-157",
+      "en": "I understand a little.",
+      "tiles": [
+        {
+          "text": "조금",
+          "role": "adverb"
+        },
+        {
+          "text": "이해해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "조금",
+        "이해해요"
+      ],
+      "focus": "school",
+      "tip": "이해하다."
+    },
+    {
+      "id": "s-158",
+      "en": "I do not understand well.",
+      "tiles": [
+        {
+          "text": "잘",
+          "role": "adverb"
+        },
+        {
+          "text": "이해 못 해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "잘",
+        "이해 못 해요"
+      ],
+      "focus": "school",
+      "tip": "못 negation."
+    },
+    {
+      "id": "s-159",
+      "en": "Please repeat.",
+      "tiles": [
+        {
+          "text": "다시",
+          "role": "adverb"
+        },
+        {
+          "text": "말해 주세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "다시",
+        "말해 주세요"
+      ],
+      "focus": "school",
+      "tip": "다시 + request."
+    },
+    {
+      "id": "s-160",
+      "en": "Please write it on the board.",
+      "tiles": [
+        {
+          "text": "칠판",
+          "role": "place"
+        },
+        {
+          "text": "에",
+          "role": "place"
+        },
+        {
+          "text": "써 주세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "칠판",
+        "에",
+        "써 주세요"
+      ],
+      "focus": "school",
+      "tip": "Place + 에."
+    },
+    {
+      "id": "s-161",
+      "en": "Open your books.",
+      "tiles": [
+        {
+          "text": "책",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "펴세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "책",
+        "을",
+        "펴세요"
+      ],
+      "focus": "school",
+      "tip": "펴다 honorific."
+    },
+    {
+      "id": "s-162",
+      "en": "Listen carefully.",
+      "tiles": [
+        {
+          "text": "잘",
+          "role": "adverb"
+        },
+        {
+          "text": "들으세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "잘",
+        "들으세요"
+      ],
+      "focus": "school",
+      "tip": "듣다 honorific 들으세요."
+    },
+    {
+      "id": "s-163",
+      "en": "Work with a partner.",
+      "tiles": [
+        {
+          "text": "파트너",
+          "role": "other"
+        },
+        {
+          "text": "하고",
+          "role": "other"
+        },
+        {
+          "text": "하세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "파트너",
+        "하고",
+        "하세요"
+      ],
+      "focus": "school",
+      "tip": "하고 with."
+    },
+    {
+      "id": "s-164",
+      "en": "Time is up.",
+      "tiles": [
+        {
+          "text": "시간",
+          "role": "subject"
+        },
+        {
+          "text": "이",
+          "role": "subject"
+        },
+        {
+          "text": "끝났어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "시간",
+        "이",
+        "끝났어요"
+      ],
+      "focus": "school",
+      "tip": "끝나다."
+    },
+    {
+      "id": "s-165",
+      "en": "See you tomorrow.",
+      "tiles": [
+        {
+          "text": "내일",
+          "role": "time"
+        },
+        {
+          "text": "봐요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "내일",
+        "봐요"
+      ],
+      "focus": "school",
+      "tip": "Casual closing."
+    },
+    {
+      "id": "s-166",
+      "en": "Have a good weekend.",
+      "tiles": [
+        {
+          "text": "좋은",
+          "role": "other"
+        },
+        {
+          "text": "주말",
+          "role": "object"
+        },
+        {
+          "text": "보내세요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "좋은",
+        "주말",
+        "보내세요"
+      ],
+      "focus": "school",
+      "tip": "보내다 honorific."
+    },
+    {
+      "id": "s-167",
+      "en": "I stretch in the morning.",
+      "tiles": [
+        {
+          "text": "아침",
+          "role": "time"
+        },
+        {
+          "text": "에",
+          "role": "time"
+        },
+        {
+          "text": "스트레칭",
+          "role": "object"
+        },
+        {
+          "text": "해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "아침",
+        "에",
+        "스트레칭",
+        "해요"
+      ],
+      "focus": "daily",
+      "tip": "Time + 에."
+    },
+    {
+      "id": "s-168",
+      "en": "I brush my teeth.",
+      "tiles": [
+        {
+          "text": "이",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "닦아요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "이",
+        "를",
+        "닦아요"
+      ],
+      "focus": "daily",
+      "tip": "닦다 becomes 닦아요."
+    },
+    {
+      "id": "s-169",
+      "en": "I take medicine.",
+      "tiles": [
+        {
+          "text": "약",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "먹어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "약",
+        "을",
+        "먹어요"
+      ],
+      "focus": "daily",
+      "tip": "약을 먹다."
+    },
+    {
+      "id": "s-170",
+      "en": "I rest at home.",
+      "tiles": [
+        {
+          "text": "집",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "쉬어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "집",
+        "에서",
+        "쉬어요"
+      ],
+      "focus": "daily",
+      "tip": "쉬다 becomes 쉬어요."
+    },
+    {
+      "id": "s-171",
+      "en": "I exercise at the gym.",
+      "tiles": [
+        {
+          "text": "체육관",
+          "role": "place"
+        },
+        {
+          "text": "에서",
+          "role": "place"
+        },
+        {
+          "text": "운동해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "체육관",
+        "에서",
+        "운동해요"
+      ],
+      "focus": "daily",
+      "tip": "에서 + 하다 verb."
+    },
+    {
+      "id": "s-172",
+      "en": "I charge my phone.",
+      "tiles": [
+        {
+          "text": "핸드폰",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "충전해요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "핸드폰",
+        "을",
+        "충전해요"
+      ],
+      "focus": "daily",
+      "tip": "충전하다."
+    },
+    {
+      "id": "s-173",
+      "en": "I send a text.",
+      "tiles": [
+        {
+          "text": "문자",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "보내요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "문자",
+        "를",
+        "보내요"
+      ],
+      "focus": "daily",
+      "tip": "보내다 becomes 보내요."
+    },
+    {
+      "id": "s-174",
+      "en": "I take a photo.",
+      "tiles": [
+        {
+          "text": "사진",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "찍어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "사진",
+        "을",
+        "찍어요"
+      ],
+      "focus": "daily",
+      "tip": "찍다 becomes 찍어요."
+    },
+    {
+      "id": "s-175",
+      "en": "I wait for the bus.",
+      "tiles": [
+        {
+          "text": "버스",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "기다려요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "버스",
+        "를",
+        "기다려요"
+      ],
+      "focus": "daily",
+      "tip": "기다리다 becomes 기다려요."
+    },
+    {
+      "id": "s-176",
+      "en": "I wear a coat.",
+      "tiles": [
+        {
+          "text": "코트",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "입어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "코트",
+        "를",
+        "입어요"
+      ],
+      "focus": "daily",
+      "tip": "입다 for clothes."
+    },
+    {
+      "id": "s-177",
+      "en": "I take off my shoes.",
+      "tiles": [
+        {
+          "text": "신발",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "벗어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "신발",
+        "을",
+        "벗어요"
+      ],
+      "focus": "daily",
+      "tip": "벗다 becomes 벗어요."
+    },
+    {
+      "id": "s-178",
+      "en": "I eat fruit.",
+      "tiles": [
+        {
+          "text": "과일",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "먹어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "과일",
+        "을",
+        "먹어요"
+      ],
+      "focus": "food",
+      "tip": "Object + verb."
+    },
+    {
+      "id": "s-179",
+      "en": "I drink tea.",
+      "tiles": [
+        {
+          "text": "차",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "마셔요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "차",
+        "를",
+        "마셔요"
+      ],
+      "focus": "food",
+      "tip": "Object + verb."
+    },
+    {
+      "id": "s-180",
+      "en": "I buy bread.",
+      "tiles": [
+        {
+          "text": "빵",
+          "role": "object"
+        },
+        {
+          "text": "을",
+          "role": "object"
+        },
+        {
+          "text": "사요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "빵",
+        "을",
+        "사요"
+      ],
+      "focus": "food",
+      "tip": "사다 becomes 사요."
+    },
+    {
+      "id": "s-181",
+      "en": "I read the news.",
+      "tiles": [
+        {
+          "text": "뉴스",
+          "role": "object"
+        },
+        {
+          "text": "를",
+          "role": "object"
+        },
+        {
+          "text": "읽어요",
+          "role": "verb"
+        }
+      ],
+      "answer": [
+        "뉴스",
+        "를",
+        "읽어요"
+      ],
+      "focus": "daily",
+      "tip": "읽다 becomes 읽어요."
+    }
+  ],
+  "roles": {
+    "subject": {
+      "label": "Subject + 이/가",
+      "color": "#3b82f6"
+    },
+    "topic": {
+      "label": "Topic + 은/는",
+      "color": "#8b5cf6"
+    },
+    "object": {
+      "label": "Object + 을/를",
+      "color": "#f59e0b"
+    },
+    "verb": {
+      "label": "Verb (end)",
+      "color": "#ef4444"
+    },
+    "time": {
+      "label": "Time",
+      "color": "#10b981"
+    },
+    "place": {
+      "label": "Place",
+      "color": "#06b6d4"
+    },
+    "adverb": {
+      "label": "Adverb",
+      "color": "#ec4899"
+    },
+    "other": {
+      "label": "Other / particle",
+      "color": "#64748b"
+    },
+    "complement": {
+      "label": "Complement",
+      "color": "#a78bfa"
+    },
+    "question": {
+      "label": "Question word",
+      "color": "#f97316"
+    }
+  },
+  "focusLabels": {
+    "sov": "SVO to SOV",
+    "topic-vs-subject": "Topic vs subject",
+    "particles": "Particles vs word order",
+    "verb-final": "Verb at the end",
+    "modifiers": "Modifiers before nouns",
+    "pro-drop": "Dropped pronouns",
+    "postpositions": "Postpositions vs prepositions",
+    "survival": "Survival phrases",
+    "jeju": "Jeju life",
+    "housing": "Housing",
+    "food": "Food",
+    "transit": "Transit",
+    "shopping": "Shopping",
+    "school": "School / classroom",
+    "directions": "Directions",
+    "daily": "Daily life"
+  },
+  "sources": [
+    "Sentence patterns based on standard beginner Korean grammar (SOV, particles, pro-drop).",
+    "Example sentences original and verified for particle and conjugation accuracy.",
+    "Aligned with structures in NIKL beginner materials and common learner curricula."
+  ]
+}

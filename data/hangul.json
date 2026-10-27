@@ -1,0 +1,3667 @@
+{
+  "consonants": [
+    {
+      "id": "c-g",
+      "char": "ㄱ",
+      "name": "giyeok",
+      "romaja": "g/k",
+      "ipa": "[k]",
+      "note": "Lax velar stop. Word-initially [k], between vowels often [ɡ], coda [k̚].",
+      "type": "consonant",
+      "batch": 1
+    },
+    {
+      "id": "c-n",
+      "char": "ㄴ",
+      "name": "nieun",
+      "romaja": "n",
+      "ipa": "[n]",
+      "note": "Alveolar nasal.",
+      "type": "consonant",
+      "batch": 1
+    },
+    {
+      "id": "c-d",
+      "char": "ㄷ",
+      "name": "digeut",
+      "romaja": "d/t",
+      "ipa": "[t]",
+      "note": "Lax alveolar stop. Init [t], voiced [d] intervocalic, coda [t̚].",
+      "type": "consonant",
+      "batch": 1
+    },
+    {
+      "id": "c-r",
+      "char": "ㄹ",
+      "name": "rieul",
+      "romaja": "r/l",
+      "ipa": "[ɾ~l]",
+      "note": "Flap [ɾ] between vowels; [l] in coda or geminate.",
+      "type": "consonant",
+      "batch": 1
+    },
+    {
+      "id": "c-m",
+      "char": "ㅁ",
+      "name": "mieum",
+      "romaja": "m",
+      "ipa": "[m]",
+      "note": "Bilabial nasal.",
+      "type": "consonant",
+      "batch": 1
+    },
+    {
+      "id": "c-b",
+      "char": "ㅂ",
+      "name": "bieup",
+      "romaja": "b/p",
+      "ipa": "[p]",
+      "note": "Lax bilabial stop. Init [p], voiced [b] intervocalic, coda [p̚].",
+      "type": "consonant",
+      "batch": 1
+    },
+    {
+      "id": "c-s",
+      "char": "ㅅ",
+      "name": "siot",
+      "romaja": "s",
+      "ipa": "[s]",
+      "note": "Alveolar fricative. Before /i,j/ often [ɕ]. Coda [t̚].",
+      "type": "consonant",
+      "batch": 1
+    },
+    {
+      "id": "c-ng",
+      "char": "ㅇ",
+      "name": "ieung",
+      "romaja": "∅/ng",
+      "ipa": "[ŋ]/∅]",
+      "note": "Null onset initially; velar nasal [ŋ] in coda.",
+      "type": "consonant",
+      "batch": 1
+    },
+    {
+      "id": "c-j",
+      "char": "ㅈ",
+      "name": "jieut",
+      "romaja": "j",
+      "ipa": "[tɕ]",
+      "note": "Lax alveolo-palatal affricate.",
+      "type": "consonant",
+      "batch": 1
+    },
+    {
+      "id": "c-h",
+      "char": "ㅎ",
+      "name": "hieut",
+      "romaja": "h",
+      "ipa": "[h]",
+      "note": "Glottal fricative. Often weakens intervocalically.",
+      "type": "consonant",
+      "batch": 1
+    },
+    {
+      "id": "c-k",
+      "char": "ㅋ",
+      "name": "kieuk",
+      "romaja": "k",
+      "ipa": "[kʰ]",
+      "note": "Aspirated velar stop.",
+      "type": "consonant",
+      "batch": 2
+    },
+    {
+      "id": "c-t",
+      "char": "ㅌ",
+      "name": "tieut",
+      "romaja": "t",
+      "ipa": "[tʰ]",
+      "note": "Aspirated alveolar stop.",
+      "type": "consonant",
+      "batch": 2
+    },
+    {
+      "id": "c-p",
+      "char": "ㅍ",
+      "name": "pieup",
+      "romaja": "p",
+      "ipa": "[pʰ]",
+      "note": "Aspirated bilabial stop.",
+      "type": "consonant",
+      "batch": 2
+    },
+    {
+      "id": "c-ch",
+      "char": "ㅊ",
+      "name": "chieut",
+      "romaja": "ch",
+      "ipa": "[tɕʰ]",
+      "note": "Aspirated alveolo-palatal affricate.",
+      "type": "consonant",
+      "batch": 2
+    },
+    {
+      "id": "c-kk",
+      "char": "ㄲ",
+      "name": "ssang-giyeok",
+      "romaja": "kk",
+      "ipa": "[k͈]",
+      "note": "Tense (fortis) velar. Higher F0, no aspiration.",
+      "type": "consonant",
+      "batch": 2
+    },
+    {
+      "id": "c-tt",
+      "char": "ㄸ",
+      "name": "ssang-digeut",
+      "romaja": "tt",
+      "ipa": "[t͈]",
+      "note": "Tense alveolar stop.",
+      "type": "consonant",
+      "batch": 2
+    },
+    {
+      "id": "c-pp",
+      "char": "ㅃ",
+      "name": "ssang-bieup",
+      "romaja": "pp",
+      "ipa": "[p͈]",
+      "note": "Tense bilabial stop.",
+      "type": "consonant",
+      "batch": 2
+    },
+    {
+      "id": "c-ss",
+      "char": "ㅆ",
+      "name": "ssang-siot",
+      "romaja": "ss",
+      "ipa": "[s͈]",
+      "note": "Tense alveolar fricative.",
+      "type": "consonant",
+      "batch": 2
+    },
+    {
+      "id": "c-jj",
+      "char": "ㅉ",
+      "name": "ssang-jieut",
+      "romaja": "jj",
+      "ipa": "[tɕ͈]",
+      "note": "Tense alveolo-palatal affricate.",
+      "type": "consonant",
+      "batch": 2
+    }
+  ],
+  "vowels": [
+    {
+      "id": "v-a",
+      "char": "ㅏ",
+      "name": "a",
+      "romaja": "a",
+      "ipa": "[a]",
+      "note": "Open front/central unrounded.",
+      "type": "vowel",
+      "batch": 1
+    },
+    {
+      "id": "v-ya",
+      "char": "ㅑ",
+      "name": "ya",
+      "romaja": "ya",
+      "ipa": "[ja]",
+      "note": "Palatal glide + a.",
+      "type": "vowel",
+      "batch": 1
+    },
+    {
+      "id": "v-eo",
+      "char": "ㅓ",
+      "name": "eo",
+      "romaja": "eo",
+      "ipa": "[ʌ]",
+      "note": "Open-mid back unrounded.",
+      "type": "vowel",
+      "batch": 1
+    },
+    {
+      "id": "v-yeo",
+      "char": "ㅕ",
+      "name": "yeo",
+      "romaja": "yeo",
+      "ipa": "[jʌ]",
+      "note": "Palatal glide + eo.",
+      "type": "vowel",
+      "batch": 1
+    },
+    {
+      "id": "v-o",
+      "char": "ㅗ",
+      "name": "o",
+      "romaja": "o",
+      "ipa": "[o]",
+      "note": "Close-mid back rounded.",
+      "type": "vowel",
+      "batch": 1
+    },
+    {
+      "id": "v-yo",
+      "char": "ㅛ",
+      "name": "yo",
+      "romaja": "yo",
+      "ipa": "[jo]",
+      "note": "Palatal glide + o.",
+      "type": "vowel",
+      "batch": 1
+    },
+    {
+      "id": "v-u",
+      "char": "ㅜ",
+      "name": "u",
+      "romaja": "u",
+      "ipa": "[u]",
+      "note": "Close back rounded.",
+      "type": "vowel",
+      "batch": 1
+    },
+    {
+      "id": "v-yu",
+      "char": "ㅠ",
+      "name": "yu",
+      "romaja": "yu",
+      "ipa": "[ju]",
+      "note": "Palatal glide + u.",
+      "type": "vowel",
+      "batch": 1
+    },
+    {
+      "id": "v-eu",
+      "char": "ㅡ",
+      "name": "eu",
+      "romaja": "eu",
+      "ipa": "[ɯ]",
+      "note": "Close back unrounded. No English equivalent.",
+      "type": "vowel",
+      "batch": 1
+    },
+    {
+      "id": "v-i",
+      "char": "ㅣ",
+      "name": "i",
+      "romaja": "i",
+      "ipa": "[i]",
+      "note": "Close front unrounded.",
+      "type": "vowel",
+      "batch": 1
+    },
+    {
+      "id": "v-ae",
+      "char": "ㅐ",
+      "name": "ae",
+      "romaja": "ae",
+      "ipa": "[ɛ]",
+      "note": "Open-mid front. Merging with ㅔ for many speakers.",
+      "type": "vowel",
+      "batch": 2
+    },
+    {
+      "id": "v-e",
+      "char": "ㅔ",
+      "name": "e",
+      "romaja": "e",
+      "ipa": "[e]",
+      "note": "Close-mid front. Often merged with ㅐ.",
+      "type": "vowel",
+      "batch": 2
+    },
+    {
+      "id": "v-yae",
+      "char": "ㅒ",
+      "name": "yae",
+      "romaja": "yae",
+      "ipa": "[jɛ]",
+      "note": "Palatal glide + ae. Rare.",
+      "type": "vowel",
+      "batch": 2
+    },
+    {
+      "id": "v-ye",
+      "char": "ㅖ",
+      "name": "ye",
+      "romaja": "ye",
+      "ipa": "[je]",
+      "note": "Palatal glide + e.",
+      "type": "vowel",
+      "batch": 2
+    },
+    {
+      "id": "v-wa",
+      "char": "ㅘ",
+      "name": "wa",
+      "romaja": "wa",
+      "ipa": "[wa]",
+      "note": "Labiovelar glide + a (ㅗ+ㅏ).",
+      "type": "vowel",
+      "batch": 2
+    },
+    {
+      "id": "v-wae",
+      "char": "ㅙ",
+      "name": "wae",
+      "romaja": "wae",
+      "ipa": "[wɛ]",
+      "note": "Labiovelar glide + ae.",
+      "type": "vowel",
+      "batch": 2
+    },
+    {
+      "id": "v-oe",
+      "char": "ㅚ",
+      "name": "oe",
+      "romaja": "oe",
+      "ipa": "[we]~[ø]",
+      "note": "Historically [ø]; modern Seoul often [we].",
+      "type": "vowel",
+      "batch": 2
+    },
+    {
+      "id": "v-wo",
+      "char": "ㅝ",
+      "name": "wo",
+      "romaja": "wo",
+      "ipa": "[wʌ]",
+      "note": "Labiovelar glide + eo (ㅜ+ㅓ).",
+      "type": "vowel",
+      "batch": 2
+    },
+    {
+      "id": "v-we",
+      "char": "ㅞ",
+      "name": "we",
+      "romaja": "we",
+      "ipa": "[we]",
+      "note": "Labiovelar glide + e.",
+      "type": "vowel",
+      "batch": 2
+    },
+    {
+      "id": "v-wi",
+      "char": "ㅟ",
+      "name": "wi",
+      "romaja": "wi",
+      "ipa": "[wi]",
+      "note": "Labiovelar glide + i.",
+      "type": "vowel",
+      "batch": 2
+    },
+    {
+      "id": "v-ui",
+      "char": "ㅢ",
+      "name": "ui",
+      "romaja": "ui",
+      "ipa": "[ɯi]",
+      "note": "Diphthong. As possessive often [e].",
+      "type": "vowel",
+      "batch": 2
+    }
+  ],
+  "syllables": [
+    {
+      "id": "syl-3131-314f",
+      "char": "가",
+      "romaja": "ga",
+      "jamo": [
+        "ㄱ",
+        "ㅏ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3131-3153",
+      "char": "거",
+      "romaja": "geo",
+      "jamo": [
+        "ㄱ",
+        "ㅓ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3131-3157",
+      "char": "고",
+      "romaja": "go",
+      "jamo": [
+        "ㄱ",
+        "ㅗ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3131-315c",
+      "char": "구",
+      "romaja": "gu",
+      "jamo": [
+        "ㄱ",
+        "ㅜ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3131-3161",
+      "char": "그",
+      "romaja": "geu",
+      "jamo": [
+        "ㄱ",
+        "ㅡ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3131-3163",
+      "char": "기",
+      "romaja": "gi",
+      "jamo": [
+        "ㄱ",
+        "ㅣ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3134-314f",
+      "char": "나",
+      "romaja": "na",
+      "jamo": [
+        "ㄴ",
+        "ㅏ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3134-3153",
+      "char": "너",
+      "romaja": "neo",
+      "jamo": [
+        "ㄴ",
+        "ㅓ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3134-3157",
+      "char": "노",
+      "romaja": "no",
+      "jamo": [
+        "ㄴ",
+        "ㅗ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3134-315c",
+      "char": "누",
+      "romaja": "nu",
+      "jamo": [
+        "ㄴ",
+        "ㅜ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3134-3161",
+      "char": "느",
+      "romaja": "neu",
+      "jamo": [
+        "ㄴ",
+        "ㅡ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3134-3163",
+      "char": "니",
+      "romaja": "ni",
+      "jamo": [
+        "ㄴ",
+        "ㅣ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3137-314f",
+      "char": "다",
+      "romaja": "da",
+      "jamo": [
+        "ㄷ",
+        "ㅏ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3137-3153",
+      "char": "더",
+      "romaja": "deo",
+      "jamo": [
+        "ㄷ",
+        "ㅓ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3137-3157",
+      "char": "도",
+      "romaja": "do",
+      "jamo": [
+        "ㄷ",
+        "ㅗ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3137-315c",
+      "char": "두",
+      "romaja": "du",
+      "jamo": [
+        "ㄷ",
+        "ㅜ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3137-3161",
+      "char": "드",
+      "romaja": "deu",
+      "jamo": [
+        "ㄷ",
+        "ㅡ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3137-3163",
+      "char": "디",
+      "romaja": "di",
+      "jamo": [
+        "ㄷ",
+        "ㅣ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3139-314f",
+      "char": "라",
+      "romaja": "ra",
+      "jamo": [
+        "ㄹ",
+        "ㅏ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3139-3153",
+      "char": "러",
+      "romaja": "reo",
+      "jamo": [
+        "ㄹ",
+        "ㅓ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3139-3157",
+      "char": "로",
+      "romaja": "ro",
+      "jamo": [
+        "ㄹ",
+        "ㅗ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3139-315c",
+      "char": "루",
+      "romaja": "ru",
+      "jamo": [
+        "ㄹ",
+        "ㅜ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3139-3161",
+      "char": "르",
+      "romaja": "reu",
+      "jamo": [
+        "ㄹ",
+        "ㅡ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3139-3163",
+      "char": "리",
+      "romaja": "ri",
+      "jamo": [
+        "ㄹ",
+        "ㅣ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3141-314f",
+      "char": "마",
+      "romaja": "ma",
+      "jamo": [
+        "ㅁ",
+        "ㅏ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3141-3153",
+      "char": "머",
+      "romaja": "meo",
+      "jamo": [
+        "ㅁ",
+        "ㅓ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3141-3157",
+      "char": "모",
+      "romaja": "mo",
+      "jamo": [
+        "ㅁ",
+        "ㅗ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3141-315c",
+      "char": "무",
+      "romaja": "mu",
+      "jamo": [
+        "ㅁ",
+        "ㅜ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3141-3161",
+      "char": "므",
+      "romaja": "meu",
+      "jamo": [
+        "ㅁ",
+        "ㅡ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3141-3163",
+      "char": "미",
+      "romaja": "mi",
+      "jamo": [
+        "ㅁ",
+        "ㅣ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3142-314f",
+      "char": "바",
+      "romaja": "ba",
+      "jamo": [
+        "ㅂ",
+        "ㅏ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3142-3153",
+      "char": "버",
+      "romaja": "beo",
+      "jamo": [
+        "ㅂ",
+        "ㅓ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3142-3157",
+      "char": "보",
+      "romaja": "bo",
+      "jamo": [
+        "ㅂ",
+        "ㅗ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3142-315c",
+      "char": "부",
+      "romaja": "bu",
+      "jamo": [
+        "ㅂ",
+        "ㅜ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3142-3161",
+      "char": "브",
+      "romaja": "beu",
+      "jamo": [
+        "ㅂ",
+        "ㅡ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3142-3163",
+      "char": "비",
+      "romaja": "bi",
+      "jamo": [
+        "ㅂ",
+        "ㅣ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3145-314f",
+      "char": "사",
+      "romaja": "sa",
+      "jamo": [
+        "ㅅ",
+        "ㅏ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3145-3153",
+      "char": "서",
+      "romaja": "seo",
+      "jamo": [
+        "ㅅ",
+        "ㅓ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3145-3157",
+      "char": "소",
+      "romaja": "so",
+      "jamo": [
+        "ㅅ",
+        "ㅗ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3145-315c",
+      "char": "수",
+      "romaja": "su",
+      "jamo": [
+        "ㅅ",
+        "ㅜ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3145-3161",
+      "char": "스",
+      "romaja": "seu",
+      "jamo": [
+        "ㅅ",
+        "ㅡ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3145-3163",
+      "char": "시",
+      "romaja": "si",
+      "jamo": [
+        "ㅅ",
+        "ㅣ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3147-314f",
+      "char": "아",
+      "romaja": "a",
+      "jamo": [
+        "ㅇ",
+        "ㅏ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3147-3153",
+      "char": "어",
+      "romaja": "eo",
+      "jamo": [
+        "ㅇ",
+        "ㅓ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3147-3157",
+      "char": "오",
+      "romaja": "o",
+      "jamo": [
+        "ㅇ",
+        "ㅗ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3147-315c",
+      "char": "우",
+      "romaja": "u",
+      "jamo": [
+        "ㅇ",
+        "ㅜ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3147-3161",
+      "char": "으",
+      "romaja": "eu",
+      "jamo": [
+        "ㅇ",
+        "ㅡ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3147-3163",
+      "char": "이",
+      "romaja": "i",
+      "jamo": [
+        "ㅇ",
+        "ㅣ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3148-314f",
+      "char": "자",
+      "romaja": "ja",
+      "jamo": [
+        "ㅈ",
+        "ㅏ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3148-3153",
+      "char": "저",
+      "romaja": "jeo",
+      "jamo": [
+        "ㅈ",
+        "ㅓ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3148-3157",
+      "char": "조",
+      "romaja": "jo",
+      "jamo": [
+        "ㅈ",
+        "ㅗ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3148-315c",
+      "char": "주",
+      "romaja": "ju",
+      "jamo": [
+        "ㅈ",
+        "ㅜ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3148-3161",
+      "char": "즈",
+      "romaja": "jeu",
+      "jamo": [
+        "ㅈ",
+        "ㅡ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3148-3163",
+      "char": "지",
+      "romaja": "ji",
+      "jamo": [
+        "ㅈ",
+        "ㅣ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-314e-314f",
+      "char": "하",
+      "romaja": "ha",
+      "jamo": [
+        "ㅎ",
+        "ㅏ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-314e-3153",
+      "char": "허",
+      "romaja": "heo",
+      "jamo": [
+        "ㅎ",
+        "ㅓ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-314e-3157",
+      "char": "호",
+      "romaja": "ho",
+      "jamo": [
+        "ㅎ",
+        "ㅗ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-314e-315c",
+      "char": "후",
+      "romaja": "hu",
+      "jamo": [
+        "ㅎ",
+        "ㅜ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-314e-3161",
+      "char": "흐",
+      "romaja": "heu",
+      "jamo": [
+        "ㅎ",
+        "ㅡ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-314e-3163",
+      "char": "히",
+      "romaja": "hi",
+      "jamo": [
+        "ㅎ",
+        "ㅣ"
+      ],
+      "type": "syllable",
+      "batch": 3
+    },
+    {
+      "id": "syl-3131-314f-3134",
+      "char": "간",
+      "romaja": "gan",
+      "jamo": [
+        "ㄱ",
+        "ㅏ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-314f-3147",
+      "char": "강",
+      "romaja": "gang",
+      "jamo": [
+        "ㄱ",
+        "ㅏ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-314f-3139",
+      "char": "갈",
+      "romaja": "gal",
+      "jamo": [
+        "ㄱ",
+        "ㅏ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-314f-3141",
+      "char": "감",
+      "romaja": "gam",
+      "jamo": [
+        "ㄱ",
+        "ㅏ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-3153-3134",
+      "char": "건",
+      "romaja": "geon",
+      "jamo": [
+        "ㄱ",
+        "ㅓ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-3153-3147",
+      "char": "겅",
+      "romaja": "geong",
+      "jamo": [
+        "ㄱ",
+        "ㅓ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-3153-3139",
+      "char": "걸",
+      "romaja": "geol",
+      "jamo": [
+        "ㄱ",
+        "ㅓ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-3153-3141",
+      "char": "검",
+      "romaja": "geom",
+      "jamo": [
+        "ㄱ",
+        "ㅓ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-3157-3134",
+      "char": "곤",
+      "romaja": "gon",
+      "jamo": [
+        "ㄱ",
+        "ㅗ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-3157-3147",
+      "char": "공",
+      "romaja": "gong",
+      "jamo": [
+        "ㄱ",
+        "ㅗ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-3157-3139",
+      "char": "골",
+      "romaja": "gol",
+      "jamo": [
+        "ㄱ",
+        "ㅗ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-3157-3141",
+      "char": "곰",
+      "romaja": "gom",
+      "jamo": [
+        "ㄱ",
+        "ㅗ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-315c-3134",
+      "char": "군",
+      "romaja": "gun",
+      "jamo": [
+        "ㄱ",
+        "ㅜ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-315c-3147",
+      "char": "궁",
+      "romaja": "gung",
+      "jamo": [
+        "ㄱ",
+        "ㅜ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-315c-3139",
+      "char": "굴",
+      "romaja": "gul",
+      "jamo": [
+        "ㄱ",
+        "ㅜ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-315c-3141",
+      "char": "굼",
+      "romaja": "gum",
+      "jamo": [
+        "ㄱ",
+        "ㅜ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-3163-3134",
+      "char": "긴",
+      "romaja": "gin",
+      "jamo": [
+        "ㄱ",
+        "ㅣ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-3163-3147",
+      "char": "깅",
+      "romaja": "ging",
+      "jamo": [
+        "ㄱ",
+        "ㅣ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-3163-3139",
+      "char": "길",
+      "romaja": "gil",
+      "jamo": [
+        "ㄱ",
+        "ㅣ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3131-3163-3141",
+      "char": "김",
+      "romaja": "gim",
+      "jamo": [
+        "ㄱ",
+        "ㅣ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-314f-3134",
+      "char": "난",
+      "romaja": "nan",
+      "jamo": [
+        "ㄴ",
+        "ㅏ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-314f-3147",
+      "char": "낭",
+      "romaja": "nang",
+      "jamo": [
+        "ㄴ",
+        "ㅏ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-314f-3139",
+      "char": "날",
+      "romaja": "nal",
+      "jamo": [
+        "ㄴ",
+        "ㅏ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-314f-3141",
+      "char": "남",
+      "romaja": "nam",
+      "jamo": [
+        "ㄴ",
+        "ㅏ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-3153-3134",
+      "char": "넌",
+      "romaja": "neon",
+      "jamo": [
+        "ㄴ",
+        "ㅓ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-3153-3147",
+      "char": "넝",
+      "romaja": "neong",
+      "jamo": [
+        "ㄴ",
+        "ㅓ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-3153-3139",
+      "char": "널",
+      "romaja": "neol",
+      "jamo": [
+        "ㄴ",
+        "ㅓ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-3153-3141",
+      "char": "넘",
+      "romaja": "neom",
+      "jamo": [
+        "ㄴ",
+        "ㅓ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-3157-3134",
+      "char": "논",
+      "romaja": "non",
+      "jamo": [
+        "ㄴ",
+        "ㅗ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-3157-3147",
+      "char": "농",
+      "romaja": "nong",
+      "jamo": [
+        "ㄴ",
+        "ㅗ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-3157-3139",
+      "char": "놀",
+      "romaja": "nol",
+      "jamo": [
+        "ㄴ",
+        "ㅗ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-3157-3141",
+      "char": "놈",
+      "romaja": "nom",
+      "jamo": [
+        "ㄴ",
+        "ㅗ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-315c-3134",
+      "char": "눈",
+      "romaja": "nun",
+      "jamo": [
+        "ㄴ",
+        "ㅜ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-315c-3147",
+      "char": "눙",
+      "romaja": "nung",
+      "jamo": [
+        "ㄴ",
+        "ㅜ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-315c-3139",
+      "char": "눌",
+      "romaja": "nul",
+      "jamo": [
+        "ㄴ",
+        "ㅜ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-315c-3141",
+      "char": "눔",
+      "romaja": "num",
+      "jamo": [
+        "ㄴ",
+        "ㅜ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-3163-3134",
+      "char": "닌",
+      "romaja": "nin",
+      "jamo": [
+        "ㄴ",
+        "ㅣ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-3163-3147",
+      "char": "닝",
+      "romaja": "ning",
+      "jamo": [
+        "ㄴ",
+        "ㅣ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-3163-3139",
+      "char": "닐",
+      "romaja": "nil",
+      "jamo": [
+        "ㄴ",
+        "ㅣ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3134-3163-3141",
+      "char": "님",
+      "romaja": "nim",
+      "jamo": [
+        "ㄴ",
+        "ㅣ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-314f-3134",
+      "char": "단",
+      "romaja": "dan",
+      "jamo": [
+        "ㄷ",
+        "ㅏ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-314f-3147",
+      "char": "당",
+      "romaja": "dang",
+      "jamo": [
+        "ㄷ",
+        "ㅏ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-314f-3139",
+      "char": "달",
+      "romaja": "dal",
+      "jamo": [
+        "ㄷ",
+        "ㅏ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-314f-3141",
+      "char": "담",
+      "romaja": "dam",
+      "jamo": [
+        "ㄷ",
+        "ㅏ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-3153-3134",
+      "char": "던",
+      "romaja": "deon",
+      "jamo": [
+        "ㄷ",
+        "ㅓ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-3153-3147",
+      "char": "덩",
+      "romaja": "deong",
+      "jamo": [
+        "ㄷ",
+        "ㅓ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-3153-3139",
+      "char": "덜",
+      "romaja": "deol",
+      "jamo": [
+        "ㄷ",
+        "ㅓ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-3153-3141",
+      "char": "덤",
+      "romaja": "deom",
+      "jamo": [
+        "ㄷ",
+        "ㅓ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-3157-3134",
+      "char": "돈",
+      "romaja": "don",
+      "jamo": [
+        "ㄷ",
+        "ㅗ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-3157-3147",
+      "char": "동",
+      "romaja": "dong",
+      "jamo": [
+        "ㄷ",
+        "ㅗ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-3157-3139",
+      "char": "돌",
+      "romaja": "dol",
+      "jamo": [
+        "ㄷ",
+        "ㅗ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-3157-3141",
+      "char": "돔",
+      "romaja": "dom",
+      "jamo": [
+        "ㄷ",
+        "ㅗ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-315c-3134",
+      "char": "둔",
+      "romaja": "dun",
+      "jamo": [
+        "ㄷ",
+        "ㅜ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-315c-3147",
+      "char": "둥",
+      "romaja": "dung",
+      "jamo": [
+        "ㄷ",
+        "ㅜ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-315c-3139",
+      "char": "둘",
+      "romaja": "dul",
+      "jamo": [
+        "ㄷ",
+        "ㅜ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-315c-3141",
+      "char": "둠",
+      "romaja": "dum",
+      "jamo": [
+        "ㄷ",
+        "ㅜ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-3163-3134",
+      "char": "딘",
+      "romaja": "din",
+      "jamo": [
+        "ㄷ",
+        "ㅣ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-3163-3147",
+      "char": "딩",
+      "romaja": "ding",
+      "jamo": [
+        "ㄷ",
+        "ㅣ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-3163-3139",
+      "char": "딜",
+      "romaja": "dil",
+      "jamo": [
+        "ㄷ",
+        "ㅣ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3137-3163-3141",
+      "char": "딤",
+      "romaja": "dim",
+      "jamo": [
+        "ㄷ",
+        "ㅣ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-314f-3134",
+      "char": "만",
+      "romaja": "man",
+      "jamo": [
+        "ㅁ",
+        "ㅏ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-314f-3147",
+      "char": "망",
+      "romaja": "mang",
+      "jamo": [
+        "ㅁ",
+        "ㅏ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-314f-3139",
+      "char": "말",
+      "romaja": "mal",
+      "jamo": [
+        "ㅁ",
+        "ㅏ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-314f-3141",
+      "char": "맘",
+      "romaja": "mam",
+      "jamo": [
+        "ㅁ",
+        "ㅏ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-3153-3134",
+      "char": "먼",
+      "romaja": "meon",
+      "jamo": [
+        "ㅁ",
+        "ㅓ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-3153-3147",
+      "char": "멍",
+      "romaja": "meong",
+      "jamo": [
+        "ㅁ",
+        "ㅓ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-3153-3139",
+      "char": "멀",
+      "romaja": "meol",
+      "jamo": [
+        "ㅁ",
+        "ㅓ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-3153-3141",
+      "char": "멈",
+      "romaja": "meom",
+      "jamo": [
+        "ㅁ",
+        "ㅓ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-3157-3134",
+      "char": "몬",
+      "romaja": "mon",
+      "jamo": [
+        "ㅁ",
+        "ㅗ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-3157-3147",
+      "char": "몽",
+      "romaja": "mong",
+      "jamo": [
+        "ㅁ",
+        "ㅗ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-3157-3139",
+      "char": "몰",
+      "romaja": "mol",
+      "jamo": [
+        "ㅁ",
+        "ㅗ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-3157-3141",
+      "char": "몸",
+      "romaja": "mom",
+      "jamo": [
+        "ㅁ",
+        "ㅗ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-315c-3134",
+      "char": "문",
+      "romaja": "mun",
+      "jamo": [
+        "ㅁ",
+        "ㅜ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-315c-3147",
+      "char": "뭉",
+      "romaja": "mung",
+      "jamo": [
+        "ㅁ",
+        "ㅜ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-315c-3139",
+      "char": "물",
+      "romaja": "mul",
+      "jamo": [
+        "ㅁ",
+        "ㅜ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-315c-3141",
+      "char": "뭄",
+      "romaja": "mum",
+      "jamo": [
+        "ㅁ",
+        "ㅜ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-3163-3134",
+      "char": "민",
+      "romaja": "min",
+      "jamo": [
+        "ㅁ",
+        "ㅣ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-3163-3147",
+      "char": "밍",
+      "romaja": "ming",
+      "jamo": [
+        "ㅁ",
+        "ㅣ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-3163-3139",
+      "char": "밀",
+      "romaja": "mil",
+      "jamo": [
+        "ㅁ",
+        "ㅣ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3141-3163-3141",
+      "char": "밈",
+      "romaja": "mim",
+      "jamo": [
+        "ㅁ",
+        "ㅣ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-314f-3134",
+      "char": "반",
+      "romaja": "ban",
+      "jamo": [
+        "ㅂ",
+        "ㅏ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-314f-3147",
+      "char": "방",
+      "romaja": "bang",
+      "jamo": [
+        "ㅂ",
+        "ㅏ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-314f-3139",
+      "char": "발",
+      "romaja": "bal",
+      "jamo": [
+        "ㅂ",
+        "ㅏ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-314f-3141",
+      "char": "밤",
+      "romaja": "bam",
+      "jamo": [
+        "ㅂ",
+        "ㅏ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-3153-3134",
+      "char": "번",
+      "romaja": "beon",
+      "jamo": [
+        "ㅂ",
+        "ㅓ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-3153-3147",
+      "char": "벙",
+      "romaja": "beong",
+      "jamo": [
+        "ㅂ",
+        "ㅓ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-3153-3139",
+      "char": "벌",
+      "romaja": "beol",
+      "jamo": [
+        "ㅂ",
+        "ㅓ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-3153-3141",
+      "char": "범",
+      "romaja": "beom",
+      "jamo": [
+        "ㅂ",
+        "ㅓ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-3157-3134",
+      "char": "본",
+      "romaja": "bon",
+      "jamo": [
+        "ㅂ",
+        "ㅗ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-3157-3147",
+      "char": "봉",
+      "romaja": "bong",
+      "jamo": [
+        "ㅂ",
+        "ㅗ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-3157-3139",
+      "char": "볼",
+      "romaja": "bol",
+      "jamo": [
+        "ㅂ",
+        "ㅗ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-3157-3141",
+      "char": "봄",
+      "romaja": "bom",
+      "jamo": [
+        "ㅂ",
+        "ㅗ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-315c-3134",
+      "char": "분",
+      "romaja": "bun",
+      "jamo": [
+        "ㅂ",
+        "ㅜ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-315c-3147",
+      "char": "붕",
+      "romaja": "bung",
+      "jamo": [
+        "ㅂ",
+        "ㅜ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-315c-3139",
+      "char": "불",
+      "romaja": "bul",
+      "jamo": [
+        "ㅂ",
+        "ㅜ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-315c-3141",
+      "char": "붐",
+      "romaja": "bum",
+      "jamo": [
+        "ㅂ",
+        "ㅜ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-3163-3134",
+      "char": "빈",
+      "romaja": "bin",
+      "jamo": [
+        "ㅂ",
+        "ㅣ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-3163-3147",
+      "char": "빙",
+      "romaja": "bing",
+      "jamo": [
+        "ㅂ",
+        "ㅣ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-3163-3139",
+      "char": "빌",
+      "romaja": "bil",
+      "jamo": [
+        "ㅂ",
+        "ㅣ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3142-3163-3141",
+      "char": "빔",
+      "romaja": "bim",
+      "jamo": [
+        "ㅂ",
+        "ㅣ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-314f-3134",
+      "char": "산",
+      "romaja": "san",
+      "jamo": [
+        "ㅅ",
+        "ㅏ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-314f-3147",
+      "char": "상",
+      "romaja": "sang",
+      "jamo": [
+        "ㅅ",
+        "ㅏ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-314f-3139",
+      "char": "살",
+      "romaja": "sal",
+      "jamo": [
+        "ㅅ",
+        "ㅏ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-314f-3141",
+      "char": "삼",
+      "romaja": "sam",
+      "jamo": [
+        "ㅅ",
+        "ㅏ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-3153-3134",
+      "char": "선",
+      "romaja": "seon",
+      "jamo": [
+        "ㅅ",
+        "ㅓ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-3153-3147",
+      "char": "성",
+      "romaja": "seong",
+      "jamo": [
+        "ㅅ",
+        "ㅓ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-3153-3139",
+      "char": "설",
+      "romaja": "seol",
+      "jamo": [
+        "ㅅ",
+        "ㅓ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-3153-3141",
+      "char": "섬",
+      "romaja": "seom",
+      "jamo": [
+        "ㅅ",
+        "ㅓ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-3157-3134",
+      "char": "손",
+      "romaja": "son",
+      "jamo": [
+        "ㅅ",
+        "ㅗ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-3157-3147",
+      "char": "송",
+      "romaja": "song",
+      "jamo": [
+        "ㅅ",
+        "ㅗ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-3157-3139",
+      "char": "솔",
+      "romaja": "sol",
+      "jamo": [
+        "ㅅ",
+        "ㅗ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-3157-3141",
+      "char": "솜",
+      "romaja": "som",
+      "jamo": [
+        "ㅅ",
+        "ㅗ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-315c-3134",
+      "char": "순",
+      "romaja": "sun",
+      "jamo": [
+        "ㅅ",
+        "ㅜ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-315c-3147",
+      "char": "숭",
+      "romaja": "sung",
+      "jamo": [
+        "ㅅ",
+        "ㅜ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-315c-3139",
+      "char": "술",
+      "romaja": "sul",
+      "jamo": [
+        "ㅅ",
+        "ㅜ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-315c-3141",
+      "char": "숨",
+      "romaja": "sum",
+      "jamo": [
+        "ㅅ",
+        "ㅜ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-3163-3134",
+      "char": "신",
+      "romaja": "sin",
+      "jamo": [
+        "ㅅ",
+        "ㅣ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-3163-3147",
+      "char": "싱",
+      "romaja": "sing",
+      "jamo": [
+        "ㅅ",
+        "ㅣ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-3163-3139",
+      "char": "실",
+      "romaja": "sil",
+      "jamo": [
+        "ㅅ",
+        "ㅣ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3145-3163-3141",
+      "char": "심",
+      "romaja": "sim",
+      "jamo": [
+        "ㅅ",
+        "ㅣ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-314f-3134",
+      "char": "안",
+      "romaja": "an",
+      "jamo": [
+        "ㅇ",
+        "ㅏ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-314f-3147",
+      "char": "앙",
+      "romaja": "ang",
+      "jamo": [
+        "ㅇ",
+        "ㅏ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-314f-3139",
+      "char": "알",
+      "romaja": "al",
+      "jamo": [
+        "ㅇ",
+        "ㅏ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-314f-3141",
+      "char": "암",
+      "romaja": "am",
+      "jamo": [
+        "ㅇ",
+        "ㅏ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-3153-3134",
+      "char": "언",
+      "romaja": "eon",
+      "jamo": [
+        "ㅇ",
+        "ㅓ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-3153-3147",
+      "char": "엉",
+      "romaja": "eong",
+      "jamo": [
+        "ㅇ",
+        "ㅓ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-3153-3139",
+      "char": "얼",
+      "romaja": "eol",
+      "jamo": [
+        "ㅇ",
+        "ㅓ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-3153-3141",
+      "char": "엄",
+      "romaja": "eom",
+      "jamo": [
+        "ㅇ",
+        "ㅓ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-3157-3134",
+      "char": "온",
+      "romaja": "on",
+      "jamo": [
+        "ㅇ",
+        "ㅗ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-3157-3147",
+      "char": "옹",
+      "romaja": "ong",
+      "jamo": [
+        "ㅇ",
+        "ㅗ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-3157-3139",
+      "char": "올",
+      "romaja": "ol",
+      "jamo": [
+        "ㅇ",
+        "ㅗ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-3157-3141",
+      "char": "옴",
+      "romaja": "om",
+      "jamo": [
+        "ㅇ",
+        "ㅗ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-315c-3134",
+      "char": "운",
+      "romaja": "un",
+      "jamo": [
+        "ㅇ",
+        "ㅜ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-315c-3147",
+      "char": "웅",
+      "romaja": "ung",
+      "jamo": [
+        "ㅇ",
+        "ㅜ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-315c-3139",
+      "char": "울",
+      "romaja": "ul",
+      "jamo": [
+        "ㅇ",
+        "ㅜ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-315c-3141",
+      "char": "움",
+      "romaja": "um",
+      "jamo": [
+        "ㅇ",
+        "ㅜ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-3163-3134",
+      "char": "인",
+      "romaja": "in",
+      "jamo": [
+        "ㅇ",
+        "ㅣ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-3163-3147",
+      "char": "잉",
+      "romaja": "ing",
+      "jamo": [
+        "ㅇ",
+        "ㅣ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-3163-3139",
+      "char": "일",
+      "romaja": "il",
+      "jamo": [
+        "ㅇ",
+        "ㅣ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3147-3163-3141",
+      "char": "임",
+      "romaja": "im",
+      "jamo": [
+        "ㅇ",
+        "ㅣ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-314f-3134",
+      "char": "잔",
+      "romaja": "jan",
+      "jamo": [
+        "ㅈ",
+        "ㅏ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-314f-3147",
+      "char": "장",
+      "romaja": "jang",
+      "jamo": [
+        "ㅈ",
+        "ㅏ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-314f-3139",
+      "char": "잘",
+      "romaja": "jal",
+      "jamo": [
+        "ㅈ",
+        "ㅏ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-314f-3141",
+      "char": "잠",
+      "romaja": "jam",
+      "jamo": [
+        "ㅈ",
+        "ㅏ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-3153-3134",
+      "char": "전",
+      "romaja": "jeon",
+      "jamo": [
+        "ㅈ",
+        "ㅓ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-3153-3147",
+      "char": "정",
+      "romaja": "jeong",
+      "jamo": [
+        "ㅈ",
+        "ㅓ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-3153-3139",
+      "char": "절",
+      "romaja": "jeol",
+      "jamo": [
+        "ㅈ",
+        "ㅓ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-3153-3141",
+      "char": "점",
+      "romaja": "jeom",
+      "jamo": [
+        "ㅈ",
+        "ㅓ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-3157-3134",
+      "char": "존",
+      "romaja": "jon",
+      "jamo": [
+        "ㅈ",
+        "ㅗ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-3157-3147",
+      "char": "종",
+      "romaja": "jong",
+      "jamo": [
+        "ㅈ",
+        "ㅗ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-3157-3139",
+      "char": "졸",
+      "romaja": "jol",
+      "jamo": [
+        "ㅈ",
+        "ㅗ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-3157-3141",
+      "char": "좀",
+      "romaja": "jom",
+      "jamo": [
+        "ㅈ",
+        "ㅗ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-315c-3134",
+      "char": "준",
+      "romaja": "jun",
+      "jamo": [
+        "ㅈ",
+        "ㅜ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-315c-3147",
+      "char": "중",
+      "romaja": "jung",
+      "jamo": [
+        "ㅈ",
+        "ㅜ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-315c-3139",
+      "char": "줄",
+      "romaja": "jul",
+      "jamo": [
+        "ㅈ",
+        "ㅜ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-315c-3141",
+      "char": "줌",
+      "romaja": "jum",
+      "jamo": [
+        "ㅈ",
+        "ㅜ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-3163-3134",
+      "char": "진",
+      "romaja": "jin",
+      "jamo": [
+        "ㅈ",
+        "ㅣ",
+        "ㄴ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-3163-3147",
+      "char": "징",
+      "romaja": "jing",
+      "jamo": [
+        "ㅈ",
+        "ㅣ",
+        "ㅇ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-3163-3139",
+      "char": "질",
+      "romaja": "jil",
+      "jamo": [
+        "ㅈ",
+        "ㅣ",
+        "ㄹ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    },
+    {
+      "id": "syl-3148-3163-3141",
+      "char": "짐",
+      "romaja": "jim",
+      "jamo": [
+        "ㅈ",
+        "ㅣ",
+        "ㅁ"
+      ],
+      "type": "syllable",
+      "batch": 4
+    }
+  ],
+  "words": [
+    {
+      "id": "w-0",
+      "char": "안녕",
+      "romaja": "annyeong",
+      "en": "hi / bye (casual)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-1",
+      "char": "안녕하세요",
+      "romaja": "annyeonghaseyo",
+      "en": "hello (polite)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-2",
+      "char": "감사합니다",
+      "romaja": "gamsahamnida",
+      "en": "thank you (formal)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-3",
+      "char": "네",
+      "romaja": "ne",
+      "en": "yes",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-4",
+      "char": "아니요",
+      "romaja": "aniyo",
+      "en": "no",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-5",
+      "char": "물",
+      "romaja": "mul",
+      "en": "water",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-6",
+      "char": "밥",
+      "romaja": "bap",
+      "en": "rice / meal",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-7",
+      "char": "집",
+      "romaja": "jip",
+      "en": "house / home",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-8",
+      "char": "학교",
+      "romaja": "hakgyo",
+      "en": "school",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-9",
+      "char": "선생님",
+      "romaja": "seonsaengnim",
+      "en": "teacher",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-10",
+      "char": "학생",
+      "romaja": "haksaeng",
+      "en": "student",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-11",
+      "char": "한국",
+      "romaja": "hanguk",
+      "en": "Korea",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-12",
+      "char": "제주",
+      "romaja": "jeju",
+      "en": "Jeju",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-13",
+      "char": "어디",
+      "romaja": "eodi",
+      "en": "where",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-14",
+      "char": "뭐",
+      "romaja": "mwo",
+      "en": "what",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-15",
+      "char": "언제",
+      "romaja": "eonje",
+      "en": "when",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-16",
+      "char": "누구",
+      "romaja": "nugu",
+      "en": "who",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-17",
+      "char": "어떻게",
+      "romaja": "eotteoke",
+      "en": "how",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-18",
+      "char": "왜",
+      "romaja": "wae",
+      "en": "why",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-19",
+      "char": "잘",
+      "romaja": "jal",
+      "en": "well",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-20",
+      "char": "주세요",
+      "romaja": "juseyo",
+      "en": "please give me",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-21",
+      "char": "미안해요",
+      "romaja": "mianhaeyo",
+      "en": "sorry",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-22",
+      "char": "괜찮아요",
+      "romaja": "gwaenchanayo",
+      "en": "it's okay",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-23",
+      "char": "친구",
+      "romaja": "chingu",
+      "en": "friend",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-24",
+      "char": "어머니",
+      "romaja": "eomeoni",
+      "en": "mother",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-25",
+      "char": "아버지",
+      "romaja": "abeoji",
+      "en": "father",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-26",
+      "char": "오늘",
+      "romaja": "oneul",
+      "en": "today",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-27",
+      "char": "내일",
+      "romaja": "naeil",
+      "en": "tomorrow",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-28",
+      "char": "어제",
+      "romaja": "eoje",
+      "en": "yesterday",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-29",
+      "char": "지금",
+      "romaja": "jigeum",
+      "en": "now",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-30",
+      "char": "여기",
+      "romaja": "yeogi",
+      "en": "here",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-31",
+      "char": "거기",
+      "romaja": "geogi",
+      "en": "there",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-32",
+      "char": "이것",
+      "romaja": "igeot",
+      "en": "this",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-33",
+      "char": "그것",
+      "romaja": "geugeot",
+      "en": "that",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-34",
+      "char": "음식",
+      "romaja": "eumsik",
+      "en": "food",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-35",
+      "char": "커피",
+      "romaja": "keopi",
+      "en": "coffee",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-36",
+      "char": "차",
+      "romaja": "cha",
+      "en": "tea / car",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-37",
+      "char": "버스",
+      "romaja": "beoseu",
+      "en": "bus",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-38",
+      "char": "기차",
+      "romaja": "gicha",
+      "en": "train",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-39",
+      "char": "비행기",
+      "romaja": "bihaenggi",
+      "en": "airplane",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-40",
+      "char": "돈",
+      "romaja": "don",
+      "en": "money",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-41",
+      "char": "시간",
+      "romaja": "sigan",
+      "en": "time",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-42",
+      "char": "이름",
+      "romaja": "ireum",
+      "en": "name",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-43",
+      "char": "영어",
+      "romaja": "yeongeo",
+      "en": "English",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-44",
+      "char": "한국어",
+      "romaja": "hangugeo",
+      "en": "Korean (language)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-45",
+      "char": "사랑",
+      "romaja": "sarang",
+      "en": "love",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-46",
+      "char": "남자",
+      "romaja": "namja",
+      "en": "man",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-47",
+      "char": "여자",
+      "romaja": "yeoja",
+      "en": "woman",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-48",
+      "char": "아이",
+      "romaja": "ai",
+      "en": "child",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-49",
+      "char": "사람",
+      "romaja": "saram",
+      "en": "person",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-50",
+      "char": "책",
+      "romaja": "chaek",
+      "en": "book",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-51",
+      "char": "펜",
+      "romaja": "pen",
+      "en": "pen",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-52",
+      "char": "문",
+      "romaja": "mun",
+      "en": "door",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-53",
+      "char": "창문",
+      "romaja": "changmun",
+      "en": "window",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-54",
+      "char": "방",
+      "romaja": "bang",
+      "en": "room",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-55",
+      "char": "화장실",
+      "romaja": "hwajangsil",
+      "en": "bathroom",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-56",
+      "char": "병원",
+      "romaja": "byeongwon",
+      "en": "hospital",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-57",
+      "char": "약국",
+      "romaja": "yakguk",
+      "en": "pharmacy",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-58",
+      "char": "시장",
+      "romaja": "sijang",
+      "en": "market",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-59",
+      "char": "가게",
+      "romaja": "gage",
+      "en": "store",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-60",
+      "char": "가격",
+      "romaja": "gagyeok",
+      "en": "price",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-61",
+      "char": "얼마",
+      "romaja": "eolma",
+      "en": "how much",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-62",
+      "char": "맛있어요",
+      "romaja": "masisseoyo",
+      "en": "it's delicious",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-63",
+      "char": "배고파요",
+      "romaja": "baegopayo",
+      "en": "I'm hungry",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-64",
+      "char": "목말라요",
+      "romaja": "mongmallayo",
+      "en": "I'm thirsty",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-65",
+      "char": "피곤해요",
+      "romaja": "pigonhaeyo",
+      "en": "I'm tired",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-66",
+      "char": "좋아요",
+      "romaja": "joayo",
+      "en": "I like it / good",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-67",
+      "char": "싫어요",
+      "romaja": "sireoyo",
+      "en": "I dislike it",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-68",
+      "char": "있어요",
+      "romaja": "isseoyo",
+      "en": "there is / have",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-69",
+      "char": "없어요",
+      "romaja": "eopseoyo",
+      "en": "there isn't / don't have",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-70",
+      "char": "가요",
+      "romaja": "gayo",
+      "en": "go (polite)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-71",
+      "char": "와요",
+      "romaja": "wayo",
+      "en": "come (polite)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-72",
+      "char": "먹어요",
+      "romaja": "meogeoyo",
+      "en": "eat (polite)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-73",
+      "char": "마셔요",
+      "romaja": "masyeoyo",
+      "en": "drink (polite)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-74",
+      "char": "자요",
+      "romaja": "jayo",
+      "en": "sleep (polite)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-75",
+      "char": "일해요",
+      "romaja": "ilhaeyo",
+      "en": "work (polite)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-76",
+      "char": "공부해요",
+      "romaja": "gongbuhaeyo",
+      "en": "study (polite)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-77",
+      "char": "가르쳐요",
+      "romaja": "gareuchyeoyo",
+      "en": "teach (polite)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-78",
+      "char": "배워요",
+      "romaja": "baewoyo",
+      "en": "learn (polite)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-79",
+      "char": "제주도",
+      "romaja": "jejudo",
+      "en": "Jeju Island",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-80",
+      "char": "한라산",
+      "romaja": "hallasan",
+      "en": "Hallasan (volcano)",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-81",
+      "char": "바다",
+      "romaja": "bada",
+      "en": "sea",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-82",
+      "char": "공항",
+      "romaja": "gonghang",
+      "en": "airport",
+      "type": "word",
+      "batch": 5
+    },
+    {
+      "id": "w-83",
+      "char": "택시",
+      "romaja": "taeksi",
+      "en": "taxi",
+      "type": "word",
+      "batch": 5
+    }
+  ],
+  "sources": [
+    "Hangul jamo and IPA: standard Seoul Korean (Lee & Ramsey; Shin, Kiaer, Cha).",
+    "Syllable composition: Unicode Hangul Syllables (U+AC00 algorithm).",
+    "Reading words: aligned with NIKL 한국어 학습용 어휘 목록 beginner band."
+  ]
+}
