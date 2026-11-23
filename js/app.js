@@ -2,6 +2,9 @@ import * as Storage from './storage.js';
 import * as SRS from './srs.js';
 import * as Speak from './speak.js';
 import { renderSoundChart, ipaOf, contrastTip } from './sounds.js';
+import { listDecks, getDeck } from './decks.js';
+import { openStudy, getStudy, focusCard } from './study.js';
+import { starterDrills, starterFocusLabel } from './build-drills.js';
 
 const $ = (sel, el = document) => el.querySelector(sel);
 const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
@@ -17,6 +20,8 @@ async function loadData() {
     fetch('data/sentences.json').then(r => r.json()),
   ]);
   data = { hangul: h, vocab: v, sentences: s };
+  data.sentences.drills = starterDrills.concat(data.sentences.drills);
+  data.sentences.focusLabels = { starter: starterFocusLabel, ...data.sentences.focusLabels };
 }
 
 function toast(msg) {
@@ -47,9 +52,11 @@ function setView(name) {
   $$('.nav button').forEach(b => b.classList.toggle('active', b.dataset.nav === name));
   const titles = {
     home: 'Kian Korean',
+    study: 'Flash cards',
+    practice: 'More practice',
     hangul: 'Hangul flash',
     sounds: 'Sound chart',
-    syntax: 'Sentence order',
+    syntax: 'Sentence builder',
     vocab: 'Vocab',
     progress: 'Progress',
     about: 'About',
@@ -57,6 +64,7 @@ function setView(name) {
   $('#title').textContent = titles[name] || 'Kian Korean';
   if (name !== 'hangul') stopDrillClock();
   if (name === 'home') renderHome();
+  if (name === 'practice') renderPractice();
   if (name === 'hangul') startHangul();
   if (name === 'sounds') renderSoundChart($('[data-view="sounds"]'), (text) => Speak.speakKo(text).catch(() => toast('Audio unavailable')), { reset: true });
   if (name === 'syntax') startSyntax();
@@ -334,6 +342,20 @@ function finishTimed() {
 /* ---------- Syntax drag-drop ---------- */
 let syn = { idx: 0, placed: [], bank: [], drill: null, filter: 'all' };
 
+function orderPair(d, tokens) {
+  const pool = d.tiles.map(t => ({ ...t }));
+  const chips = tokens.map(tok => {
+    const i = pool.findIndex(t => t.text === tok);
+    const role = i >= 0 ? pool.splice(i, 1)[0].role : 'other';
+    return `<span class="tile mini" data-role="${role}">${tok}</span>`;
+  }).join('');
+  const svo = d.svo || d.en;
+  return `<div class="order-pair">
+      <div><span class="tag">English SVO</span><div class="svo-line">${svo}</div></div>
+      <div><span class="tag">Korean SOV</span><div class="sov-line">${chips}</div></div>
+    </div>`;
+}
+
 function startSyntax() {
   const drills = data.sentences.drills;
   const focuses = data.sentences.focusLabels;
@@ -521,19 +543,22 @@ function renderSyntax() {
 
   $('#syn-check').onclick = () => {
     const got = syn.placed.map(t => t.text);
-    const want = d.answer;
-    const ok = got.length === want.length && got.every((x, i) => x === want[i]);
+    const accepted = d.answers && d.answers.length ? d.answers : [d.answer];
+    const match = accepted.find(want => got.length === want.length && got.every((x, i) => x === want[i]));
+    const ok = !!match;
+    const shown = accepted[0];
     const fb = $('#syn-feedback');
     state.syntax.done += 1;
     if (!state.syntax.byFocus[d.focus]) state.syntax.byFocus[d.focus] = { done: 0, correct: 0 };
     state.syntax.byFocus[d.focus].done += 1;
+    const dropNote = accepted.length > 1 ? '<p class="fb-tip">A version with or without the pronoun counts.</p>' : '';
     if (ok) {
       state.syntax.correct += 1;
       state.syntax.byFocus[d.focus].correct += 1;
-      fb.innerHTML = `<div class="feedback ok">Correct. ${want.join(' ')}</div>`;
+      fb.innerHTML = `<div class="feedback ok">Correct.</div>${orderPair(d, shown)}${dropNote}`;
     } else {
       state.weak[d.id] = (state.weak[d.id] || 0) + 1;
-      fb.innerHTML = `<div class="feedback no">Not yet. Target: ${want.join(' ')}</div>`;
+      fb.innerHTML = `<div class="feedback no">Not yet.</div>${orderPair(d, shown)}${dropNote}`;
     }
     persist();
   };
@@ -638,33 +663,116 @@ function renderVocab() {
 }
 
 /* ---------- Progress / Home / About ---------- */
+function deckStat(deck) {
+  const saved = state.decks && state.decks[deck.id];
+  const total = deck.cards.length;
+  if (deck.launch === 'syntax') {
+    const acc = state.syntax.done ? Math.round(state.syntax.correct / state.syntax.done * 100) : 0;
+    return `${state.syntax.done} built · ${acc}%`;
+  }
+  if (!saved) return `${total} cards`;
+  const seen = Object.keys(saved.cards || {}).length;
+  const due = deck.cards.filter(c => {
+    const s = saved.cards && saved.cards[c.id];
+    return s && s.lapses && s.due <= Date.now();
+  }).length;
+  return `${seen}/${total} seen${due ? ' · ' + due + ' missed' : ''}`;
+}
+
 function renderHome() {
-  const hCount = Object.keys(state.hangulSeen).length;
-  const due = hangulDeckIds().filter(id => !state.srs[id] || state.srs[id].due <= Date.now()).length;
-  const synAcc = state.syntax.done ? Math.round(state.syntax.correct / state.syntax.done * 100) : 0;
-  const support = Speak.speechSupport();
+  const decks = listDecks();
   $('[data-view="home"]').innerHTML = `
     <div class="card">
-      <h2>Hey there</h2>
-      <p class="muted">English → Korean only. Built for fast Hangul reading, SOV drills, and Jeju survival vocab. Progress stays on this phone.</p>
+      <h2>Build a sentence</h2>
+      <p class="muted">Flash cards for the pieces: pronouns, verbs, particles, numbers, time, and color. English → Korean. Progress stays on this phone.</p>
     </div>
-    <div class="stat-grid">
-      <div class="stat"><div class="n">${state.streak.count}</div><div class="l">day streak</div></div>
-      <div class="stat"><div class="n">${due}</div><div class="l">cards due</div></div>
-      <div class="stat"><div class="n">${hCount}</div><div class="l">Hangul seen</div></div>
-      <div class="stat"><div class="n">${synAcc}%</div><div class="l">syntax accuracy</div></div>
+    <div class="deck-list" id="deck-list">
+      ${decks.map((deck, i) => `
+        <button type="button" class="deck-card" data-deck="${deck.id}">
+          <span class="deck-no">${i + 1}</span>
+          <span class="deck-copy">
+            <span class="deck-title">${deck.title}</span>
+            <span class="muted">${deck.blurb}</span>
+            <span class="deck-stat">${deckStat(deck)}</span>
+          </span>
+        </button>`).join('')}
     </div>
-    <div class="stack" style="margin-top:12px">
-      <button class="primary" data-go="hangul">Start Hangul flash cards</button>
-      <button data-go="syntax">Sentence order game</button>
-      <button data-go="vocab">Browse vocab</button>
-    </div>
-    <div class="card" style="margin-top:12px">
-      <h2>Mic status</h2>
-      <p class="muted">${support.recognition ? 'Speech recognition ready (ko-KR).' : 'Speech recognition not available in this browser. Playback may still work.'}
-      ${support.synthesis ? ' Voice playback ready.' : ' No voice playback.'}</p>
+    <h2 class="section-label">More practice</h2>
+    <div class="stack">
+      <button type="button" id="home-hangul">Hangul reading</button>
+      <button type="button" id="home-sounds">Sound chart</button>
+      <button type="button" id="home-vocab">Vocab and mic</button>
     </div>`;
-  $$('[data-go]').forEach(b => b.onclick = () => setView(b.dataset.go));
+  $$('#deck-list [data-deck]').forEach(b => b.onclick = () => startStudy(b.dataset.deck));
+  $('#home-hangul').onclick = () => setView('hangul');
+  $('#home-sounds').onclick = () => setView('sounds');
+  $('#home-vocab').onclick = () => setView('vocab');
+}
+
+function renderPractice() {
+  const support = Speak.speechSupport();
+  const phrases = [
+    ['안녕하세요', 'Hello'],
+    ['저는 민수예요', 'I am Minsoo'],
+    ['물 마셔요', 'I drink water'],
+    ['어디 가요?', 'Where are you going?'],
+    ['배고파요', "I'm hungry"],
+  ];
+  $('[data-view="practice"]').innerHTML = `
+    <div class="card">
+      <h2>More practice</h2>
+      <p class="muted">Hangul reading and the mic sit here so the decks stay first. ${support.recognition ? 'Speech recognition is ready.' : 'This browser has no speech recognition. Playback can still work.'} ${support.synthesis ? 'Korean playback is ready.' : ''}</p>
+    </div>
+    <div class="stack">
+      <button type="button" id="go-hangul">Hangul flash cards</button>
+      <button type="button" id="go-sounds">Sound chart</button>
+      <button type="button" id="go-vocab">Vocab list and mic</button>
+      <button type="button" id="go-syntax">Sentence builder</button>
+    </div>
+    <h2 class="section-label">Say it</h2>
+    <div class="card" id="say-list">
+      ${phrases.map(([ko, en]) => `
+        <div class="v-item">
+          <div><div class="ko">${ko}</div><div class="en">${en}</div></div>
+          <div class="speak-btns">
+            <button type="button" data-play="${ko}" aria-label="Play ${ko}">🔊</button>
+            <button type="button" data-mic="${ko}" aria-label="Mic ${ko}">🎙️</button>
+          </div>
+        </div>`).join('')}
+    </div>`;
+  $('#go-hangul').onclick = () => setView('hangul');
+  $('#go-sounds').onclick = () => setView('sounds');
+  $('#go-vocab').onclick = () => setView('vocab');
+  $('#go-syntax').onclick = () => setView('syntax');
+  $$('#say-list [data-play]').forEach(b => b.onclick = () => Speak.speakKo(b.dataset.play).catch(() => toast('Audio unavailable')));
+  $$('#say-list [data-mic]').forEach(b => b.onclick = async () => {
+    toast('Listening…');
+    try {
+      const r = await Speak.checkPronunciation(b.dataset.mic);
+      toast(`${Math.round(r.score * 100)}% · heard: ${r.transcript || '-'}`);
+      state.speak.attempts += 1;
+      state.speak.avgScore = state.speak.avgScore ? (state.speak.avgScore * 0.8 + r.score * 0.2) : r.score;
+      persist();
+    } catch (e) { toast(e.message); }
+  });
+}
+
+function startStudy(id) {
+  const deck = getDeck(id);
+  if (!deck) return;
+  if (deck.launch === 'syntax') {
+    setView('syntax');
+    return;
+  }
+  setView('study');
+  $('#title').textContent = deck.title;
+  openStudy($('[data-view="study"]'), deck, state, {
+    persist,
+    toast,
+    speak: (text) => Speak.speakKo(text).catch(() => toast('Audio unavailable')),
+    listen: Speak.checkPronunciation,
+    exit: () => setView('home'),
+  });
 }
 
 function renderProgress() {
@@ -685,6 +793,10 @@ function renderProgress() {
       <div class="stat"><div class="n">${mastered}</div><div class="l">Hangul mastered</div></div>
       <div class="stat"><div class="n">${synAcc}%</div><div class="l">syntax</div></div>
       <div class="stat"><div class="n">${Math.round((state.speak.avgScore||0)*100)}%</div><div class="l">avg mic</div></div>
+    </div>
+    <div class="card">
+      <h2>Decks</h2>
+      ${listDecks().filter(d => d.launch !== 'syntax').map(d => `<div class="v-item"><div><div class="ko" style="font-size:0.95rem">${d.title}</div><div class="en">${deckStat(d)}</div></div></div>`).join('')}
     </div>
     <div class="card">
       <h2>Hangul coverage</h2>
@@ -747,8 +859,8 @@ function renderAbout() {
   $('[data-view="about"]').innerHTML = `
     <div class="card about">
       <h2>Kian Korean</h2>
-      <p>English to Korean learning app. Mobile-first. Progress in localStorage. Installable as a PWA.</p>
-      <p>Content counts: ${hc} Hangul cards · ${vc} vocab items · ${sc} sentence drills.</p>
+      <p>English to Korean learning app. Flash cards first, then Hangul and the mic. Mobile-first. Progress in localStorage. Installable as a PWA.</p>
+      <p>Content counts: ${listDecks().length} decks · ${hc} Hangul cards · ${vc} vocab items · ${sc} sentence drills.</p>
       <h2>Sources</h2>
       <ul>
         ${(data.hangul.sources || []).map(s => `<li>${s}</li>`).join('')}
@@ -786,6 +898,10 @@ window.__kian = {
   Speak,
   SRS,
   Storage,
+  getStudy,
+  focusCard,
+  getDeck: (id) => getDeck(id),
+  listDecks,
   getDrill: () => ({
     item: timed.item,
     left: timed.left,

@@ -1,7 +1,7 @@
 {
   "name": "Kian Korean",
   "short_name": "Kian KO",
-  "description": "English to Korean: Hangul flash cards, sentence order, vocab, pronunciation.",
+  "description": "English to Korean flash cards for building real sentences.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

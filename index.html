@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="description" content="Kian Korean: Hangul flash cards, sentence order drills, vocab, and pronunciation for English speakers." />
+  <meta name="description" content="Kian Korean: flash cards for the words and endings that build a Korean sentence." />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="assets/icon-192.png" />
   <link rel="apple-touch-icon" href="assets/icon-192.png" />
@@ -26,6 +26,8 @@
 
     <main>
       <section class="view active" data-view="home"></section>
+      <section class="view" data-view="study"></section>
+      <section class="view" data-view="practice"></section>
       <section class="view" data-view="hangul"></section>
       <section class="view" data-view="sounds"></section>
       <section class="view" data-view="syntax"></section>
@@ -35,11 +37,9 @@
     </main>
 
     <nav class="nav" aria-label="Primary">
-      <button data-nav="home" class="active"><span class="ico">🏠</span>Home</button>
-      <button data-nav="hangul"><span class="ico">ㄱ</span>Hangul</button>
-      <button data-nav="sounds"><span class="ico">ㅏ</span>Sounds</button>
-      <button data-nav="syntax"><span class="ico">⇅</span>Order</button>
-      <button data-nav="vocab"><span class="ico">語</span>Vocab</button>
+      <button data-nav="home" class="active"><span class="ico">☰</span>Decks</button>
+      <button data-nav="syntax"><span class="ico">⇅</span>Build</button>
+      <button data-nav="practice"><span class="ico">＋</span>More</button>
       <button data-nav="progress"><span class="ico">📈</span>Stats</button>
     </nav>
   </div>

@@ -1,4 +1,4 @@
-const CACHE = 'kian-korean-v3';
+const CACHE = 'kian-korean-v4';
 const ASSETS = [
   './',
   './index.html',
@@ -8,6 +8,10 @@ const ASSETS = [
   './js/storage.js',
   './js/srs.js',
   './js/speak.js',
+  './js/gloss.js',
+  './js/decks.js',
+  './js/study.js',
+  './js/build-drills.js',
   './data/hangul.json',
   './data/vocab.json',
   './data/sentences.json',

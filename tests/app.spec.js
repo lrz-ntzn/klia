@@ -3,14 +3,21 @@ const BASE = process.env.BASE_URL || 'http://127.0.0.1:8765';
 
 test.describe('Kian Korean', () => {
   test('home loads and navigates', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(BASE + '/');
     await expect(page.getByRole('heading', { name: 'Kian Korean' })).toBeVisible();
-    await expect(page.getByText('Hey there')).toBeVisible();
-    await page.locator('.nav button[data-nav="hangul"]').click();
+    await expect(page.locator('.deck-card[data-deck="pronouns"]')).toBeVisible();
+    await expect(page.locator('.deck-card')).toHaveCount(10);
+    await expect(page.getByText('Hey there')).toHaveCount(0);
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
+    expect(overflow).toBe(false);
+    await page.locator('.nav button[data-nav="practice"]').click();
+    await page.locator('#go-hangul').click();
     await expect(page.locator('.flash-char')).toBeVisible();
     await page.locator('.nav button[data-nav="syntax"]').click();
     await expect(page.locator('.en-prompt')).toBeVisible();
-    await page.locator('.nav button[data-nav="vocab"]').click();
+    await page.locator('.nav button[data-nav="practice"]').click();
+    await page.locator('#go-vocab').click();
     await expect(page.locator('#v-search')).toBeVisible();
     await page.locator('.nav button[data-nav="progress"]').click();
     await expect(page.getByText('Hangul coverage')).toBeVisible();
@@ -18,7 +25,8 @@ test.describe('Kian Korean', () => {
 
   test('hangul reveal and grade persists in localStorage', async ({ page }) => {
     await page.goto(BASE + '/');
-    await page.locator('.nav button[data-nav="hangul"]').click();
+    await page.locator('.nav button[data-nav="practice"]').click();
+    await page.locator('#go-hangul').click();
     const char = await page.locator('.flash-char').innerText();
     await page.locator('#flash-card').click();
     await expect(page.locator('#grade-actions')).toBeVisible();
@@ -27,7 +35,8 @@ test.describe('Kian Korean', () => {
     expect(stored).toBeTruthy();
     expect(Object.keys(JSON.parse(stored).srs).length).toBeGreaterThan(0);
     await page.reload();
-    await page.locator('.nav button[data-nav="hangul"]').click();
+    await page.locator('.nav button[data-nav="practice"]').click();
+    await page.locator('#go-hangul').click();
     expect(JSON.parse(await page.evaluate(() => localStorage.getItem('kian-korean-v1'))).srs).toBeTruthy();
     expect(char.length).toBeGreaterThan(0);
   });
@@ -68,7 +77,8 @@ test.describe('Kian Korean', () => {
 
   test('vocab filters and conjugations show', async ({ page }) => {
     await page.goto(BASE + '/');
-    await page.locator('.nav button[data-nav="vocab"]').click();
+    await page.locator('.nav button[data-nav="practice"]').click();
+    await page.locator('#go-vocab').click();
     await page.locator('#v-filters button[data-k="verb"]').click();
     await expect(page.locator('.forms').first()).toBeVisible();
     await expect(page.locator('.forms b').filter({ hasText: 'present' }).first()).toBeVisible();
@@ -95,7 +105,8 @@ test.describe('Kian Korean', () => {
   test('sound chart lists 40 jamo and filters', async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 800 });
     await page.goto(BASE + '/');
-    await page.locator('.nav button[data-nav="sounds"]').click();
+    await page.locator('.nav button[data-nav="practice"]').click();
+    await page.locator('#go-sounds').click();
     await expect(page.getByRole('heading', { name: 'Sound chart', exact: true })).toBeVisible();
     await expect(page.locator('.sound-card')).toHaveCount(40);
     await expect(page.locator('.place-grid .cell:not(.cell-empty)')).toHaveCount(14);
@@ -113,7 +124,8 @@ test.describe('Kian Korean', () => {
     await expect(page.locator('.place-grid')).toHaveCount(0);
     await page.locator('#sound-filter button[data-f="consonant"]').click();
     await expect(page.locator('.sound-card')).toHaveCount(19);
-    await page.locator('.nav button[data-nav="hangul"]').click();
+    await page.locator('.nav button[data-nav="practice"]').click();
+    await page.locator('#go-hangul').click();
     await page.locator('#open-sounds').click();
     await expect(page.locator('.sound-card')).toHaveCount(40);
   });
@@ -121,7 +133,8 @@ test.describe('Kian Korean', () => {
   test('fast-read pauses for feedback and does not auto-advance', async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 800 });
     await page.goto(BASE + '/');
-    await page.locator('.nav button[data-nav="hangul"]').click();
+    await page.locator('.nav button[data-nav="practice"]').click();
+    await page.locator('#go-hangul').click();
     await page.locator('#mode-timed').click();
     const before = await page.evaluate(() => window.__kian.getDrill());
     const choices = page.locator('#choices button');
@@ -185,7 +198,8 @@ test.describe('Kian Korean', () => {
     for (const scheme of ['dark', 'light']) {
       await page.emulateMedia({ colorScheme: scheme });
       await page.goto(BASE + '/');
-      await page.locator('.nav button[data-nav="hangul"]').click();
+      await page.locator('.nav button[data-nav="practice"]').click();
+    await page.locator('#go-hangul').click();
       await page.locator('#mode-timed').click();
       const drill = await page.evaluate(() => window.__kian.getDrill());
       const buttons = page.locator('#choices button');
@@ -211,6 +225,153 @@ test.describe('Kian Korean', () => {
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
       expect(overflow).toBe(false);
     }
+  });
+
+  test('pronoun deck holds the answer until Next', async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 800 });
+    await page.goto(BASE + '/');
+    await page.locator('.deck-card[data-deck="pronouns"]').click();
+    await page.evaluate(() => window.__kian.focusCard('p-jeo'));
+    await expect(page.locator('.prompt')).toHaveText('I / me');
+    await expect(page.locator('.register')).toHaveText('polite');
+    await page.locator('#study-flip').click();
+    await expect(page.locator('#study-flip')).toHaveText('KO → EN');
+    await expect(page.locator('.prompt')).toHaveText('저');
+    await page.locator('#study-flip').click();
+    await page.locator('#study-reveal').click();
+    await expect(page.locator('.fb-char')).toContainText('저');
+    await expect(page.locator('.rr')).toContainText('jeo');
+    const prompt = await page.locator('.prompt').innerText();
+    await page.waitForTimeout(350);
+    await expect(page.locator('.prompt')).toHaveText(prompt);
+    await page.locator('#study-missed').click();
+    await expect(page.locator('.fb-banner.no')).toBeVisible();
+    await page.locator('#study-next').click();
+    await expect(page.locator('.fb-banner')).toHaveCount(0);
+    const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('kian-korean-v1')));
+    expect(stored.decks.pronouns.wrong).toBeGreaterThan(0);
+    expect(stored.decks.pronouns.direction).toBe('enko');
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
+    expect(overflow).toBe(false);
+  });
+
+  test('verb answer color-codes the morphemes', async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 800 });
+    await page.goto(BASE + '/');
+    await page.locator('.deck-card[data-deck="verbs"]').click();
+    await page.evaluate(() => window.__kian.focusCard('v-eat-pr'));
+    await page.locator('#study-type').fill('먹어요');
+    await page.locator('#study-check').click();
+    await expect(page.locator('.fb-banner.ok')).toBeVisible();
+    await expect(page.locator('.morph .m-stem')).toHaveText('먹');
+    await expect(page.locator('.morph .m-end')).toHaveText('어요');
+    await expect(page.locator('.rr')).toContainText('meogeoyo');
+    await expect(page.locator('.sound-ipa').first()).toContainText('[ʌ]');
+    await expect(page.locator('[data-speak]').first()).toBeVisible();
+  });
+
+  test('number system trainer shows the full answer', async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 800 });
+    await page.goto(BASE + '/');
+    await page.locator('.deck-card[data-deck="systems"]').click();
+    await page.evaluate(() => window.__kian.focusCard('sys-0'));
+    await expect(page.locator('.prompt')).toContainText('clock');
+    await page.locator('[data-sys="native"]').click();
+    await expect(page.locator('.fb-banner.ok')).toContainText('세 시');
+    await page.locator('#study-next').click();
+    await page.evaluate(() => window.__kian.focusCard('sys-1'));
+    await page.locator('[data-sys="native"]').click();
+    await expect(page.locator('.fb-banner.no')).toContainText('삼십 분');
+    await expect(page.locator('#study-next')).toBeVisible();
+  });
+
+  test('color card shows a swatch and the adjective', async ({ page }) => {
+    await page.goto(BASE + '/');
+    await page.locator('.deck-card[data-deck="colors"]').click();
+    await page.evaluate(() => window.__kian.focusCard('c-0'));
+    await expect(page.locator('.swatch')).toBeVisible();
+    await page.locator('#study-reveal').click();
+    await expect(page.locator('.fb-char')).toContainText('빨간색');
+    await expect(page.locator('.fb-char')).toContainText('빨개요');
+  });
+
+  test('sentence builder accepts a dropped pronoun and shows SVO beside SOV', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(BASE + '/');
+    await page.locator('.deck-card[data-deck="builder"]').click();
+    await page.locator('#syn-filters button[data-f="starter"]').click();
+    await expect(page.locator('.en-prompt')).toHaveText('I eat rice.');
+    for (const word of ['밥', '을', '먹어요']) {
+      await page.locator('#bank-row .tile', { hasText: new RegExp('^' + word + '$') }).click();
+      const box = await page.locator('#drop-row').boundingBox();
+      await page.mouse.click(box.x + 8, box.y + 8);
+      await page.waitForTimeout(40);
+    }
+    await expect(page.locator('#drop-row .tile')).toHaveCount(3);
+    await page.locator('#syn-check').click();
+    await expect(page.locator('.feedback.ok')).toBeVisible();
+    await expect(page.locator('.order-pair')).toContainText('English SVO');
+    await expect(page.locator('.order-pair')).toContainText('Korean SOV');
+    await expect(page.locator('.sov-line')).toContainText('먹어요');
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
+    expect(overflow).toBe(false);
+  });
+
+  test('reloads the deck list while offline', async ({ page, context }) => {
+    await page.goto(BASE + '/');
+    await page.evaluate(async () => navigator.serviceWorker.ready);
+    await page.reload();
+    await expect(page.locator('.deck-card')).toHaveCount(10);
+    await context.setOffline(true);
+    await page.reload();
+    await expect(page.locator('.deck-card[data-deck="pronouns"]')).toBeVisible();
+    await expect(page.locator('.deck-card')).toHaveCount(10);
+  });
+
+  test('service worker cache includes the decks', async ({ page }) => {
+    await page.goto(BASE + '/');
+    const sw = await page.evaluate(async () => (await fetch('sw.js')).text());
+    expect(sw).toContain("const CACHE = 'kian-korean-v4'");
+    expect(sw).toContain('./js/decks.js');
+    expect(sw).toContain('./js/study.js');
+    const body = await page.content();
+    expect(body.toLowerCase()).not.toContain('joey');
+    expect(body.toLowerCase()).not.toContain('clough');
+    expect(body.toLowerCase()).not.toContain('lariz');
+  });
+
+  test('number readings and romanization', async ({ page }) => {
+    await page.goto(BASE + '/');
+    const got = await page.evaluate(async () => {
+      const decks = await import('./js/decks.js');
+      const gloss = await import('./js/gloss.js');
+      return {
+        sino21: decks.sino(21),
+        sino10000: decks.sino(10000),
+        sino99999: decks.sino(99999),
+        native25: decks.native(25),
+        short20: decks.nativeCounter(20),
+        short21: decks.nativeCounter(21),
+        eat: gloss.romanize('먹어요'),
+        like: gloss.romanize('좋아요'),
+        dontknow: gloss.romanize('몰라요'),
+        monday: gloss.romanize('월요일'),
+        room: gloss.romanize('삼백이'),
+      };
+    });
+    expect(got).toEqual({
+      sino21: '이십일',
+      sino10000: '만',
+      sino99999: '구만구천구백구십구',
+      native25: '스물다섯',
+      short20: '스무',
+      short21: '스물한',
+      eat: 'meogeoyo',
+      like: 'joayo',
+      dontknow: 'mollayo',
+      monday: 'woryoil',
+      room: 'sambaegi',
+    });
   });
 
   test('data counts meet targets', async ({ page }) => {

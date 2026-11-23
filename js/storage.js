@@ -11,6 +11,7 @@ const defaultState = () => ({
   speak: { attempts: 0, avgScore: 0 },
   readingSpeed: [],  // {t, cpm, accuracy}
   weak: {},          // id -> fail count
+  decks: {},         // deckId -> {correct, wrong, direction, shuffle, cards}
   createdAt: Date.now(),
   updatedAt: Date.now(),
 });
