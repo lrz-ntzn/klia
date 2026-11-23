@@ -4,6 +4,7 @@ import { categoriesOf } from './decks.js';
 import { awardXp } from './storage.js';
 import { mascot } from './mascot.js';
 import { playFx, burstConfetti } from './fx.js';
+import { presentCard, allowsCard, speechStyle } from './register.js';
 
 const $ = (sel, el = document) => el.querySelector(sel);
 
@@ -78,8 +79,20 @@ function applyMode(cards, deckId) {
   return (cards || []).filter(c => c.system === basicsMode());
 }
 
+function speechNow() {
+  return speechStyle(session.state);
+}
+
+function visibleCards(deck, cards) {
+  return applyMode(cards, deck.id).filter(c => allowsCard(c, speechNow()));
+}
+
 function scoped(deck, cards) {
-  return { ...deck, cards: applyMode(cards, deck.id) };
+  return { ...deck, cards: visibleCards(deck, cards) };
+}
+
+function viewOf(card) {
+  return presentCard(card, speechNow());
 }
 
 function selectionSet() {
@@ -115,13 +128,13 @@ function cardsFor(set) {
   if (session.deck.mix) {
     const out = [];
     for (const deck of session.catalog) {
-      for (const card of applyMode(deck.cards, deck.id)) {
+      for (const card of visibleCards(deck, deck.cards)) {
         if (set.has(mixKey(deck.id, card.cat))) out.push(card);
       }
     }
     return out;
   }
-  return applyMode(session.sourceCards, session.deck.id).filter(c => set.has(c.cat));
+  return visibleCards(session.deck, session.sourceCards).filter(c => set.has(c.cat));
 }
 
 function catRow(key, label, count, on) {
@@ -162,10 +175,12 @@ function showPicker() {
     <div class="study-bar">
       <button type="button" id="study-back" class="ghost">Decks</button>
     </div>
-    <div class="card">
+    <div class="card deck-intro">
       <h2>${esc(deck.title)}</h2>
-      <p class="muted">Choose the categories for this session.</p>
+      <p class="muted">${esc(deck.blurb || 'Read the sheet, then start when you want.')}</p>
+      <button type="button" id="cat-skip" class="ghost">Skip to flashcards</button>
     </div>
+    ${reviewSheet(deck)}
     ${deck.id === 'basics' ? numberToggle() : ''}
     <div class="cat-actions">
       <button type="button" id="cat-all">All</button>
@@ -178,7 +193,7 @@ function showPicker() {
           ${sec.rows.map(row => catRow(row.key, row.label, row.count, selected.has(row.key))).join('')}
         </div>`).join('')}
     </div>
-    <button type="button" id="cat-start" class="primary">Start · ${total} cards</button>`;
+    <button type="button" id="cat-start" class="primary">Start flashcards · ${total}</button>`;
   $('#study-back', root).onclick = () => session.hooks.exit();
   const paintRows = () => showPicker();
   wireNumberToggle(root, paintRows);
@@ -201,7 +216,7 @@ function showPicker() {
     writeSelection(new Set());
     paintRows();
   };
-  $('#cat-start', root).onclick = () => {
+  const start = () => {
     const cards = cardsFor(selectionSet());
     if (!cards.length) {
       session.hooks.toast('Pick at least one category.');
@@ -209,6 +224,24 @@ function showPicker() {
     }
     beginSession(cards);
   };
+  $('#cat-start', root).onclick = start;
+  $('#cat-skip', root).onclick = start;
+}
+
+function reviewSheet(deck) {
+  if (deck.mix) {
+    return `<details class="review" open><summary>Review</summary><p class="muted">This mix interleaves the categories you tick. Missed cards from every deck can also be studied from Review due on the home screen.</p></details>`;
+  }
+  const cards = visibleCards(deck, deck.cards && deck.cards.length ? deck.cards : session.sourceCards).map(c => viewOf(c));
+  const rules = cards.filter(c => c.kind === 'explain');
+  const rows = cards.filter(c => c.kind !== 'explain').slice(0, 8);
+  const more = cards.filter(c => c.kind !== 'explain').length - rows.length;
+  return `<details class="review" open>
+    <summary>Review</summary>
+    ${rules.map(c => `<p><strong>${esc(c.prompt)}</strong> ${esc(c.note || c.answer || '')}</p>`).join('')}
+    ${rows.length ? `<table class="sheet"><tbody>${rows.map(c => `<tr><th>${esc(c.digit || c.prompt)}</th><td>${esc(c.answer)}</td></tr>`).join('')}</tbody></table>` : ''}
+    ${more > 0 ? `<p class="muted">${more} more items are in the cards.</p>` : ''}
+  </details>`;
 }
 
 function beginSession(cards) {
@@ -362,7 +395,7 @@ function sessionHud() {
     <div class="session-hud">
       <div class="session-bar" aria-hidden="true"><i style="width:${pct}%"></i></div>
       <div class="hud-row">
-        ${mascot(session.mood || 'idle')}
+        ${session.state.mascot ? mascot(session.mood || 'idle') : ''}
         ${heartsHtml()}
         <span class="combo">${combo > 1 ? combo + ' combo' : ''}</span>
       </div>
@@ -375,7 +408,7 @@ function paintCelebrate() {
   const secs = Math.max(1, Math.round((Date.now() - stats.started) / 1000));
   session.root.innerHTML = `
     <div class="celebrate">
-      ${mascot('cheer')}
+      ${session.state.mascot ? mascot('cheer') : ''}
       <h2>Session clear</h2>
       <div class="stat-grid">
         <div class="stat"><div class="n">+${stats.xp}</div><div class="l">XP</div></div>
@@ -386,7 +419,7 @@ function paintCelebrate() {
       <button type="button" id="study-again" class="primary">Practice anyway</button>
       <button type="button" id="study-back">Decks</button>
     </div>`;
-  burstConfetti(session.root);
+  if (session.state.confetti) burstConfetti(session.root);
   playFx('win', session.state.muted);
   $('#study-back', session.root).onclick = () => session.hooks.exit();
   $('#study-again', session.root).onclick = () => beginSession(session.lastCards || []);
@@ -394,7 +427,8 @@ function paintCelebrate() {
 
 function paint() {
   const { root, deck, prog, queue, index } = session;
-  const card = queue[index];
+  const raw = queue[index];
+  const card = raw ? viewOf(raw) : null;
   if (!card) {
     if (session.stats && session.stats.seen) {
       paintCelebrate();
@@ -472,6 +506,17 @@ function paint() {
   wirePlay(root);
   renderControls(card);
   if (session.banner) showBanner();
+  if (session.state.audioFirst && !session.banner && session.spoke !== index && direction === 'koen') {
+    session.spoke = index;
+    const ko = koreanOf(card);
+    if (hasHangul(ko)) session.hooks.speak(ko);
+  }
+}
+
+export function refreshStudy() {
+  if (!session) return;
+  if (session.phase === 'run') paint();
+  else showPicker();
 }
 
 function playButton(text) {
@@ -666,6 +711,7 @@ function showBanner() {
   host.innerHTML = `
     <div class="fb-banner ${ok ? 'ok' : 'no'}">
       <div class="fb-title"><span aria-hidden="true">${ok ? '✓' : '✗'}</span> ${banner.explain ? 'Explanation' : ok ? 'Correct' : 'Not quite'}</div>
+      ${banner.explain ? '' : `<p class="fb-pause">${ok ? 'Good. This card waits longer before it returns.' : 'Again. This card comes back in a few cards.'}</p>`}
       ${answerBlock(card)}
       <button type="button" id="study-next" class="drill-next">Continue</button>
     </div>`;

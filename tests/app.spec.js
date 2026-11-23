@@ -7,7 +7,7 @@ test.describe('Kian Korean', () => {
     await page.goto(BASE + '/');
     await expect(page.getByRole('heading', { name: 'Kian Korean' })).toBeVisible();
     await expect(page.locator('.deck-card[data-deck="pronouns"]')).toBeVisible();
-    await expect(page.locator('.deck-card')).toHaveCount(11);
+    await expect(page.locator('.deck-card')).toHaveCount(12);
     await expect(page.locator('.deck-card').first()).toHaveAttribute('data-deck', 'basics');
     await expect(page.getByText('Hey there')).toHaveCount(0);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
@@ -338,19 +338,19 @@ test.describe('Kian Korean', () => {
     await page.goto(BASE + '/');
     await page.evaluate(async () => navigator.serviceWorker.ready);
     await page.reload();
-    await expect(page.locator('.deck-card')).toHaveCount(11);
+    await expect(page.locator('.deck-card')).toHaveCount(12);
     await expect(page.locator('.deck-card').first()).toHaveAttribute('data-deck', 'basics');
     await context.setOffline(true);
     await page.reload();
     await expect(page.locator('.deck-card[data-deck="pronouns"]')).toBeVisible();
-    await expect(page.locator('.deck-card')).toHaveCount(11);
+    await expect(page.locator('.deck-card')).toHaveCount(12);
     await expect(page.locator('.deck-card').first()).toHaveAttribute('data-deck', 'basics');
   });
 
   test('service worker cache includes the decks', async ({ page }) => {
     await page.goto(BASE + '/');
     const sw = await page.evaluate(async () => (await fetch('sw.js')).text());
-    expect(sw).toContain("const CACHE = 'kian-korean-v6'");
+    expect(sw).toContain("const CACHE = 'kian-korean-v7'");
     expect(sw).toContain('./js/decks.js');
     expect(sw).toContain('./js/study.js');
     const body = await page.content();
@@ -366,7 +366,7 @@ test.describe('Kian Korean', () => {
     await page.locator('#cat-none').click();
     await page.locator('.cat-row', { hasText: 'Meanings' }).click();
     const count = await page.locator('#cat-start').innerText();
-    expect(count).toMatch(/Start · \d+ cards/);
+    expect(count).toMatch(/Start flashcards · \d+/);
     await page.locator('#cat-start').click();
     await page.locator('#study-back').click();
     await page.reload();
@@ -429,6 +429,32 @@ test.describe('Kian Korean', () => {
     expect(saved.decks.basics.numberSystem).toBe('both');
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
     expect(overflow).toBe(false);
+  });
+
+  test('review sheet, register, jejueo, and install', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(BASE + '/');
+    await expect(page.locator('#register-bar [data-reg="formal"]')).toBeVisible();
+    await expect(page.locator('#install-btn')).toBeVisible();
+    await page.locator('.deck-card[data-deck="jeju"]').click();
+    await expect(page.locator('.review')).toContainText('critically endangered');
+    await expect(page.locator('#cat-start')).toContainText('Start flashcards');
+    await page.locator('#cat-start').click();
+    await page.evaluate(() => window.__kian.focusCard('jj-0'));
+    await expect(page.locator('.prompt')).toContainText('Welcome');
+    await page.locator('#study-reveal').click();
+    await expect(page.locator('.fb-char')).toContainText('혼저옵서예');
+    await page.locator('#register-bar [data-reg="formal"]').click();
+    await page.locator('.nav button[data-nav="home"]').click();
+    await page.locator('.deck-card[data-deck="verbs"]').click();
+    await page.locator('.cat-row', { hasText: 'Present' }).click();
+    await page.locator('#cat-none').click();
+    await page.locator('.cat-row', { hasText: 'Present' }).click();
+    await page.locator('#cat-start').click();
+    await page.evaluate(() => window.__kian.focusCard('v-eat-pr'));
+    await page.locator('#study-reveal').click();
+    await expect(page.locator('.fb-banner')).toContainText('먹습니다');
+    await expect(page.locator('body')).not.toHaveClass(/parts-on/);
   });
 
   test('number readings and romanization', async ({ page }) => {

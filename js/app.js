@@ -5,8 +5,9 @@ import * as SRS from './srs.js';
 import * as Speak from './speak.js';
 import { renderSoundChart, ipaOf, contrastTip } from './sounds.js';
 import { listDecks, getDeck } from './decks.js';
-import { openStudy, getStudy, focusCard, openMix } from './study.js';
+import { openStudy, getStudy, focusCard, openMix, refreshStudy } from './study.js';
 import { starterDrills, starterFocusLabel } from './build-drills.js';
+import { speechStyle, tuneDrill } from './register.js';
 
 const $ = (sel, el = document) => el.querySelector(sel);
 const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
@@ -53,6 +54,14 @@ function refreshHud() {
   if (streak) streak.innerHTML = `<svg class="flame" viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1c2 4 .6 5 2.6 8 1 1.6 1.8 2.8 1.8 5.2a4.4 4.4 0 1 1-8.8 0c0-1.8.8-3 1.8-4.6C6.4 8 7 5 8 1z"/></svg><span>${state.streak.count || 0}</span>`;
   const xp = $('#xp-pill');
   if (xp) xp.textContent = `${xpToday()} XP`;
+  document.body.classList.toggle('show-mascot', !!state.mascot);
+  document.body.classList.toggle('parts-on', !!state.parts);
+  const parts = $('#parts-btn');
+  if (parts) {
+    parts.classList.toggle('on', !!state.parts);
+    parts.setAttribute('aria-pressed', state.parts ? 'true' : 'false');
+  }
+  $$('#register-bar [data-reg]').forEach(btn => btn.classList.toggle('on', btn.dataset.reg === speechStyle(state)));
   const mute = $('#mute-btn');
   if (mute) {
     const off = !!state.muted;
@@ -418,7 +427,7 @@ function loadDrill() {
     return;
   }
   if (syn.idx >= list.length) syn.idx = 0;
-  syn.drill = list[syn.idx];
+  syn.drill = tuneDrill(list[syn.idx], speechStyle(state));
   // shuffle bank
   syn.bank = [...syn.drill.tiles].sort(() => Math.random() - 0.5);
   syn.placed = [];
@@ -694,6 +703,7 @@ function renderVocab() {
 /* ---------- Progress / Home / About ---------- */
 const TILES = {
   basics: '#ff8c42',
+  jeju: '#2f6f4e',
   pronouns: '#1cb0f6',
   verbs: '#ff9600',
   particles: '#ce82ff',
@@ -738,7 +748,7 @@ function renderHome() {
   const goal = Math.min(100, Math.round(today / DAILY_GOAL * 100));
   $('[data-view="home"]').innerHTML = `
     <div class="hero">
-      ${mascot('happy')}
+      ${state.mascot ? mascot('idle') : ''}
       <div class="hero-copy">
         <h2>Build a sentence</h2>
         <p class="muted">Pick a deck, or mix categories. English → Korean. Progress stays on this phone.</p>
@@ -747,6 +757,10 @@ function renderHome() {
         <span class="goal-core"><strong>${today}</strong><small>/${DAILY_GOAL}</small></span>
       </div>
     </div>
+    <button type="button" class="mix-card" id="review-due">
+      <span class="deck-title">Review due</span>
+      <span class="muted">Missed cards from every deck, mixed together.</span>
+    </button>
     <button type="button" class="mix-card" id="custom-mix">
       <span class="deck-title">Custom mix</span>
       <span class="muted">Tick categories from any deck and study them together.</span>
@@ -773,6 +787,7 @@ function renderHome() {
       <button type="button" id="home-vocab">Vocab and mic</button>
     </div>`;
   $('#custom-mix').onclick = () => startMix();
+  $('#review-due').onclick = () => startDue();
   $$('#deck-list [data-deck]').forEach(b => b.onclick = () => startStudy(b.dataset.deck));
   $('#home-hangul').onclick = () => setView('hangul');
   $('#home-sounds').onclick = () => setView('sounds');
@@ -837,6 +852,31 @@ function studyHooks() {
   };
 }
 
+function startDue() {
+  const now = Date.now();
+  const cards = [];
+  listDecks().filter(d => !d.launch).forEach(meta => {
+    const deck = getDeck(meta.id);
+    const saved = state.decks && state.decks[meta.id];
+    (deck.cards || []).forEach(card => {
+      const slot = saved && saved.cards && saved.cards[card.id];
+      if (slot && slot.lapses && slot.due <= now) cards.push({ ...card, cat: 'due', catLabel: 'Due now' });
+    });
+  });
+  if (!cards.length) {
+    toast('Nothing is due. Miss a card and it will wait here.');
+    return;
+  }
+  setView('study');
+  openStudy($('[data-view="study"]'), {
+    id: 'due',
+    title: 'Review due',
+    blurb: 'Missed cards from every deck, mixed together.',
+    cards,
+    categoryOrder: ['due'],
+  }, state, studyHooks());
+}
+
 function startMix() {
   const decks = listDecks().filter(d => !d.launch).map(d => getDeck(d.id));
   setView('study');
@@ -875,6 +915,15 @@ function renderProgress() {
       <div class="stat"><div class="n">${Math.round((state.speak.avgScore||0)*100)}%</div><div class="l">avg mic</div></div>
     </div>
     <div class="card">
+      <h2>Settings</h2>
+      <div class="stack">
+        <button type="button" id="audio-toggle">${state.audioFirst ? 'Audio first: on' : 'Audio first: off'}</button>
+        <button type="button" id="mascot-toggle">${state.mascot ? 'Mascot: on' : 'Mascot: off'}</button>
+        <button type="button" id="confetti-toggle">${state.confetti ? 'Confetti: on' : 'Confetti: off'}</button>
+      </div>
+      <p class="muted">Word parts are the Parts button at the top. Polite is 해요체, Formal is 합쇼체, Casual is 반말.</p>
+    </div>
+    <div class="card">
       <h2>Decks</h2>
       ${listDecks().filter(d => d.launch !== 'syntax').map(d => `<div class="v-item"><div><div class="ko" style="font-size:0.95rem">${d.title}</div><div class="en">${deckStat(d)}</div></div></div>`).join('')}
     </div>
@@ -905,6 +954,9 @@ function renderProgress() {
       <input type="file" id="import-file" accept="application/json,.json" class="hidden">
       <button id="reset-btn">Reset all progress</button>
     </div>`;
+  $('#audio-toggle').onclick = () => { state.audioFirst = !state.audioFirst; persist(); renderProgress(); };
+  $('#mascot-toggle').onclick = () => { state.mascot = !state.mascot; persist(); renderProgress(); };
+  $('#confetti-toggle').onclick = () => { state.confetti = !state.confetti; persist(); renderProgress(); };
   $('#export-btn').onclick = () => {
     const blob = new Blob([Storage.exportJSON(state)], { type: 'application/json' });
     const a = document.createElement('a');
@@ -965,10 +1017,54 @@ async function main() {
     state.muted = !state.muted;
     persist();
   };
+  $$('#register-bar [data-reg]').forEach(btn => btn.onclick = () => {
+    state.register = btn.dataset.reg;
+    persist();
+    refreshStudy();
+    if (view === 'syntax') startSyntax();
+  });
+  $('#parts-btn').onclick = () => {
+    state.parts = !state.parts;
+    persist();
+    refreshStudy();
+  };
+  $('#install-btn').onclick = async () => {
+    if (window.__installPrompt) {
+      window.__installPrompt.prompt();
+      await window.__installPrompt.userChoice.catch(() => {});
+      window.__installPrompt = null;
+      $('#install-btn').hidden = true;
+      return;
+    }
+    toast('On Android, open the browser menu and choose Install app or Add to Home screen.');
+  };
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    window.__installPrompt = event;
+    const btn = $('#install-btn');
+    if (btn) btn.hidden = false;
+  });
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    const btn = $('#install-btn');
+    if (btn) btn.hidden = true;
+  }
+  $('#update-reload').onclick = () => location.reload();
   setView('home');
   refreshHud();
   if ('serviceWorker' in navigator) {
-    try { await navigator.serviceWorker.register('sw.js'); } catch {}
+    try {
+      const reg = await navigator.serviceWorker.register('sw.js');
+      reg.addEventListener('updatefound', () => {
+        const worker = reg.installing;
+        if (!worker) return;
+        worker.addEventListener('statechange', () => {
+          if (worker.state === 'installed' && navigator.serviceWorker.controller) {
+            const banner = $('#update-banner');
+            if (banner) banner.hidden = false;
+          }
+        });
+      });
+    } catch {}
   }
 }
 

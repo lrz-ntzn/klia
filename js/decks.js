@@ -974,8 +974,55 @@ function basics() {
   };
 }
 
+function jeju() {
+  const rows = [
+    ['혼저옵서예', 'Welcome. Come in.', '어서 오세요', 'Also written 혼저 옵서, “어서 오십시오”. The Jeju government life-dialect list and the Korean Wikipedia Jejueo article both give this greeting.'],
+    ['고맙수다', 'Thank you.', '고맙습니다', 'Polite thanks. Listed with 반갑수다 in phrase collections that match the provincial life-dialect style. Not the standard 고맙습니다.'],
+    ['반갑수다', 'Nice to meet you.', '반갑습니다', 'Paired with 고맙수다 in the same phrase lists.'],
+    ['뭐 햄수과?', 'What are you doing?', '뭐 하세요?', 'Polite question, also given as 지금 뭐 햄수과? Spelling varies by village. The unverified spelling 뭐하멤수과 is not used here.'],
+    ['어드레 감디?', 'Where are you going?', '어디 가?', 'Casual. The Jeju government life-dialect page glosses it as 어디로 가느냐?'],
+    ['어디 감수광?', 'Where are you going?', '어디 가세요?', 'Polite. Speakers also say 어드레 감수광. A local note prefers 광 over 과.'],
+    ['있수과?', 'Is there…? / Are you there?', '있어요?', 'From 집이 있수과? “집에 있습니까?” There is no single everyday Jejueo word matching 있다 in every sentence, so this is the polite question form.'],
+    ['기여', 'Yes. That’s right.', '그래', 'The Jeju provincial dictionary glosses 기여 as 오냐, 그래. A provincial guide uses 기여, 건 나가 허마 for “그래, 그건 내가 할게”.'],
+    ['하르방', 'Grandfather.', '할아버지', 'Headword in the Jeju dictionary and the Korean Wikipedia Jejueo word list. 돌하르방 is the stone grandfather.'],
+    ['할망', 'Grandmother.', '할머니', 'Dictionary headword. 하르망 is a spelling some people use; the published headword is 할망.'],
+    ['오름', 'A small volcanic cone.', '산', 'Wikipedia glosses 오름 as 산. On Jeju it names the small volcanic cones around Hallasan.'],
+    ['아방', 'Father.', '아버지', 'Kinship list in the Jeju dialect overview used by the Academy of Korean Studies teaching wiki.'],
+    ['어멍', 'Mother.', '어머니', 'Same kinship list as 아방.'],
+    ['무사', 'Why?', '왜', 'Yonhap, citing the Jeju dictionary, gives 무사 as 왜.'],
+    ['어떵', 'How?', '어떻게', 'Same report, citing the Jeju dictionary.'],
+    ['폭삭 속았수다', 'You worked hard. Thank you.', '수고 많았습니다', 'Yonhap’s Hangul Day piece, citing the Jeju dictionary, glosses the phrase behind 폭싹 속았수다 as “정말 수고 많았습니다”.'],
+  ];
+  const cards = rows.map((row, i) => card({
+    id: 'jj-' + i,
+    prompt: row[1],
+    answer: row[0],
+    speak: row[0],
+    cat: 'jj-phrase',
+    catLabel: 'Simple phrases',
+    group: 'Simple phrases',
+    note: `Standard Korean: ${row[2]}. ${row[3]} A phone’s Korean voice reads this in a Seoul accent, not Jejueo.`,
+  }));
+  cards.unshift(explain({
+    id: 'jj-note',
+    prompt: 'What is Jejueo?',
+    answer: '제주어',
+    speak: '제주어',
+    cat: 'jj-phrase',
+    catLabel: 'Simple phrases',
+    note: 'Jejueo is the language of Jeju Island. UNESCO rated it critically endangered in 2010: many younger people speak Standard Korean with a Jeju accent rather than Jejueo. Spellings differ by village. Sources for this deck: Jeju Special Self-Governing Province life-dialect pages and dictionary (jeju.go.kr), the Korean Wikipedia Jejueo article, the Academy of Korean Studies teaching wiki, and a 2026 Yonhap piece that quotes the provincial dictionary. Phrases that could not be checked against those sources were left out.',
+  }));
+  return {
+    id: 'jeju',
+    title: 'Jejueo',
+    blurb: 'A few sourced Jeju phrases, with standard Korean',
+    categoryOrder: ['jj-phrase'],
+    cards,
+  };
+}
+
 const BUILDERS = [
-  basics, pronouns, verbs, particles, sinoDeck, nativeDeck, systems, colors, calendar, timeWords,
+  basics, jeju, pronouns, verbs, particles, sinoDeck, nativeDeck, systems, colors, calendar, timeWords,
 ];
 
 export function listDecks() {

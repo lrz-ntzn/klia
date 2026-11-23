@@ -1,15 +1,21 @@
 {
+  "id": "/klia/",
   "name": "Kian Korean",
   "short_name": "Kian KO",
   "description": "English to Korean flash cards for building real sentences.",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "/klia/",
+  "scope": "/klia/",
   "display": "standalone",
-  "background_color": "#0f1419",
-  "theme_color": "#0f1419",
-  "orientation": "portrait-primary",
+  "background_color": "#f4f1ea",
+  "theme_color": "#1f6f5b",
+  "orientation": "portrait",
   "icons": [
-    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    { "src": "assets/screenshot-narrow.png", "sizes": "390x844", "type": "image/png", "form_factor": "narrow", "label": "Deck path" }
   ]
 }

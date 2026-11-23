@@ -15,17 +15,30 @@
   <title>Kian Korean</title>
 </head>
 <body>
+  <div id="update-banner" class="update-banner" hidden>
+    <span>An update is ready.</span>
+    <button type="button" id="update-reload">Reload</button>
+  </div>
   <div id="app">
     <header class="topbar">
-      <div class="brand">
-        <h1 id="title">Kian Korean</h1>
-        <div class="sub">EN → KO</div>
+      <div class="register-bar" id="register-bar" role="group" aria-label="Speech style">
+        <button type="button" data-reg="polite" class="on">Polite</button>
+        <button type="button" data-reg="formal">Formal</button>
+        <button type="button" data-reg="casual">Casual</button>
       </div>
-      <div class="top-stats">
-        <span class="stat-pill" id="streak-pill" title="Day streak">0</span>
-        <span class="stat-pill xp" id="xp-pill" title="XP today">0 XP</span>
-        <button class="icon-btn" id="mute-btn" type="button" aria-label="Mute sounds" aria-pressed="false">Sound</button>
-        <button class="icon-btn" id="about-link" type="button" title="About" aria-label="About">i</button>
+      <div class="top-row">
+        <div class="brand">
+          <h1 id="title">Kian Korean</h1>
+          <div class="sub">EN → KO</div>
+        </div>
+        <div class="top-stats">
+          <span class="stat-pill" id="streak-pill" title="Day streak">0</span>
+          <span class="stat-pill xp" id="xp-pill" title="XP today">0 XP</span>
+          <button class="icon-btn" id="parts-btn" type="button" aria-pressed="false">Parts</button>
+          <button class="icon-btn" id="install-btn" type="button">Install</button>
+          <button class="icon-btn" id="mute-btn" type="button" aria-label="Mute sounds" aria-pressed="false">Sound</button>
+          <button class="icon-btn" id="about-link" type="button" title="About" aria-label="About">i</button>
+        </div>
       </div>
     </header>
 

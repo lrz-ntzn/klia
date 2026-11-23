@@ -1,4 +1,4 @@
-const CACHE = 'kian-korean-v6';
+const CACHE = 'kian-korean-v7';
 const ASSETS = [
   './',
   './index.html',
@@ -14,6 +14,7 @@ const ASSETS = [
   './js/build-drills.js',
   './js/mascot.js',
   './js/fx.js',
+  './js/register.js',
   './assets/fonts/nunito-700.woff2',
   './assets/fonts/nunito-800.woff2',
   './data/hangul.json',
@@ -22,6 +23,7 @@ const ASSETS = [
   './manifest.webmanifest',
   './assets/icon-192.png',
   './assets/icon-512.png',
+  './assets/screenshot-narrow.png',
 ];
 
 self.addEventListener('install', (e) => {

@@ -17,6 +17,11 @@ const defaultState = () => ({
   xpToday: 0,
   xpDay: null,
   muted: false,
+  register: 'polite',
+  parts: false,
+  audioFirst: false,
+  mascot: false,
+  confetti: false,
   createdAt: Date.now(),
   updatedAt: Date.now(),
 });
