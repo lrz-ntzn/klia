@@ -7,7 +7,8 @@ test.describe('Kian Korean', () => {
     await page.goto(BASE + '/');
     await expect(page.getByRole('heading', { name: 'Kian Korean' })).toBeVisible();
     await expect(page.locator('.deck-card[data-deck="pronouns"]')).toBeVisible();
-    await expect(page.locator('.deck-card')).toHaveCount(10);
+    await expect(page.locator('.deck-card')).toHaveCount(11);
+    await expect(page.locator('.deck-card').first()).toHaveAttribute('data-deck', 'basics');
     await expect(page.getByText('Hey there')).toHaveCount(0);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
     expect(overflow).toBe(false);
@@ -337,17 +338,19 @@ test.describe('Kian Korean', () => {
     await page.goto(BASE + '/');
     await page.evaluate(async () => navigator.serviceWorker.ready);
     await page.reload();
-    await expect(page.locator('.deck-card')).toHaveCount(10);
+    await expect(page.locator('.deck-card')).toHaveCount(11);
+    await expect(page.locator('.deck-card').first()).toHaveAttribute('data-deck', 'basics');
     await context.setOffline(true);
     await page.reload();
     await expect(page.locator('.deck-card[data-deck="pronouns"]')).toBeVisible();
-    await expect(page.locator('.deck-card')).toHaveCount(10);
+    await expect(page.locator('.deck-card')).toHaveCount(11);
+    await expect(page.locator('.deck-card').first()).toHaveAttribute('data-deck', 'basics');
   });
 
   test('service worker cache includes the decks', async ({ page }) => {
     await page.goto(BASE + '/');
     const sw = await page.evaluate(async () => (await fetch('sw.js')).text());
-    expect(sw).toContain("const CACHE = 'kian-korean-v5'");
+    expect(sw).toContain("const CACHE = 'kian-korean-v6'");
     expect(sw).toContain('./js/decks.js');
     expect(sw).toContain('./js/study.js');
     const body = await page.content();
@@ -383,6 +386,49 @@ test.describe('Kian Korean', () => {
     const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('kian-korean-v1')));
     expect(saved.decks.verbs.categories).toEqual(['meanings']);
     expect(saved.mixCategories).toEqual(['pronouns:possessive']);
+  });
+
+  test('numbers basics switches sino, native, and both', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(BASE + '/');
+    await page.locator('.deck-card[data-deck="basics"]').click();
+    await expect(page.locator('.num-toggle')).toBeVisible();
+    await page.locator('[data-num="sino"]').click();
+    await expect(page.getByRole('button', { name: '0–10' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Big numbers' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Tens' })).toHaveCount(0);
+    await page.locator('#cat-start').click();
+    await page.evaluate(() => window.__kian.focusCard('nb-s-0'));
+    await expect(page.locator('.digit-xl')).toHaveText('0');
+    await page.locator('#study-reveal').click();
+    await expect(page.locator('.fb-char')).toContainText('영');
+    await expect(page.locator('.fb-banner')).toContainText('공');
+    await page.locator('#study-cats').click();
+    await page.locator('[data-num="native"]').click();
+    await expect(page.getByRole('button', { name: 'Shortened forms' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Big numbers' })).toHaveCount(0);
+    await page.locator('#cat-start').click();
+    await page.evaluate(() => window.__kian.focusCard('nb-n-limit'));
+    await page.locator('#study-reveal').click();
+    await expect(page.locator('.fb-banner')).toContainText('no common word for 0');
+    await page.locator('#study-cats').click();
+    await page.locator('[data-num="both"]').click();
+    await page.locator('#cat-start').click();
+    await page.evaluate(() => window.__kian.focusCard('nb-s-100'));
+    await expect(page.locator('.digit-xl')).toHaveText('100');
+    await expect(page.locator('.sys-tag')).toHaveText('Sino');
+    await page.locator('#study-flip').click();
+    await expect(page.locator('.hangul-xl')).toHaveText('백');
+    await page.locator('#study-type').fill('100');
+    await page.locator('#study-check').click();
+    await expect(page.locator('.fb-banner.ok .digit-xl')).toHaveText('100');
+    await page.reload();
+    await page.locator('.deck-card[data-deck="basics"]').click();
+    await expect(page.locator('[data-num="both"]')).toHaveAttribute('aria-pressed', 'true');
+    const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('kian-korean-v1')));
+    expect(saved.decks.basics.numberSystem).toBe('both');
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
+    expect(overflow).toBe(false);
   });
 
   test('number readings and romanization', async ({ page }) => {

@@ -62,23 +62,46 @@ function mixKey(deckId, catId) {
   return deckId + ':' + catId;
 }
 
+function basicsMode() {
+  const saved = session.state.decks && session.state.decks.basics && session.state.decks.basics.numberSystem;
+  return saved === 'sino' || saved === 'native' || saved === 'both' ? saved : 'both';
+}
+
+function setBasicsMode(mode) {
+  const deck = ensureDeckState(session.state, 'basics');
+  deck.numberSystem = mode;
+  session.hooks.persist();
+}
+
+function applyMode(cards, deckId) {
+  if (deckId !== 'basics' || basicsMode() === 'both') return cards || [];
+  return (cards || []).filter(c => c.system === basicsMode());
+}
+
+function scoped(deck, cards) {
+  return { ...deck, cards: applyMode(cards, deck.id) };
+}
+
 function selectionSet() {
   if (session.deck.mix) {
     const saved = session.state.mixCategories;
     if (!Array.isArray(saved)) {
       const all = [];
       for (const deck of session.catalog) {
-        for (const cat of categoriesOf(deck)) all.push(mixKey(deck.id, cat.id));
+        for (const cat of categoriesOf(scoped(deck, deck.cards))) all.push(mixKey(deck.id, cat.id));
       }
       return new Set(all);
     }
     return new Set(saved);
   }
-  const cats = categoriesOf({ ...session.deck, cards: session.sourceCards });
+  const cats = categoriesOf(scoped(session.deck, session.sourceCards));
   const saved = ensureDeckState(session.state, session.deck.id).categories;
   if (!Array.isArray(saved)) return new Set(cats.map(c => c.id));
   const known = new Set(cats.map(c => c.id));
-  return new Set(saved.filter(id => known.has(id)));
+  const picked = saved.filter(id => known.has(id));
+  if (picked.length) return new Set(picked);
+  if (saved.length === 0) return new Set();
+  return new Set(known);
 }
 
 function writeSelection(set) {
@@ -92,13 +115,13 @@ function cardsFor(set) {
   if (session.deck.mix) {
     const out = [];
     for (const deck of session.catalog) {
-      for (const card of deck.cards) {
+      for (const card of applyMode(deck.cards, deck.id)) {
         if (set.has(mixKey(deck.id, card.cat))) out.push(card);
       }
     }
     return out;
   }
-  return session.sourceCards.filter(c => set.has(c.cat));
+  return applyMode(session.sourceCards, session.deck.id).filter(c => set.has(c.cat));
 }
 
 function catRow(key, label, count, on) {
@@ -109,12 +132,31 @@ function catRow(key, label, count, on) {
   </button>`;
 }
 
+function numberToggle() {
+  const mode = basicsMode();
+  const btn = (id, label) => `<button type="button" class="seg ${mode === id ? 'on' : ''}" data-num="${id}" aria-pressed="${mode === id}">${label}</button>`;
+  return `<div class="num-toggle" role="group" aria-label="Number system">
+    ${btn('sino', 'Sino-Korean')}
+    ${btn('native', 'Native Korean')}
+    ${btn('both', 'Both')}
+  </div>`;
+}
+
+function wireNumberToggle(root, after) {
+  root.querySelectorAll('[data-num]').forEach(btn => {
+    btn.onclick = () => {
+      setBasicsMode(btn.dataset.num);
+      after();
+    };
+  });
+}
+
 function showPicker() {
   const { root, deck } = session;
   const selected = selectionSet();
   const sections = deck.mix
-    ? session.catalog.map(d => ({ title: d.title, rows: categoriesOf(d).map(c => ({ key: mixKey(d.id, c.id), ...c })) }))
-    : [{ title: '', rows: categoriesOf({ ...deck, cards: session.sourceCards }).map(c => ({ key: c.id, ...c })) }];
+    ? session.catalog.map(d => ({ title: d.title, rows: categoriesOf(scoped(d, d.cards)).map(c => ({ key: mixKey(d.id, c.id), ...c })) }))
+    : [{ title: '', rows: categoriesOf(scoped(deck, session.sourceCards)).map(c => ({ key: c.id, ...c })) }];
   const total = cardsFor(selected).length;
   root.innerHTML = `
     <div class="study-bar">
@@ -124,6 +166,7 @@ function showPicker() {
       <h2>${esc(deck.title)}</h2>
       <p class="muted">Choose the categories for this session.</p>
     </div>
+    ${deck.id === 'basics' ? numberToggle() : ''}
     <div class="cat-actions">
       <button type="button" id="cat-all">All</button>
       <button type="button" id="cat-none">None</button>
@@ -138,6 +181,7 @@ function showPicker() {
     <button type="button" id="cat-start" class="primary">Start · ${total} cards</button>`;
   $('#study-back', root).onclick = () => session.hooks.exit();
   const paintRows = () => showPicker();
+  wireNumberToggle(root, paintRows);
   root.querySelectorAll('.cat-row').forEach(btn => {
     btn.onclick = () => {
       const set = selectionSet();
@@ -208,6 +252,28 @@ export function getStudy() {
     shuffle: session.prog.shuffle,
     pending: !!session.banner,
   };
+}
+
+function digitAccepts(card) {
+  const raw = String(card.digit || card.prompt || '');
+  return [...new Set([raw, raw.replace(/,/g, '')])];
+}
+
+function frontBlock(card, direction) {
+  if (card.digit && card.kind !== 'explain') {
+    if (direction === 'koen') {
+      const ko = koreanOf(card);
+      return `<div class="prompt hangul-xl">${esc(ko)}</div>${glossHtml(ko)}${playButton(ko)}`;
+    }
+    const long = String(card.digit).replace(/,/g, '').length > 6;
+    const tag = basicsMode() === 'both'
+      ? `<div class="sys-tag ${esc(card.system || '')}">${esc(card.systemLabel || '')}</div>`
+      : '';
+    return `<div class="prompt ${long ? 'digit-lg' : 'digit-xl'}">${esc(card.digit)}</div>${tag}`;
+  }
+  const front = frontText(card, direction);
+  const showKo = direction === 'koen' && card.kind !== 'system' && card.kind !== 'explain' && hasHangul(front);
+  return `<div class="prompt">${esc(front)}</div>${showKo ? glossHtml(front) + playButton(koreanOf(card)) : ''}`;
 }
 
 function koreanOf(card) {
@@ -347,9 +413,6 @@ function paint() {
   }
 
   const direction = prog.direction;
-  const flipped = direction === 'koen';
-  const front = frontText(card, direction);
-  const showKoOnFront = flipped && card.kind !== 'system' && card.kind !== 'explain' && hasHangul(front);
   const dueSoon = deck.cards.filter(c => {
     const s = prog.cards[c.id];
     return s && s.lapses && s.due <= Date.now();
@@ -362,21 +425,28 @@ function paint() {
       <button type="button" id="study-flip" aria-label="Flip direction" ${session.banner ? 'disabled' : ''}>${direction === 'enko' ? 'EN → KO' : 'KO → EN'}</button>
       <button type="button" id="study-shuffle" class="${prog.shuffle ? 'on' : ''}" aria-pressed="${prog.shuffle}">Shuffle</button>
     </div>
+    ${deck.id === 'basics' ? numberToggle() : ''}
     ${sessionHud()}
     <div class="pill">${esc(deck.title)} · ${index + 1}/${queue.length}${dueSoon ? ' · ' + dueSoon + ' missed waiting' : ''}</div>
       <div class="card study-card ${session.banner && session.banner.ok === true ? 'is-right' : session.banner && session.banner.ok === false ? 'is-wrong' : ''}" id="study-card">
       ${card.group ? `<div class="group-label">${esc(card.group)}</div>` : ''}
       ${card.register ? `<div class="register ${esc(card.register)}">${esc(card.register)}</div>` : ''}
       ${card.swatch ? `<div class="swatch" style="background:${esc(card.swatch)}"></div>` : ''}
-      <div class="prompt">${esc(front)}</div>
-      ${showKoOnFront ? glossHtml(front) : ''}
-      ${showKoOnFront ? playButton(koreanOf(card)) : ''}
+      ${frontBlock(card, direction)}
       <div id="study-controls"></div>
     </div>
     <div id="study-banner"></div>`;
 
   $('#study-back', root).onclick = () => session.hooks.exit();
   $('#study-cats', root).onclick = () => showPicker();
+  wireNumberToggle(root, () => {
+    const cards = cardsFor(selectionSet());
+    if (!cards.length) {
+      showPicker();
+      return;
+    }
+    beginSession(cards);
+  });
   $('#study-flip', root).onclick = () => {
     if (session.banner) return;
     prog.direction = prog.direction === 'enko' ? 'koen' : 'enko';
@@ -484,7 +554,7 @@ function renderControls(card) {
     return;
   }
   const flipped = session.prog.direction === 'koen';
-  const placeholder = flipped ? 'Type the English' : 'Type the Korean';
+  const placeholder = card.digit && flipped ? 'Type the digit' : flipped ? 'Type the English' : 'Type the Korean';
   box.innerHTML = `
     <input id="study-type" class="search" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="${placeholder}">
     <div class="row">
@@ -497,13 +567,13 @@ function renderControls(card) {
       session.hooks.toast('Type an answer, or tap Reveal.');
       return;
     }
-    const accepts = flipped ? [card.prompt] : acceptsOf(card);
+    const accepts = flipped && card.digit ? digitAccepts(card) : flipped ? [card.prompt] : acceptsOf(card);
     gradeTyped(card, typed, accepts);
   };
   $('#study-reveal', box).onclick = () => {
     const typed = $('#study-type', box).value.trim();
     if (typed) {
-      const accepts = flipped ? [card.prompt] : acceptsOf(card);
+      const accepts = flipped && card.digit ? digitAccepts(card) : flipped ? [card.prompt] : acceptsOf(card);
       gradeTyped(card, typed, accepts);
       return;
     }
@@ -551,6 +621,14 @@ function finish(ok, card, opts = {}) {
 function answerBlock(card) {
   const direction = session.prog.direction;
   const ko = koreanOf(card) || (hasHangul(card.answer) ? card.answer : '');
+  if (card.digit && direction === 'koen' && card.kind !== 'explain') {
+    return `
+      <div class="fb-char digit-xl">${esc(card.digit)}</div>
+      <p class="fb-tip">${esc(card.answer)}</p>
+      ${glossHtml(ko)}
+      ${card.note ? `<p class="fb-tip">${esc(card.note)}</p>` : ''}
+      <div class="row">${playButton(ko)}<button type="button" id="study-mic">Mic</button></div>`;
+  }
   const english = direction === 'koen' && card.kind !== 'explain' && card.kind !== 'system' ? backEnglish(card) : '';
   return `
     ${card.morphs ? morphHtml(card) : `<div class="fb-char">${esc(card.answer)}</div>`}

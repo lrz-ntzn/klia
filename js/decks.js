@@ -864,8 +864,118 @@ function shuffle(list) {
   return arr;
 }
 
+function basics() {
+  const small = ['0–10', 'basic-small'];
+  const big = ['Big numbers', 'basic-big'];
+  const tens = ['Tens', 'basic-tens'];
+  const short = ['Shortened forms', 'basic-short'];
+  const sinoOnes = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구', '십'];
+  const nativeOnes = ['하나', '둘', '셋', '넷', '다섯', '여섯', '일곱', '여덟', '아홉', '열'];
+  const nativeTens = [[20, '스물'], [30, '서른'], [40, '마흔'], [50, '쉰'], [60, '예순'], [70, '일흔'], [80, '여든'], [90, '아흔']];
+  const shorts = [[1, '한'], [2, '두'], [3, '세'], [4, '네'], [20, '스무']];
+  const powers = [
+    [100, '백', '100 is 백, not 일백.'],
+    [1000, '천', '1,000 is 천, not 일천.'],
+    [10000, '만', '10,000 is 만, not 일만. This is the ten-thousands place.'],
+    [100000, '십만', '100,000 is 10 × 만: 십만.'],
+    [1000000, '백만', '1,000,000 is 100 × 만: 백만.'],
+    [10000000, '천만', '10,000,000 is 1,000 × 만: 천만.'],
+    [100000000, '억', '100,000,000 is 억, not 일억. 억 is the next group after 만.'],
+  ];
+  const cards = [];
+  const add = (partial) => cards.push(card({
+    kind: 'reveal',
+    prompt: partial.digit,
+    speak: partial.speak || String(partial.answer).split('/')[0].trim(),
+    group: partial.catLabel,
+    ...partial,
+  }));
+  sinoOnes.forEach((ko, n) => add({
+    id: 'nb-s-' + n,
+    digit: String(n),
+    answer: n === 0 ? '영 / 공' : ko,
+    accept: n === 0 ? ['영', '공', '영 / 공', '영/공'] : [ko],
+    system: 'sino',
+    systemLabel: 'Sino',
+    cat: small[1],
+    catLabel: small[0],
+    note: n === 0 ? '영 is the usual zero. 공 is the other reading, used for phone numbers and codes.' : 'Sino-Korean. Used for minutes, dates, money, phone numbers, and floors.',
+  }));
+  powers.forEach(([n, ko, note]) => add({
+    id: 'nb-s-' + n,
+    digit: n.toLocaleString('en-US'),
+    answer: ko,
+    system: 'sino',
+    systemLabel: 'Sino',
+    cat: big[1],
+    catLabel: big[0],
+    note,
+  }));
+  cards.push(explain({
+    id: 'nb-s-group',
+    prompt: 'How do big numbers group?',
+    answer: '오만',
+    speak: '오만',
+    system: 'sino',
+    systemLabel: 'Sino',
+    cat: big[1],
+    catLabel: big[0],
+    note: 'Korean groups by 4 digits, not 3. 만 is 10,000 and 억 is 100,000,000. 50,000 is 오만 (5 × 만), not “fifty thousand” read in threes.',
+  }));
+  nativeOnes.forEach((ko, i) => add({
+    id: 'nb-n-' + (i + 1),
+    digit: String(i + 1),
+    answer: ko,
+    system: 'native',
+    systemLabel: 'Native',
+    cat: small[1],
+    catLabel: small[0],
+    note: 'Native Korean. Used for counting things, people, age, and hours.',
+  }));
+  cards.push(explain({
+    id: 'nb-n-limit',
+    prompt: 'Is there a native 0 or 100?',
+    answer: '백',
+    speak: '백',
+    system: 'native',
+    systemLabel: 'Native',
+    cat: small[1],
+    catLabel: small[0],
+    note: 'Native numbers have no common word for 0, or for 100 and above. For zero, hundreds, thousands, and money, switch to Sino-Korean.',
+  }));
+  nativeTens.forEach(([n, ko]) => add({
+    id: 'nb-n-' + n,
+    digit: String(n),
+    answer: ko,
+    system: 'native',
+    systemLabel: 'Native',
+    cat: tens[1],
+    catLabel: tens[0],
+    note: 'Native tens. 20 is 스물, and it shortens to 스무 only before a counter.',
+  }));
+  shorts.forEach(([n, ko]) => add({
+    id: 'nb-c-' + n,
+    digit: String(n),
+    answer: ko,
+    system: 'native',
+    systemLabel: 'Native',
+    cat: short[1],
+    catLabel: short[0],
+    note: n === 20
+      ? '스물 becomes 스무 only for exactly 20 before a counter. 스무 살. 21 stays 스물한.'
+      : `${native(n)} becomes ${ko} before a counter. ${ko} 개, ${ko} 명, ${ko} 시.`,
+  }));
+  return {
+    id: 'basics',
+    title: 'Numbers Basics',
+    blurb: '0–10 and the big places, Sino or Native',
+    categoryOrder: ['basic-small', 'basic-big', 'basic-tens', 'basic-short'],
+    cards,
+  };
+}
+
 const BUILDERS = [
-  pronouns, verbs, particles, sinoDeck, nativeDeck, systems, colors, calendar, timeWords,
+  basics, pronouns, verbs, particles, sinoDeck, nativeDeck, systems, colors, calendar, timeWords,
 ];
 
 export function listDecks() {

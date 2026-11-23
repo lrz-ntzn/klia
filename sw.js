@@ -1,4 +1,4 @@
-const CACHE = 'kian-korean-v5';
+const CACHE = 'kian-korean-v6';
 const ASSETS = [
   './',
   './index.html',

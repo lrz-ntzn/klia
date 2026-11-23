@@ -693,6 +693,7 @@ function renderVocab() {
 
 /* ---------- Progress / Home / About ---------- */
 const TILES = {
+  basics: '#ff8c42',
   pronouns: '#1cb0f6',
   verbs: '#ff9600',
   particles: '#ce82ff',

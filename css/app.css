@@ -348,6 +348,22 @@ a { color: var(--accent); }
   margin: 8px 0;
 }
 .prompt { font-size: 1.35rem; font-weight: 800; margin: 8px 0; overflow-wrap: anywhere; }
+.digit-xl { font-size: 4.4rem; line-height: 1; text-align: center; letter-spacing: -0.03em; }
+.digit-lg, .hangul-xl { font-size: 2.6rem; line-height: 1.1; text-align: center; overflow-wrap: anywhere; }
+.sys-tag {
+  display: block; width: fit-content; margin: 8px auto 0; padding: 6px 14px;
+  border-radius: 999px; font-weight: 800; font-size: 0.95rem; color: #fff;
+}
+.sys-tag.sino { background: #58a700; }
+.sys-tag.native { background: #1cb0f6; }
+.num-toggle {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 4px 0 12px;
+}
+.num-toggle .seg {
+  min-height: 56px; padding: 10px 6px; font-size: 0.95rem; line-height: 1.15;
+  background: var(--surface); color: var(--text);
+}
+.num-toggle .seg.on { background: var(--accent); color: #fff; box-shadow: 0 4px 0 var(--accent-edge); }
 .rr { color: var(--muted); font-size: 1rem; margin-top: 4px; }
 .ipa-note { margin: 6px 0 0; font-size: 0.85rem; color: var(--muted); }
 .play-ko { min-height: 44px; }
