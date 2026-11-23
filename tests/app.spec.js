@@ -231,6 +231,9 @@ test.describe('Kian Korean', () => {
     await page.setViewportSize({ width: 360, height: 800 });
     await page.goto(BASE + '/');
     await page.locator('.deck-card[data-deck="pronouns"]').click();
+    await expect(page.getByRole('button', { name: 'Personal' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'When-to-drop quiz' })).toBeVisible();
+    await page.locator('#cat-start').click();
     await page.evaluate(() => window.__kian.focusCard('p-jeo'));
     await expect(page.locator('.prompt')).toHaveText('I / me');
     await expect(page.locator('.register')).toHaveText('polite');
@@ -259,6 +262,13 @@ test.describe('Kian Korean', () => {
     await page.setViewportSize({ width: 360, height: 800 });
     await page.goto(BASE + '/');
     await page.locator('.deck-card[data-deck="verbs"]').click();
+    await expect(page.getByRole('button', { name: 'Present' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Irregulars' })).toBeVisible();
+    await page.locator('#cat-none').click();
+    await page.locator('#cat-start').click();
+    await expect(page.locator('#cat-start')).toBeVisible();
+    await page.locator('.cat-row', { hasText: 'Present' }).click();
+    await page.locator('#cat-start').click();
     await page.evaluate(() => window.__kian.focusCard('v-eat-pr'));
     await page.locator('#study-type').fill('먹어요');
     await page.locator('#study-check').click();
@@ -274,6 +284,7 @@ test.describe('Kian Korean', () => {
     await page.setViewportSize({ width: 360, height: 800 });
     await page.goto(BASE + '/');
     await page.locator('.deck-card[data-deck="systems"]').click();
+    await page.locator('#cat-start').click();
     await page.evaluate(() => window.__kian.focusCard('sys-0'));
     await expect(page.locator('.prompt')).toContainText('clock');
     await page.locator('[data-sys="native"]').click();
@@ -288,10 +299,15 @@ test.describe('Kian Korean', () => {
   test('color card shows a swatch and the adjective', async ({ page }) => {
     await page.goto(BASE + '/');
     await page.locator('.deck-card[data-deck="colors"]').click();
+    await expect(page.getByRole('button', { name: 'Nouns' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Adjective forms' })).toBeVisible();
+    await page.locator('#cat-start').click();
     await page.evaluate(() => window.__kian.focusCard('c-0'));
     await expect(page.locator('.swatch')).toBeVisible();
     await page.locator('#study-reveal').click();
     await expect(page.locator('.fb-char')).toContainText('빨간색');
+    await page.evaluate(() => window.__kian.focusCard('c-0-adj'));
+    await page.locator('#study-reveal').click();
     await expect(page.locator('.fb-char')).toContainText('빨개요');
   });
 
@@ -331,13 +347,42 @@ test.describe('Kian Korean', () => {
   test('service worker cache includes the decks', async ({ page }) => {
     await page.goto(BASE + '/');
     const sw = await page.evaluate(async () => (await fetch('sw.js')).text());
-    expect(sw).toContain("const CACHE = 'kian-korean-v4'");
+    expect(sw).toContain("const CACHE = 'kian-korean-v5'");
     expect(sw).toContain('./js/decks.js');
     expect(sw).toContain('./js/study.js');
     const body = await page.content();
     expect(body.toLowerCase()).not.toContain('joey');
     expect(body.toLowerCase()).not.toContain('clough');
     expect(body.toLowerCase()).not.toContain('lariz');
+  });
+
+  test('category choice is remembered and a custom mix stays in the ticked sets', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(BASE + '/');
+    await page.locator('.deck-card[data-deck="verbs"]').click();
+    await page.locator('#cat-none').click();
+    await page.locator('.cat-row', { hasText: 'Meanings' }).click();
+    const count = await page.locator('#cat-start').innerText();
+    expect(count).toMatch(/Start · \d+ cards/);
+    await page.locator('#cat-start').click();
+    await page.locator('#study-back').click();
+    await page.reload();
+    await page.locator('.deck-card[data-deck="verbs"]').click();
+    await expect(page.locator('.cat-row', { hasText: 'Meanings' })).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('.cat-row', { hasText: 'Past' })).toHaveAttribute('aria-pressed', 'false');
+    await page.locator('#study-back').click();
+    await page.locator('#custom-mix').click();
+    await expect(page.getByRole('heading', { name: 'Custom mix' })).toBeVisible();
+    await page.locator('#cat-none').click();
+    await page.locator('.cat-row', { hasText: 'Possessive' }).click();
+    await page.locator('#cat-start').click();
+    const prompt = await page.locator('.prompt').innerText();
+    expect(['my']).toContain(prompt);
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
+    expect(overflow).toBe(false);
+    const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('kian-korean-v1')));
+    expect(saved.decks.verbs.categories).toEqual(['meanings']);
+    expect(saved.mixCategories).toEqual(['pronouns:possessive']);
   });
 
   test('number readings and romanization', async ({ page }) => {

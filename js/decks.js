@@ -544,20 +544,41 @@ const COLORS = [
 ];
 
 function colors() {
-  const cards = COLORS.map((row, i) => {
+  const cards = [];
+  COLORS.forEach((row, i) => {
     const [noun, en, swatch, attr, pred, note] = row;
-    const answer = attr ? `${noun} · ${attr} · ${pred}` : noun;
-    return card({
+    cards.push(card({
       id: 'c-' + i,
-      group: 'Colors',
+      group: 'Nouns',
+      cat: 'nouns',
+      catLabel: 'Nouns',
       prompt: en,
-      answer,
+      answer: noun,
       speak: noun,
       swatch,
-      note,
-    });
+      note: attr ? note : note,
+    }));
+    if (attr) {
+      cards.push(card({
+        id: 'c-' + i + '-adj',
+        group: 'Adjective forms',
+        cat: 'adjectives',
+        catLabel: 'Adjective forms',
+        prompt: en + ' (adjective)',
+        answer: `${attr} · ${pred}`,
+        speak: pred,
+        swatch,
+        note: `${attr} before a noun. ${pred} at the end of a sentence. ${note}`,
+      }));
+    }
   });
-  return { id: 'colors', title: 'Colors', blurb: 'Nouns plus 빨간 / 빨개요 where they exist', cards };
+  return {
+    id: 'colors',
+    title: 'Colors',
+    blurb: 'Nouns plus 빨간 / 빨개요 where they exist',
+    categoryOrder: ['nouns', 'adjectives'],
+    cards,
+  };
 }
 
 function calendar() {
@@ -646,6 +667,138 @@ function timeWords() {
   return { id: 'time', title: 'Time words', blurb: '오늘, 어제, 내일, and telling the time', cards };
 }
 
+const TIME_CATS = {
+  '오늘': ['days', 'Days'],
+  '어제': ['days', 'Days'],
+  '내일': ['days', 'Days'],
+  '모레': ['days', 'Days'],
+  '그저께': ['days', 'Days'],
+  '날': ['days', 'Days'],
+  '주': ['weeks', 'Weeks'],
+  '이번 주': ['weeks', 'Weeks'],
+  '지난주': ['weeks', 'Weeks'],
+  '다음 주': ['weeks', 'Weeks'],
+  '주말': ['weeks', 'Weeks'],
+  '평일': ['weeks', 'Weeks'],
+  '달': ['months', 'Months'],
+  '월': ['months', 'Months'],
+  '이번 달': ['months', 'Months'],
+  '지난달': ['months', 'Months'],
+  '다음 달': ['months', 'Months'],
+  '년': ['years', 'Years'],
+  '해': ['years', 'Years'],
+  '올해': ['years', 'Years'],
+  '작년': ['years', 'Years'],
+  '내년': ['years', 'Years'],
+  '아침': ['dayparts', 'Parts of day'],
+  '점심': ['dayparts', 'Parts of day'],
+  '저녁': ['dayparts', 'Parts of day'],
+  '밤': ['dayparts', 'Parts of day'],
+  '오전': ['dayparts', 'Parts of day'],
+  '오후': ['dayparts', 'Parts of day'],
+  '지금': ['dayparts', 'Parts of day'],
+  '나중에': ['dayparts', 'Parts of day'],
+  '시간': ['clock', 'Telling time'],
+  '분': ['clock', 'Telling time'],
+  '초': ['clock', 'Telling time'],
+};
+
+function tag(card, id, label) {
+  card.cat = id;
+  card.catLabel = label;
+  return card;
+}
+
+function categorize(deck) {
+  const cards = deck.cards;
+  if (deck.id === 'pronouns') {
+    const sets = [
+      [['p-jeo', 'p-na', 'p-dangsin', 'p-neo', 'p-ssi', 'p-title', 'p-geu', 'p-geunyeo', 'p-person', 'p-jeohui', 'p-uri', 'p-deul'], 'personal', 'Personal'],
+      [['p-je', 'p-nae'], 'possessive', 'Possessive'],
+      [['p-i', 'p-igeot', 'p-igeo', 'p-geu-that', 'p-geugeot', 'p-jeo-there', 'p-jeogeot'], 'demonstrative', 'This / that'],
+      [['p-ex-drop', 'p-ex-use', 'p-ex-uri', 'p-q1', 'p-q2', 'p-q3', 'p-q4', 'p-q5', 'p-q6'], 'quiz', 'When-to-drop quiz'],
+      [['p-q-nugu', 'p-q-mwo', 'p-q-eodi', 'p-q-eonje'], 'questions', 'Question words'],
+    ];
+    const byId = new Map(sets.flatMap(([ids, cat, label]) => ids.map(id => [id, [cat, label]])));
+    for (const c of cards) {
+      const hit = byId.get(c.id);
+      if (hit) tag(c, hit[0], hit[1]);
+    }
+    deck.categoryOrder = ['personal', 'possessive', 'demonstrative', 'quiz', 'questions'];
+  } else if (deck.id === 'verbs') {
+    const irregularIds = new Set(['v-hot', 'v-help', 'v-walk', 'v-close', 'v-diff', 'v-big', 'v-busy', 'v-like', 'v-work']);
+    for (const c of cards) {
+      if (c.group === 'Meanings') tag(c, 'meanings', 'Meanings');
+      else if (c.group === 'Irregulars' || irregularIds.has(c.id)) tag(c, 'irregulars', 'Irregulars');
+      else if (c.id === 'v-ex-present' || /-pr$/.test(c.id) || c.id === 'v-be-c' || c.id === 'v-be-v' || c.id === 'v-have-pr') tag(c, 'present', 'Present');
+      else if (c.id === 'v-ex-past' || /-pa$/.test(c.id)) tag(c, 'past', 'Past');
+      else if (c.id === 'v-ex-future' || /-fu$/.test(c.id)) tag(c, 'future', 'Future');
+      else if (c.id === 'v-ex-neg' || /-neg$/.test(c.id) || c.id === 'v-be-not' || c.id === 'v-have-not') tag(c, 'negation', 'Negation');
+      else if (c.id === 'v-ex-want' || /-want$/.test(c.id)) tag(c, 'want', 'Want');
+      else if (c.id === 'v-ex-can' || /-can$/.test(c.id)) tag(c, 'can', 'Can');
+      else if (c.id === 'v-ex-please' || /-pls$/.test(c.id)) tag(c, 'please', 'Please');
+      else tag(c, 'present', 'Present');
+    }
+    deck.categoryOrder = ['meanings', 'present', 'past', 'future', 'negation', 'want', 'can', 'please', 'irregulars'];
+  } else if (deck.id === 'particles') {
+    for (const c of cards) tag(c, c.id, c.answer);
+    deck.categoryOrder = cards.map(c => c.id);
+  } else if (deck.id === 'sino' || deck.id === 'native') {
+    const map = {
+      '1 to 10': ['ones', '1–10'],
+      'Tens': ['tens', 'Tens'],
+      '백, 천, 만': ['big', 'Big numbers'],
+      'Before a counter': ['counters', 'Counters'],
+      'Random drill': ['random', 'Random drills'],
+    };
+    for (const c of cards) {
+      const hit = map[c.group] || ['ones', '1–10'];
+      tag(c, hit[0], hit[1]);
+    }
+    deck.categoryOrder = deck.id === 'sino'
+      ? ['ones', 'tens', 'big', 'random']
+      : ['ones', 'tens', 'counters', 'random'];
+  } else if (deck.id === 'systems') {
+    const map = { Rule: ['rule', 'Rule'], Trainer: ['trainer', 'Which system'], Counters: ['counters', 'Counters'] };
+    for (const c of cards) {
+      const hit = map[c.group] || ['trainer', 'Which system'];
+      tag(c, hit[0], hit[1]);
+    }
+    deck.categoryOrder = ['rule', 'trainer', 'counters'];
+  } else if (deck.id === 'calendar') {
+    for (const c of cards) {
+      if (c.group === 'Months') tag(c, 'months', 'Months');
+      else tag(c, 'days', 'Days');
+    }
+    deck.categoryOrder = ['days', 'months'];
+  } else if (deck.id === 'time') {
+    for (const c of cards) {
+      if (c.id === 'tm-clock' || c.id === 'tm-am') tag(c, 'clock', 'Telling time');
+      else {
+        const hit = TIME_CATS[c.answer] || ['days', 'Days'];
+        tag(c, hit[0], hit[1]);
+      }
+    }
+    deck.categoryOrder = ['days', 'weeks', 'months', 'years', 'dayparts', 'clock'];
+  }
+  for (const c of cards) {
+    c.deckId = deck.id;
+    if (!c.cat) tag(c, 'cards', 'Cards');
+  }
+  return deck;
+}
+
+export function categoriesOf(deck) {
+  const map = new Map();
+  for (const c of deck.cards || []) {
+    const id = c.cat || 'cards';
+    if (!map.has(id)) map.set(id, { id, label: c.catLabel || id, count: 0 });
+    map.get(id).count += 1;
+  }
+  const order = deck.categoryOrder || [...map.keys()];
+  return order.map(id => map.get(id)).filter(cat => cat && cat.count > 0);
+}
+
 function randomSinoCards(count = 8) {
   const cards = [];
   const used = new Set();
@@ -716,7 +869,7 @@ const BUILDERS = [
 ];
 
 export function listDecks() {
-  const decks = BUILDERS.map(fn => fn());
+  const decks = BUILDERS.map(fn => categorize(fn()));
   decks.push({
     id: 'builder',
     title: 'Sentence builder',
@@ -730,8 +883,8 @@ export function listDecks() {
 export function getDeck(id) {
   const deck = listDecks().find(d => d.id === id);
   if (!deck) return null;
-  if (deck.random === 'sino') return { ...deck, cards: deck.cards.concat(randomSinoCards()) };
-  if (deck.random === 'native') return { ...deck, cards: deck.cards.concat(randomNativeCards()) };
+  if (deck.random === 'sino') return categorize({ ...deck, cards: deck.cards.concat(randomSinoCards()) });
+  if (deck.random === 'native') return categorize({ ...deck, cards: deck.cards.concat(randomNativeCards()) });
   return deck;
 }
 

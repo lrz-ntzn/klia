@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1a1230" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#fff6e8" media="(prefers-color-scheme: light)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="description" content="Kian Korean: flash cards for the words and endings that build a Korean sentence." />
@@ -17,11 +17,16 @@
 <body>
   <div id="app">
     <header class="topbar">
-      <div>
+      <div class="brand">
         <h1 id="title">Kian Korean</h1>
         <div class="sub">EN → KO</div>
       </div>
-      <button class="icon-btn" id="about-link" title="About" aria-label="About">ℹ️</button>
+      <div class="top-stats">
+        <span class="stat-pill" id="streak-pill" title="Day streak">0</span>
+        <span class="stat-pill xp" id="xp-pill" title="XP today">0 XP</span>
+        <button class="icon-btn" id="mute-btn" type="button" aria-label="Mute sounds" aria-pressed="false">Sound</button>
+        <button class="icon-btn" id="about-link" type="button" title="About" aria-label="About">i</button>
+      </div>
     </header>
 
     <main>

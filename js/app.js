@@ -1,9 +1,11 @@
 import * as Storage from './storage.js';
+import { DAILY_GOAL } from './storage.js';
+import { mascot } from './mascot.js';
 import * as SRS from './srs.js';
 import * as Speak from './speak.js';
 import { renderSoundChart, ipaOf, contrastTip } from './sounds.js';
 import { listDecks, getDeck } from './decks.js';
-import { openStudy, getStudy, focusCard } from './study.js';
+import { openStudy, getStudy, focusCard, openMix } from './study.js';
 import { starterDrills, starterFocusLabel } from './build-drills.js';
 
 const $ = (sel, el = document) => el.querySelector(sel);
@@ -35,6 +37,29 @@ function persist() {
   Storage.touchStreak(state);
   Storage.save(state);
   updateBadges();
+  refreshHud();
+}
+
+function dayKey() {
+  return new Date().toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' });
+}
+
+function xpToday() {
+  return state.xpDay === dayKey() ? (state.xpToday || 0) : 0;
+}
+
+function refreshHud() {
+  const streak = $('#streak-pill');
+  if (streak) streak.innerHTML = `<svg class="flame" viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1c2 4 .6 5 2.6 8 1 1.6 1.8 2.8 1.8 5.2a4.4 4.4 0 1 1-8.8 0c0-1.8.8-3 1.8-4.6C6.4 8 7 5 8 1z"/></svg><span>${state.streak.count || 0}</span>`;
+  const xp = $('#xp-pill');
+  if (xp) xp.textContent = `${xpToday()} XP`;
+  const mute = $('#mute-btn');
+  if (mute) {
+    const off = !!state.muted;
+    mute.textContent = off ? 'Muted' : 'Sound';
+    mute.setAttribute('aria-pressed', off ? 'true' : 'false');
+    mute.setAttribute('aria-label', off ? 'Unmute sounds' : 'Mute sounds');
+  }
 }
 
 function updateBadges() {
@@ -180,6 +205,7 @@ function renderHangulCard() {
       state.weak[item.id] = (state.weak[item.id] || 0) + 1;
     } else {
       state.hangulSeen[item.id].correct += 1;
+      Storage.awardXp(state, 10);
     }
     persist();
     renderHangulCard();
@@ -273,7 +299,10 @@ function answerDrill(btn, correct) {
   timed.responseMs += Math.max(0, Date.now() - timed.shownAt);
   timed.total += 1;
   const ok = btn.dataset.c === correct;
-  if (ok) timed.score += 1;
+  if (ok) {
+    timed.score += 1;
+    Storage.awardXp(state, 10);
+  }
   $$('#choices button').forEach(x => { x.disabled = true; });
   markChoice(btn, ok ? 'correct' : 'wrong');
   if (!ok) {
@@ -663,6 +692,29 @@ function renderVocab() {
 }
 
 /* ---------- Progress / Home / About ---------- */
+const TILES = {
+  pronouns: '#1cb0f6',
+  verbs: '#ff9600',
+  particles: '#ce82ff',
+  sino: '#58a700',
+  native: '#00a37a',
+  systems: '#e6a100',
+  colors: '#ff4b4b',
+  calendar: '#2b70c9',
+  time: '#ff6b9a',
+  builder: '#a560e8',
+};
+
+function deckProgress(deck) {
+  if (deck.launch === 'syntax') {
+    return state.syntax.done ? Math.round(state.syntax.correct / state.syntax.done * 100) : 0;
+  }
+  const total = deck.cards.length || 1;
+  const saved = state.decks && state.decks[deck.id];
+  const seen = saved ? Object.keys(saved.cards || {}).length : 0;
+  return Math.round(Math.min(100, seen / total * 100));
+}
+
 function deckStat(deck) {
   const saved = state.decks && state.decks[deck.id];
   const total = deck.cards.length;
@@ -681,21 +733,37 @@ function deckStat(deck) {
 
 function renderHome() {
   const decks = listDecks();
+  const today = xpToday();
+  const goal = Math.min(100, Math.round(today / DAILY_GOAL * 100));
   $('[data-view="home"]').innerHTML = `
-    <div class="card">
-      <h2>Build a sentence</h2>
-      <p class="muted">Flash cards for the pieces: pronouns, verbs, particles, numbers, time, and color. English → Korean. Progress stays on this phone.</p>
+    <div class="hero">
+      ${mascot('happy')}
+      <div class="hero-copy">
+        <h2>Build a sentence</h2>
+        <p class="muted">Pick a deck, or mix categories. English → Korean. Progress stays on this phone.</p>
+      </div>
+      <div class="goal-ring" style="--pct:${goal}" title="Daily goal ${DAILY_GOAL} XP">
+        <span class="goal-core"><strong>${today}</strong><small>/${DAILY_GOAL}</small></span>
+      </div>
     </div>
+    <button type="button" class="mix-card" id="custom-mix">
+      <span class="deck-title">Custom mix</span>
+      <span class="muted">Tick categories from any deck and study them together.</span>
+    </button>
     <div class="deck-list" id="deck-list">
-      ${decks.map((deck, i) => `
-        <button type="button" class="deck-card" data-deck="${deck.id}">
-          <span class="deck-no">${i + 1}</span>
+      ${decks.map((deck) => {
+        const color = TILES[deck.id] || '#1cb0f6';
+        const pct = deckProgress(deck);
+        return `
+        <button type="button" class="deck-card" data-deck="${deck.id}" style="--tile:${color}">
+          <span class="ring" style="--pct:${pct}"><span class="ring-core" style="color:${color}">${deck.title.slice(0, 1)}</span></span>
           <span class="deck-copy">
             <span class="deck-title">${deck.title}</span>
             <span class="muted">${deck.blurb}</span>
             <span class="deck-stat">${deckStat(deck)}</span>
           </span>
-        </button>`).join('')}
+        </button>`;
+      }).join('')}
     </div>
     <h2 class="section-label">More practice</h2>
     <div class="stack">
@@ -703,6 +771,7 @@ function renderHome() {
       <button type="button" id="home-sounds">Sound chart</button>
       <button type="button" id="home-vocab">Vocab and mic</button>
     </div>`;
+  $('#custom-mix').onclick = () => startMix();
   $$('#deck-list [data-deck]').forEach(b => b.onclick = () => startStudy(b.dataset.deck));
   $('#home-hangul').onclick = () => setView('hangul');
   $('#home-sounds').onclick = () => setView('sounds');
@@ -757,6 +826,22 @@ function renderPractice() {
   });
 }
 
+function studyHooks() {
+  return {
+    persist,
+    toast,
+    speak: (text) => Speak.speakKo(text).catch(() => toast('Audio unavailable')),
+    listen: Speak.checkPronunciation,
+    exit: () => setView('home'),
+  };
+}
+
+function startMix() {
+  const decks = listDecks().filter(d => !d.launch).map(d => getDeck(d.id));
+  setView('study');
+  openMix($('[data-view="study"]'), decks, state, studyHooks());
+}
+
 function startStudy(id) {
   const deck = getDeck(id);
   if (!deck) return;
@@ -766,13 +851,7 @@ function startStudy(id) {
   }
   setView('study');
   $('#title').textContent = deck.title;
-  openStudy($('[data-view="study"]'), deck, state, {
-    persist,
-    toast,
-    speak: (text) => Speak.speakKo(text).catch(() => toast('Audio unavailable')),
-    listen: Speak.checkPronunciation,
-    exit: () => setView('home'),
-  });
+  openStudy($('[data-view="study"]'), deck, state, studyHooks());
 }
 
 function renderProgress() {
@@ -881,7 +960,12 @@ async function main() {
   if (window.speechSynthesis) speechSynthesis.getVoices();
   $$('.nav button').forEach(b => b.onclick = () => setView(b.dataset.nav));
   $('#about-link').onclick = () => setView('about');
+  $('#mute-btn').onclick = () => {
+    state.muted = !state.muted;
+    persist();
+  };
   setView('home');
+  refreshHud();
   if ('serviceWorker' in navigator) {
     try { await navigator.serviceWorker.register('sw.js'); } catch {}
   }

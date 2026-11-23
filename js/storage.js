@@ -11,7 +11,12 @@ const defaultState = () => ({
   speak: { attempts: 0, avgScore: 0 },
   readingSpeed: [],  // {t, cpm, accuracy}
   weak: {},          // id -> fail count
-  decks: {},         // deckId -> {correct, wrong, direction, shuffle, cards}
+  decks: {},         // deckId -> {correct, wrong, direction, shuffle, cards, categories}
+  mixCategories: null,
+  xp: 0,
+  xpToday: 0,
+  xpDay: null,
+  muted: false,
   createdAt: Date.now(),
   updatedAt: Date.now(),
 });
@@ -42,6 +47,20 @@ export function importJSON(text) {
   const merged = { ...defaultState(), ...data, version: 1 };
   save(merged);
   return merged;
+}
+
+export const DAILY_GOAL = 50;
+
+export function awardXp(state, amount) {
+  const today = new Date();
+  const key = today.toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' });
+  if (state.xpDay !== key) {
+    state.xpDay = key;
+    state.xpToday = 0;
+  }
+  state.xp = (state.xp || 0) + amount;
+  state.xpToday = (state.xpToday || 0) + amount;
+  return amount;
 }
 
 export function touchStreak(state) {

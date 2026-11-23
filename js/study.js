@@ -1,5 +1,9 @@
 /* Shared flashcard session: reveal, type, or pick. Banner stays until Next. */
 import { romanize, soundNotes, hasHangul } from './gloss.js';
+import { categoriesOf } from './decks.js';
+import { awardXp } from './storage.js';
+import { mascot } from './mascot.js';
+import { playFx, burstConfetti } from './fx.js';
 
 const $ = (sel, el = document) => el.querySelector(sel);
 
@@ -25,24 +29,158 @@ function ensureDeckState(state, deckId) {
   return d;
 }
 
-function rankOf(prog, card) {
-  const s = prog.cards[card.id];
+function cardDeckId(card) {
+  return (card && card.deckId) || (session && session.deck.id);
+}
+
+function cardProg(card) {
+  return ensureDeckState(session.state, cardDeckId(card));
+}
+
+function rankOfCard(card) {
+  const s = cardProg(card).cards[card.id];
   if (s && s.lapses && s.due <= Date.now()) return 0;
   if (!s) return 1;
   if (s.due <= Date.now()) return 2;
   return 3;
 }
 
-function orderCards(cards, prog) {
+function orderCards(cards) {
   const arr = cards.slice();
-  if (prog.shuffle) {
+  const shuffle = session.prog ? session.prog.shuffle !== false : true;
+  if (shuffle) {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
     }
   }
-  arr.sort((a, b) => rankOf(prog, a) - rankOf(prog, b));
+  arr.sort((a, b) => rankOfCard(a) - rankOfCard(b));
   return arr;
+}
+
+function mixKey(deckId, catId) {
+  return deckId + ':' + catId;
+}
+
+function selectionSet() {
+  if (session.deck.mix) {
+    const saved = session.state.mixCategories;
+    if (!Array.isArray(saved)) {
+      const all = [];
+      for (const deck of session.catalog) {
+        for (const cat of categoriesOf(deck)) all.push(mixKey(deck.id, cat.id));
+      }
+      return new Set(all);
+    }
+    return new Set(saved);
+  }
+  const cats = categoriesOf({ ...session.deck, cards: session.sourceCards });
+  const saved = ensureDeckState(session.state, session.deck.id).categories;
+  if (!Array.isArray(saved)) return new Set(cats.map(c => c.id));
+  const known = new Set(cats.map(c => c.id));
+  return new Set(saved.filter(id => known.has(id)));
+}
+
+function writeSelection(set) {
+  const list = [...set];
+  if (session.deck.mix) session.state.mixCategories = list;
+  else ensureDeckState(session.state, session.deck.id).categories = list;
+  session.hooks.persist();
+}
+
+function cardsFor(set) {
+  if (session.deck.mix) {
+    const out = [];
+    for (const deck of session.catalog) {
+      for (const card of deck.cards) {
+        if (set.has(mixKey(deck.id, card.cat))) out.push(card);
+      }
+    }
+    return out;
+  }
+  return session.sourceCards.filter(c => set.has(c.cat));
+}
+
+function catRow(key, label, count, on) {
+  return `<button type="button" class="cat-row ${on ? 'on' : ''}" data-cat="${esc(key)}" aria-pressed="${on ? 'true' : 'false'}">
+    <span class="cat-check" aria-hidden="true">${on ? '✓' : ''}</span>
+    <span class="cat-name">${esc(label)}</span>
+    <span class="cat-count">${count}</span>
+  </button>`;
+}
+
+function showPicker() {
+  const { root, deck } = session;
+  const selected = selectionSet();
+  const sections = deck.mix
+    ? session.catalog.map(d => ({ title: d.title, rows: categoriesOf(d).map(c => ({ key: mixKey(d.id, c.id), ...c })) }))
+    : [{ title: '', rows: categoriesOf({ ...deck, cards: session.sourceCards }).map(c => ({ key: c.id, ...c })) }];
+  const total = cardsFor(selected).length;
+  root.innerHTML = `
+    <div class="study-bar">
+      <button type="button" id="study-back" class="ghost">Decks</button>
+    </div>
+    <div class="card">
+      <h2>${esc(deck.title)}</h2>
+      <p class="muted">Choose the categories for this session.</p>
+    </div>
+    <div class="cat-actions">
+      <button type="button" id="cat-all">All</button>
+      <button type="button" id="cat-none">None</button>
+    </div>
+    <div id="cat-list">
+      ${sections.map(sec => `
+        ${sec.title ? `<h2 class="section-label">${esc(sec.title)}</h2>` : ''}
+        <div class="cat-list">
+          ${sec.rows.map(row => catRow(row.key, row.label, row.count, selected.has(row.key))).join('')}
+        </div>`).join('')}
+    </div>
+    <button type="button" id="cat-start" class="primary">Start · ${total} cards</button>`;
+  $('#study-back', root).onclick = () => session.hooks.exit();
+  const paintRows = () => showPicker();
+  root.querySelectorAll('.cat-row').forEach(btn => {
+    btn.onclick = () => {
+      const set = selectionSet();
+      if (set.has(btn.dataset.cat)) set.delete(btn.dataset.cat);
+      else set.add(btn.dataset.cat);
+      writeSelection(set);
+      paintRows();
+    };
+  });
+  $('#cat-all', root).onclick = () => {
+    const set = new Set();
+    root.querySelectorAll('.cat-row').forEach(btn => set.add(btn.dataset.cat));
+    writeSelection(set);
+    paintRows();
+  };
+  $('#cat-none', root).onclick = () => {
+    writeSelection(new Set());
+    paintRows();
+  };
+  $('#cat-start', root).onclick = () => {
+    const cards = cardsFor(selectionSet());
+    if (!cards.length) {
+      session.hooks.toast('Pick at least one category.');
+      return;
+    }
+    beginSession(cards);
+  };
+}
+
+function beginSession(cards) {
+  session.prog = ensureDeckState(session.state, session.deck.id);
+  session.lastCards = cards.slice();
+  session.queue = orderCards(cards);
+  session.index = 0;
+  session.revealed = false;
+  session.banner = null;
+  session.requeue = null;
+  session.phase = 'run';
+  session.hearts = 5;
+  session.combo = 0;
+  session.mood = 'idle';
+  session.stats = { seen: 0, correct: 0, xp: 0, started: Date.now() };
+  paint();
 }
 
 let session = null;
@@ -90,23 +228,31 @@ function backEnglish(card) {
 }
 
 export function openStudy(root, deck, state, hooks) {
-  const prog = ensureDeckState(state, deck.id);
+  session = { root, deck, state, hooks, sourceCards: deck.cards.slice(), phase: 'pick' };
+  showPicker();
+}
+
+export function openMix(root, decks, state, hooks) {
   session = {
-    root, deck, state, hooks, prog,
-    queue: orderCards(deck.cards, prog),
-    index: 0,
-    revealed: false,
-    banner: null,
-    requeue: null,
+    root,
+    deck: { id: 'mix', title: 'Custom mix', cards: [], mix: true },
+    catalog: decks.filter(d => d.cards && d.cards.length),
+    sourceCards: [],
+    state,
+    hooks,
+    phase: 'pick',
   };
-  paint();
+  showPicker();
 }
 
 function record(ok) {
-  const { prog, queue, index } = session;
+  const { queue, index } = session;
   const card = queue[index];
   if (!card) return;
+  const prog = cardProg(card);
   const slot = prog.cards[card.id] || { correct: 0, wrong: 0, due: 0, streak: 0, lapses: 0 };
+  if (!session.stats) session.stats = { seen: 0, correct: 0, xp: 0, started: Date.now() };
+  session.stats.seen += 1;
   if (ok) {
     slot.correct += 1;
     slot.streak = (slot.streak || 0) + 1;
@@ -114,6 +260,13 @@ function record(ok) {
     const minutes = Math.min(24, 2 * slot.streak);
     slot.due = Date.now() + minutes * 60 * 1000;
     prog.correct += 1;
+    session.stats.correct += 1;
+    session.combo = (session.combo || 0) + 1;
+    const gain = 10 + Math.min(10, session.combo - 1);
+    session.stats.xp += gain;
+    awardXp(session.state, gain);
+    session.mood = session.combo >= 3 ? 'cheer' : 'happy';
+    playFx('ok', session.state.muted);
   } else {
     slot.wrong += 1;
     slot.streak = 0;
@@ -121,15 +274,66 @@ function record(ok) {
     slot.due = Date.now() - 1000;
     prog.wrong += 1;
     session.requeue = card;
+    session.combo = 0;
+    session.hearts = Math.max(0, (session.hearts ?? 5) - 1);
+    session.mood = 'sad';
+    playFx('no', session.state.muted);
   }
   prog.cards[card.id] = slot;
   session.hooks.persist();
+}
+
+function heartsHtml() {
+  const n = session.hearts ?? 5;
+  return `<span class="hearts" aria-label="${n} hearts">${Array.from({ length: 5 }, (_, i) => `<i class="${i < n ? 'on' : ''}"></i>`).join('')}</span>`;
+}
+
+function sessionHud() {
+  const total = Math.max(1, (session.queue || []).length);
+  const pct = Math.min(100, Math.round((session.index / total) * 100));
+  const combo = session.combo || 0;
+  return `
+    <div class="session-hud">
+      <div class="session-bar" aria-hidden="true"><i style="width:${pct}%"></i></div>
+      <div class="hud-row">
+        ${mascot(session.mood || 'idle')}
+        ${heartsHtml()}
+        <span class="combo">${combo > 1 ? combo + ' combo' : ''}</span>
+      </div>
+    </div>`;
+}
+
+function paintCelebrate() {
+  const stats = session.stats || { seen: 0, correct: 0, xp: 0, started: Date.now() };
+  const acc = stats.seen ? Math.round(stats.correct / stats.seen * 100) : 0;
+  const secs = Math.max(1, Math.round((Date.now() - stats.started) / 1000));
+  session.root.innerHTML = `
+    <div class="celebrate">
+      ${mascot('cheer')}
+      <h2>Session clear</h2>
+      <div class="stat-grid">
+        <div class="stat"><div class="n">+${stats.xp}</div><div class="l">XP</div></div>
+        <div class="stat"><div class="n">${acc}%</div><div class="l">accuracy</div></div>
+        <div class="stat"><div class="n">${secs}s</div><div class="l">time</div></div>
+      </div>
+      <p class="muted">${stats.correct} of ${stats.seen} correct. Missed cards come back sooner next time.</p>
+      <button type="button" id="study-again" class="primary">Practice anyway</button>
+      <button type="button" id="study-back">Decks</button>
+    </div>`;
+  burstConfetti(session.root);
+  playFx('win', session.state.muted);
+  $('#study-back', session.root).onclick = () => session.hooks.exit();
+  $('#study-again', session.root).onclick = () => beginSession(session.lastCards || []);
 }
 
 function paint() {
   const { root, deck, prog, queue, index } = session;
   const card = queue[index];
   if (!card) {
+    if (session.stats && session.stats.seen) {
+      paintCelebrate();
+      return;
+    }
     root.innerHTML = `
       <button type="button" id="study-back" class="ghost">Decks</button>
       <div class="card">
@@ -138,14 +342,7 @@ function paint() {
         <button type="button" id="study-again" class="primary">Practice anyway</button>
       </div>`;
     $('#study-back', root).onclick = () => session.hooks.exit();
-    $('#study-again', root).onclick = () => {
-      session.queue = orderCards(deck.cards, prog);
-      session.index = 0;
-      session.revealed = false;
-      session.banner = null;
-      session.requeue = null;
-      paint();
-    };
+    $('#study-again', root).onclick = () => beginSession(session.lastCards || []);
     return;
   }
 
@@ -161,9 +358,11 @@ function paint() {
   root.innerHTML = `
     <div class="study-bar">
       <button type="button" id="study-back" class="ghost">Decks</button>
+      <button type="button" id="study-cats">Topics</button>
       <button type="button" id="study-flip" aria-label="Flip direction" ${session.banner ? 'disabled' : ''}>${direction === 'enko' ? 'EN → KO' : 'KO → EN'}</button>
       <button type="button" id="study-shuffle" class="${prog.shuffle ? 'on' : ''}" aria-pressed="${prog.shuffle}">Shuffle</button>
     </div>
+    ${sessionHud()}
     <div class="pill">${esc(deck.title)} · ${index + 1}/${queue.length}${dueSoon ? ' · ' + dueSoon + ' missed waiting' : ''}</div>
       <div class="card study-card ${session.banner && session.banner.ok === true ? 'is-right' : session.banner && session.banner.ok === false ? 'is-wrong' : ''}" id="study-card">
       ${card.group ? `<div class="group-label">${esc(card.group)}</div>` : ''}
@@ -177,6 +376,7 @@ function paint() {
     <div id="study-banner"></div>`;
 
   $('#study-back', root).onclick = () => session.hooks.exit();
+  $('#study-cats', root).onclick = () => showPicker();
   $('#study-flip', root).onclick = () => {
     if (session.banner) return;
     prog.direction = prog.direction === 'enko' ? 'koen' : 'enko';
@@ -387,9 +587,9 @@ function showBanner() {
   const ok = banner.ok;
   host.innerHTML = `
     <div class="fb-banner ${ok ? 'ok' : 'no'}">
-      <div class="fb-title">${banner.explain ? 'Explanation' : ok ? 'Correct' : 'Not quite'}</div>
+      <div class="fb-title"><span aria-hidden="true">${ok ? '✓' : '✗'}</span> ${banner.explain ? 'Explanation' : ok ? 'Correct' : 'Not quite'}</div>
       ${answerBlock(card)}
-      <button type="button" id="study-next" class="drill-next">Next</button>
+      <button type="button" id="study-next" class="drill-next">Continue</button>
     </div>`;
   $('#study-next', host).onclick = nextCard;
   wirePlay(host);
@@ -429,9 +629,10 @@ function nextCard() {
   session.revealed = false;
   session.banner = null;
   if (session.index >= queue.length) {
-    const again = session.deck.cards.filter(c => rankOf(session.prog, c) === 0);
+    const pool = session.lastCards || session.deck.cards;
+    const again = pool.filter(c => rankOfCard(c) === 0);
     if (again.length) {
-      session.queue = orderCards(again, session.prog);
+      session.queue = orderCards(again);
       session.index = 0;
     }
   }
